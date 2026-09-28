@@ -1,0 +1,906 @@
+[
+  {
+    "memo_id": 1,
+    "type": "복약 거부",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 점심 약은 먹지 않겠다며 봉투를 내 쪽으로 미셨다."
+  },
+  {
+    "memo_id": 2,
+    "type": "야간 각성",
+    "status": "없었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 새벽에는 잠든 뒤 중간에 깨신 적이 없었다."
+  },
+  {
+    "memo_id": 3,
+    "type": "야간 각성",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 새벽 두 시에 깨서 한동안 침대에 앉아 계셨다."
+  },
+  {
+    "memo_id": 4,
+    "type": "불안",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 2,
+    "evidence": "오늘 비 소리를 듣고 무슨 일이 날까 걱정된다고 두 번 물으셨다."
+  },
+  {
+    "memo_id": 5,
+    "type": "사람·장소 혼동",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 내게 동생 이름을 부르며 언제 집에 왔느냐고 물으셨다."
+  },
+  {
+    "memo_id": 6,
+    "type": "복약 거부",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 아침 약을 드리자 입을 다물고 고개를 돌리셨다."
+  },
+  {
+    "memo_id": 7,
+    "type": "과민·짜증",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 사진을 넘기는 속도가 빠르다며 짜증을 내셨다."
+  },
+  {
+    "memo_id": 8,
+    "type": "불안",
+    "status": "없었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 외출 중에는 걱정되거나 무섭다는 말씀은 없었다."
+  },
+  {
+    "memo_id": 9,
+    "type": "배회·출입문 시도",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 2,
+    "evidence": "오늘 오후 신발을 신고 현관문 손잡이를 두 번 돌리셨다."
+  },
+  {
+    "memo_id": 10,
+    "type": "불안",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 택배 기사가 떠난 뒤 누가 또 올까 불안하다고 하셨다."
+  },
+  {
+    "memo_id": 11,
+    "type": "복약 거부",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 2,
+    "evidence": "오늘은 약을 두 번 건넸지만 두 번 모두 싫다고 하셨다."
+  },
+  {
+    "memo_id": 12,
+    "type": "식사량 감소",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 점심은 평소 한 공기 먹던 밥을 서너 숟갈만 드셨다."
+  },
+  {
+    "memo_id": 13,
+    "type": "초조·공격",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 세면대 앞에서 기다리다 큰 소리를 내며 내 팔을 미셨다."
+  },
+  {
+    "memo_id": 14,
+    "type": "낙상",
+    "status": "없었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 산책하는 동안 넘어진 일은 없었다."
+  },
+  {
+    "memo_id": 15,
+    "type": "야간 각성",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 2,
+    "evidence": "오늘 새벽에는 잠든 뒤 두 번 깨서 물을 찾으셨다."
+  },
+  {
+    "memo_id": 16,
+    "type": "복약 거부",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 저녁 약을 앞에 놓으니 나중에 먹겠다며 옆으로 치우셨다."
+  },
+  {
+    "memo_id": 17,
+    "type": "불안",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 공사 소리에 놀라 집이 무너질까 걱정된다고 하셨다."
+  },
+  {
+    "memo_id": 18,
+    "type": "과민·짜증",
+    "status": "없었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 음악을 듣는 동안 짜증을 내신 적은 없었다."
+  },
+  {
+    "memo_id": 19,
+    "type": "우울·무기력",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 오전에는 아무것도 하기 싫다며 소파에 오래 앉아 계셨다."
+  },
+  {
+    "memo_id": 21,
+    "type": "복약 거부",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 점심에는 약을 먹기 싫다고 분명히 말씀하셨다."
+  },
+  {
+    "memo_id": 22,
+    "type": "망상",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 지갑이 서랍에 있는데도 이웃이 돈을 가져갔다고 하셨다."
+  },
+  {
+    "memo_id": 23,
+    "type": "불안",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 내가 나가려 하자 혼자 있기는 불안하다고 붙잡으셨다."
+  },
+  {
+    "memo_id": 24,
+    "type": "배회·출입문 시도",
+    "status": "없었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 산책 뒤에는 혼자 밖으로 나가려는 모습이 없었다."
+  },
+  {
+    "memo_id": 25,
+    "type": "사람·장소 혼동",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 조카를 보고 예전 이웃 아주머니라고 부르셨다."
+  },
+  {
+    "memo_id": 26,
+    "type": "복약 거부",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 아침 약 봉투를 열자 안 먹는다며 손으로 가리셨다."
+  },
+  {
+    "memo_id": 27,
+    "type": "야간 각성",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 새벽 네 시쯤 잠에서 깨 거실 불을 켜셨다."
+  },
+  {
+    "memo_id": 28,
+    "type": "배회·출입문 시도",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 저녁 집 밖으로 가겠다며 현관문을 열려고 하셨다."
+  },
+  {
+    "memo_id": 29,
+    "type": "복약 거부",
+    "status": "없었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 점심에는 약을 거부하지 않고 드셨다."
+  },
+  {
+    "memo_id": 30,
+    "type": "불안",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 불이 꺼진 동안 무섭다며 내 손을 잡으셨다."
+  },
+  {
+    "memo_id": 31,
+    "type": "복약 거부",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘은 약을 권했을 때 물컵만 받고 약은 돌려주셨다."
+  },
+  {
+    "memo_id": 32,
+    "type": "식사량 감소",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 저녁에는 밥을 반 공기보다 적게 드시고 남기셨다."
+  },
+  {
+    "memo_id": 33,
+    "type": "과민·짜증",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 옷을 바꾸자는 말에 왜 자꾸 그러냐며 짜증을 내셨다."
+  },
+  {
+    "memo_id": 35,
+    "type": "낙상",
+    "status": "없었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 공원에 다녀오는 동안 넘어지지 않으셨다."
+  },
+  {
+    "memo_id": 36,
+    "type": "복약 거부",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 저녁 약을 드리니 필요 없다며 받지 않으셨다."
+  },
+  {
+    "memo_id": 37,
+    "type": "불안",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 통화가 끝나자 가족에게 무슨 일이 있을까 걱정하셨다."
+  },
+  {
+    "memo_id": 38,
+    "type": "우울·무기력",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘은 색칠을 권해도 의욕이 없다며 종이를 내려놓으셨다."
+  },
+  {
+    "memo_id": 39,
+    "type": "야간 각성",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘은 밤중에 한 번 깨서 시계를 보고 계셨다."
+  },
+  {
+    "memo_id": 40,
+    "type": "환각",
+    "status": "없었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘은 없는 사람이 보인다는 말씀을 하지 않으셨다."
+  },
+  {
+    "memo_id": 41,
+    "type": "복약 거부",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 3,
+    "evidence": "오늘 식후 약을 세 차례 권했으나 매번 거절하셨다."
+  },
+  {
+    "memo_id": 43,
+    "type": "초조·공격",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 의자를 옮기자 화를 내며 내 손등을 한 번 치셨다."
+  },
+  {
+    "memo_id": 44,
+    "type": "불안",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 사이렌을 듣고 우리 집에도 오는 거냐며 불안해하셨다."
+  },
+  {
+    "memo_id": 45,
+    "type": "사람·장소 혼동",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 우리 집 앞 복도에서 여기가 어느 집이냐고 물으셨다."
+  },
+  {
+    "memo_id": 46,
+    "type": "복약 거부",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 아침에는 약을 삼키지 않겠다며 입을 꼭 다무셨다."
+  },
+  {
+    "memo_id": 47,
+    "type": "망상",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 정리한 옷을 두고 누군가 몰래 바꿔 놓았다고 하셨다."
+  },
+  {
+    "memo_id": 48,
+    "type": "배회·출입문 시도",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 산책에서 돌아온 뒤 다시 문을 열고 나가려 하셨다."
+  },
+  {
+    "memo_id": 49,
+    "type": "불안",
+    "status": "없었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 오후에는 혼자 있는 것이 불안하다는 말씀은 없었다."
+  },
+  {
+    "memo_id": 50,
+    "type": "불안",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 2,
+    "evidence": "오늘 내일 손님을 맞는 일이 걱정된다며 두 번 확인하셨다."
+  },
+  {
+    "memo_id": 51,
+    "type": "야간 각성",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 2,
+    "evidence": "오늘 새벽에 두 차례 깨셨고 내가 옆에 앉아 있었다."
+  },
+  {
+    "memo_id": 51,
+    "type": "복약 거부",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 저녁 약은 싫다며 쟁반 한쪽으로 밀어 두셨다."
+  },
+  {
+    "memo_id": 53,
+    "type": "식사량 감소",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 점심은 생선과 밥을 두어 숟갈 드신 뒤 그만 먹겠다고 하셨다."
+  },
+  {
+    "memo_id": 55,
+    "type": "초조·공격",
+    "status": "없었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘은 소리를 지르거나 사람을 미는 행동이 없었다."
+  },
+  {
+    "memo_id": 56,
+    "type": "복약 거부",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 약을 가져가자 지금 먹지 않겠다고 말씀하셨다."
+  },
+  {
+    "memo_id": 57,
+    "type": "불안",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 내가 현관으로 가니 혼자 두지 말라며 불안해하셨다."
+  },
+  {
+    "memo_id": 58,
+    "type": "우울·무기력",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 퍼즐을 하다가 기운이 없다고 하며 그만두셨다."
+  },
+  {
+    "memo_id": 59,
+    "type": "과민·짜증",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 TV 소리를 줄이니 듣고 있는데 왜 그러냐며 짜증을 내셨다."
+  },
+  {
+    "memo_id": 61,
+    "type": "복약 거부",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘은 약 봉투를 보자 고개를 저으며 책상 위에 내려놓으셨다."
+  },
+  {
+    "memo_id": 62,
+    "type": "망상",
+    "status": "없었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘은 누가 물건을 가져갔다는 말씀을 하지 않으셨다."
+  },
+  {
+    "memo_id": 63,
+    "type": "야간 각성",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 새벽 세 시 무렵 깨서 이불을 정리하고 계셨다."
+  },
+  {
+    "memo_id": 64,
+    "type": "불안",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 친척이 늦자 사고가 난 것 아니냐며 걱정을 말씀하셨다."
+  },
+  {
+    "memo_id": 65,
+    "type": "사람·장소 혼동",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 가족사진 속 딸을 자신의 언니라고 말씀하셨다."
+  },
+  {
+    "memo_id": 66,
+    "type": "복약 거부",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 2,
+    "evidence": "오늘 저녁 약을 두 차례 건넸지만 두 번 다 손사래를 치셨다."
+  },
+  {
+    "memo_id": 67,
+    "type": "배회·출입문 시도",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 장바구니를 들고 나간다며 현관문 쪽으로 가셨다."
+  },
+  {
+    "memo_id": 69,
+    "type": "초조·공격",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 2,
+    "evidence": "오늘 욕실 앞에서 기다리는 동안 문을 두 번 세게 두드리셨다."
+  },
+  {
+    "memo_id": 70,
+    "type": "불안",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 천둥이 치는 동안 무섭다며 내 옆으로 오셨다."
+  },
+  {
+    "memo_id": 71,
+    "type": "복약 거부",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 점심 약은 먹지 않겠다며 봉투를 접어 두셨다."
+  },
+  {
+    "memo_id": 73,
+    "type": "망상",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 2,
+    "evidence": "오늘 가방 안을 보고 누가 열쇠를 훔쳐 갔다고 두 번 말씀하셨다."
+  },
+  {
+    "memo_id": 74,
+    "type": "식사량 감소",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 저녁 밥은 반 공기만 드셨다."
+  },
+  {
+    "memo_id": 75,
+    "type": "야간 각성",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘은 새벽에 한 번 일어나 방 안 의자에 앉으셨다."
+  },
+  {
+    "memo_id": 76,
+    "type": "복약 거부",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 약을 권하자 싫다는 말을 하고 받지 않으셨다."
+  },
+  {
+    "memo_id": 77,
+    "type": "우울·무기력",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘은 마음이 처진다며 뜨개질도 하고 싶지 않다고 하셨다."
+  },
+  {
+    "memo_id": 78,
+    "type": "불안",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 병원에 가는 일이 걱정된다고 말씀하셨다."
+  },
+  {
+    "memo_id": 79,
+    "type": "사람·장소 혼동",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 나를 어머니라고 부르며 학교에 갈 시간이냐고 물으셨다."
+  },
+  {
+    "memo_id": 80,
+    "type": "복약 거부",
+    "status": "없었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 저녁 약은 거절하지 않고 드셨다."
+  },
+  {
+    "memo_id": 81,
+    "type": "야간 각성",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 2,
+    "evidence": "오늘 새벽에는 두 번 깨서 방 안 의자에 앉아 계셨다."
+  },
+  {
+    "memo_id": 81,
+    "type": "불안",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 병원에 가기 전 길을 잘 찾을 수 있을지 걱정된다고 하셨다."
+  },
+  {
+    "memo_id": 82,
+    "type": "식사량 감소",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 점심 밥은 반 공기만 드시고 수저를 놓으셨다."
+  },
+  {
+    "memo_id": 82,
+    "type": "복약 거부",
+    "status": "없었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 점심 약은 거부하지 않고 드셨다."
+  },
+  {
+    "memo_id": 83,
+    "type": "야간 각성",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 새벽 세 시쯤 깨서 한동안 앉아 계셨다."
+  },
+  {
+    "memo_id": 83,
+    "type": "배회·출입문 시도",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 2,
+    "evidence": "오늘 새벽 현관문을 열려고 두 번 손잡이를 잡으셨다."
+  },
+  {
+    "memo_id": 85,
+    "type": "야간 각성",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 2,
+    "evidence": "오늘 새벽에는 한 시와 네 시에 각각 한 번씩 깨셨다."
+  },
+  {
+    "memo_id": 85,
+    "type": "과민·짜증",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 아침 수건을 바꾸자 자기 물건을 왜 치우냐며 짜증을 내셨다."
+  },
+  {
+    "memo_id": 86,
+    "type": "불안",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 내가 밖에 나가려 하니 혼자 있기 불안하다고 하셨다."
+  },
+  {
+    "memo_id": 86,
+    "type": "야간 각성",
+    "status": "없었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 새벽에는 중간에 깨지 않고 주무셨다."
+  },
+  {
+    "memo_id": 87,
+    "type": "야간 각성",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 3,
+    "evidence": "오늘은 새벽 한 시, 세 시, 다섯 시에 모두 세 번 깨셨다."
+  },
+  {
+    "memo_id": 87,
+    "type": "사람·장소 혼동",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 아침 내게 언니라고 부르며 여기가 친정집이냐고 물으셨다."
+  },
+  {
+    "memo_id": 88,
+    "type": "복약 거부",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 저녁 약을 드리자 먹지 않겠다고 봉투를 돌려주셨다."
+  },
+  {
+    "memo_id": 88,
+    "type": "낙상",
+    "status": "없었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 걷는 동안 넘어진 일은 없었다."
+  },
+  {
+    "memo_id": 89,
+    "type": "야간 각성",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 새벽 네 시에 깨서 거실에 앉아 계셨다."
+  },
+  {
+    "memo_id": 89,
+    "type": "우울·무기력",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 오전엔 기운이 없다며 화분도 보고 싶지 않다고 하셨다."
+  },
+  {
+    "memo_id": 90,
+    "type": "야간 각성",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 2,
+    "evidence": "오늘 새벽에 두 번 깨서 방 불을 켜셨다."
+  },
+  {
+    "memo_id": 90,
+    "type": "배회·출입문 시도",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 두 번째로 깬 뒤 외출하겠다며 현관문을 열려고 하셨다."
+  },
+  {
+    "memo_id": 91,
+    "type": "환각",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 거실에 아무도 없는데 창가에 아이가 서 있다고 하셨다."
+  },
+  {
+    "memo_id": 91,
+    "type": "불안",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 창가 쪽이 무섭다며 내 옆으로 와 앉으셨다."
+  },
+  {
+    "memo_id": 92,
+    "type": "야간 각성",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 새벽 세 시에 잠에서 깨서 물을 찾으셨다."
+  },
+  {
+    "memo_id": 92,
+    "type": "과민·짜증",
+    "status": "없었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 퍼즐을 정리하는 동안 짜증을 내신 적은 없었다."
+  },
+  {
+    "memo_id": 94,
+    "type": "야간 각성",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 2,
+    "evidence": "오늘 새벽에는 두 번 깨서 시계를 보고 계셨다."
+  },
+  {
+    "memo_id": 94,
+    "type": "복약 거부",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 2,
+    "evidence": "오늘 아침 약은 두 번 권했지만 두 번 모두 안 먹겠다고 하셨다."
+  },
+  {
+    "memo_id": 95,
+    "type": "낙상",
+    "status": "있었음",
+    "time_expr": null,
+    "count": 1,
+    "evidence": "욕실 입구에서 발을 헛디뎌 바닥에 주저앉으셨다."
+  },
+  {
+    "memo_id": 96,
+    "type": "환각",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 2,
+    "evidence": "오늘 빈 의자를 보며 저 사람이 왜 앉아 있냐고 두 번 물으셨다."
+  },
+  {
+    "memo_id": 96,
+    "type": "우울·무기력",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘은 아무것도 하고 싶지 않다며 노래 듣기도 그만두셨다."
+  },
+  {
+    "memo_id": 97,
+    "type": "야간 각성",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 2,
+    "evidence": "오늘 새벽에는 두 번 깨셨고 두 번째에는 이불을 개셨다."
+  },
+  {
+    "memo_id": 97,
+    "type": "불안",
+    "status": "없었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 아침에는 걱정되거나 무섭다는 말씀을 하지 않으셨다."
+  },
+  {
+    "memo_id": 98,
+    "type": "야간 각성",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 새벽 두 시에 깨서 한동안 방문 앞에 서 계셨다."
+  },
+  {
+    "memo_id": 98,
+    "type": "초조·공격",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 세면대 앞에서 기다리다 큰 소리를 내며 내 팔을 미셨다."
+  },
+  {
+    "memo_id": 99,
+    "type": "야간 각성",
+    "status": "있었음",
+    "time_expr": "새벽",
+    "count": 3,
+    "evidence": "새벽 한 시, 세 시, 다섯 시에 세 번 깨셨다."
+  },
+  {
+    "memo_id": 100,
+    "type": "낙상",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 오후 거실 문턱에서 발이 걸려 옆으로 넘어지셨다."
+  },
+  {
+    "memo_id": 100,
+    "type": "식사량 감소",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 점심에는 평소 한 공기 드시던 밥을 세 숟갈만 드셨다."
+  },
+  {
+    "memo_id": 101,
+    "type": "야간 각성",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 2,
+    "evidence": "오늘 새벽에는 두 번 깨서 밖이 밝아졌느냐고 물으셨다."
+  },
+  {
+    "memo_id": 101,
+    "type": "불안",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 친척이 늦게 온다고 하니 무슨 일이 생긴 것은 아닌지 걱정하셨다."
+  },
+  {
+    "memo_id": 102,
+    "type": "환각",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 TV 옆 빈 공간에 남자가 서 있다고 말씀하셨다."
+  },
+  {
+    "memo_id": 102,
+    "type": "망상",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 1,
+    "evidence": "오늘 가방 속 지갑을 보고 누군가 돈을 가져갔다고 하셨다."
+  },
+  {
+    "memo_id": 103,
+    "type": "야간 각성",
+    "status": "있었음",
+    "time_expr": "오늘",
+    "count": 3,
+    "evidence": "오늘 새벽에는 한 시, 두 시 반, 네 시에 세 번 깨셨다."
+  },
+  {
+    "memo_id": 103,
+    "type": "배회·출입문 시도",
+    "status": "있었음",
+    "time_expr": "오후",
+    "count": 1,
+    "evidence": "오후에는 외출하겠다며 현관문을 열려고 하셨다."
+  }
+]
