@@ -1,0 +1,22 @@
+# Generated files and frozen team labels
+pnpm-lock.yaml
+/config/labels.json
+node_modules/
+.pnpm-store/
+/dist/
+/dist-ssr/
+.vite/
+*.tsbuildinfo
+
+# Local settings and verification artifacts
+.env*
+*.local
+*.local.*
+.idea/
+.vscode/
+/coverage/
+/output/
+/.playwright-cli/
+/playwright-report/
+/test-results/
+/blob-report/
