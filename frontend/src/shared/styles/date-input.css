@@ -1,0 +1,11 @@
+/* Keep native date text and its calendar control close together across forms. */
+.mvp-shell input.itda-date-input[type='date'] {
+  width: 140px;
+  max-width: 100%;
+  min-width: 0;
+  min-height: 48px;
+  flex: 0 1 auto;
+  padding: 8px 10px 8px 14px;
+  font-size: 14px;
+  line-height: 1.7;
+}
