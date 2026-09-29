@@ -25,12 +25,12 @@ def _check_completed(visit_date: dt.date, status: str) -> None:
         raise invalid("오늘 이후 진료는 받은 진료로 등록할 수 없어요.", "future_visit")
 
 
-@router.get("/visits", response_model=list[VisitOut])
+@router.get("/visits", response_model=list[VisitOut], summary="진료일 목록")
 def list_visits(session: SessionDep):
     return [_visit(v) for v in session.scalars(select(Visit).order_by(Visit.visit_date, Visit.id))]
 
 
-@router.post("/visits", response_model=VisitOut, status_code=201)
+@router.post("/visits", response_model=VisitOut, status_code=201, summary="진료일 등록")
 def add_visit(body: VisitCreate, session: SessionDep):
     _check_completed(body.visit_date, body.status)
     if session.scalar(select(Visit).where(Visit.visit_date == body.visit_date)):
@@ -41,7 +41,7 @@ def add_visit(body: VisitCreate, session: SessionDep):
     return _visit(v)
 
 
-@router.patch("/visits/{visit_id}", response_model=VisitOut)
+@router.patch("/visits/{visit_id}", response_model=VisitOut, summary="진료 상태 바꾸기")
 def update_visit(visit_id: int, body: VisitUpdate, session: SessionDep):
     v = session.get(Visit, visit_id)
     if v is None:
@@ -52,7 +52,7 @@ def update_visit(visit_id: int, body: VisitUpdate, session: SessionDep):
     return _visit(v)
 
 
-@router.delete("/visits/{visit_id}", status_code=204)
+@router.delete("/visits/{visit_id}", status_code=204, summary="진료일 삭제")
 def delete_visit(visit_id: int, session: SessionDep):
     v = session.get(Visit, visit_id)
     if v is None:
@@ -68,12 +68,12 @@ def _med(m: Medication) -> dict:
     )
 
 
-@router.get("/medications", response_model=list[MedicationOut])
+@router.get("/medications", response_model=list[MedicationOut], summary="약 변경 목록")
 def list_medications(session: SessionDep):
     return [_med(m) for m in session.scalars(select(Medication).order_by(Medication.change_date, Medication.id))]
 
 
-@router.post("/medications", response_model=MedicationOut, status_code=201)
+@router.post("/medications", response_model=MedicationOut, status_code=201, summary="약 변경 등록")
 def add_medication(body: MedicationCreate, session: SessionDep):
     name = body.name.strip()
     if not name:
@@ -93,7 +93,7 @@ def add_medication(body: MedicationCreate, session: SessionDep):
     return _med(m)
 
 
-@router.delete("/medications/{medication_id}", status_code=204)
+@router.delete("/medications/{medication_id}", status_code=204, summary="약 변경 삭제")
 def delete_medication(medication_id: int, session: SessionDep):
     m = session.get(Medication, medication_id)
     if m is None:
@@ -109,14 +109,14 @@ def _question(q: Question) -> dict:
     ).model_dump(mode="json")
 
 
-@router.get("/questions", response_model=list[QuestionOut])
+@router.get("/questions", response_model=list[QuestionOut], summary="질문 목록")
 def list_questions(session: SessionDep):
     return [
         _question(q) for q in session.scalars(select(Question).order_by(Question.created_at.desc(), Question.id.desc()))
     ]
 
 
-@router.post("/questions", response_model=QuestionOut, status_code=201)
+@router.post("/questions", response_model=QuestionOut, status_code=201, summary="질문 추가")
 def add_question(body: QuestionCreate, session: SessionDep):
     if not body.text.strip():
         raise invalid("질문을 적어 주세요.")
@@ -134,7 +134,7 @@ def add_question(body: QuestionCreate, session: SessionDep):
     return _question(q)
 
 
-@router.delete("/questions/{question_id}", status_code=204)
+@router.delete("/questions/{question_id}", status_code=204, summary="질문 삭제")
 def delete_question(question_id: int, session: SessionDep):
     q = session.get(Question, question_id)
     if q is None:

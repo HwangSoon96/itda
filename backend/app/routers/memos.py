@@ -127,7 +127,7 @@ def _revision(session: Session, memo: Memo, kind: str, before: list[dict]) -> No
     )
 
 
-@router.post("/memos", response_model=MemoResult)
+@router.post("/memos", response_model=MemoResult, summary="메모 저장하고 AI로 정리")
 async def create_memo(body: MemoCreate, session: SessionDep):
     _check_text(body.text)
     if body.record_date > dt.date.today():
@@ -159,7 +159,7 @@ async def create_memo(body: MemoCreate, session: SessionDep):
     return to_result(_get(session, memo.id))
 
 
-@router.patch("/memos/{memo_id}", response_model=MemoResult)
+@router.patch("/memos/{memo_id}", response_model=MemoResult, summary="원문 수정하고 다시 정리")
 async def update_memo(memo_id: int, body: MemoUpdate, session: SessionDep):
     _check_text(body.text)
     if body.request_id and (key := session.get(RequestKey, body.request_id)):
@@ -189,7 +189,7 @@ async def update_memo(memo_id: int, body: MemoUpdate, session: SessionDep):
     return to_result(_get(session, memo_id))
 
 
-@router.post("/memos/{memo_id}/confirm", response_model=MemoResult)
+@router.post("/memos/{memo_id}/confirm", response_model=MemoResult, summary="카드 확정 (처음 확인 · 정정 · 직접 정리)")
 def confirm_memo(memo_id: int, body: ConfirmRequest, session: SessionDep):
     memo = _get(session, memo_id)
     if memo.status == "failed" and not body.manual:
@@ -217,7 +217,7 @@ def confirm_memo(memo_id: int, body: ConfirmRequest, session: SessionDep):
     return to_result(memo)
 
 
-@router.post("/memos/{memo_id}/retry", response_model=MemoResult)
+@router.post("/memos/{memo_id}/retry", response_model=MemoResult, summary="정리 실패 메모 다시 정리")
 async def retry_memo(memo_id: int, session: SessionDep):
     memo = _get(session, memo_id)
     if memo.status != "failed":
@@ -227,7 +227,7 @@ async def retry_memo(memo_id: int, session: SessionDep):
     return to_result(_get(session, memo_id))
 
 
-@router.get("/memos/{memo_id}/revisions", response_model=list[RevisionOut])
+@router.get("/memos/{memo_id}/revisions", response_model=list[RevisionOut], summary="수정 이력")
 def memo_revisions(memo_id: int, session: SessionDep):
     _get(session, memo_id)
     rows = session.scalars(select(MemoRevision).where(MemoRevision.memo_id == memo_id).order_by(MemoRevision.id.desc()))
@@ -243,7 +243,7 @@ def memo_revisions(memo_id: int, session: SessionDep):
     ]
 
 
-@router.get("/memos", response_model=list[MemoResult])
+@router.get("/memos", response_model=list[MemoResult], summary="메모 목록")
 def list_memos(
     session: SessionDep,
     date_from: Annotated[dt.date | None, Query(alias="from")] = None,
@@ -259,7 +259,7 @@ def list_memos(
     return [to_result(m) for m in session.scalars(q)]
 
 
-@router.delete("/memos/{memo_id}", status_code=204)
+@router.delete("/memos/{memo_id}", status_code=204, summary="메모 삭제")
 def delete_memo(memo_id: int, session: SessionDep):
     memo = _get(session, memo_id)
     for key in session.scalars(select(RequestKey).where(RequestKey.memo_id == memo_id)):
@@ -269,7 +269,7 @@ def delete_memo(memo_id: int, session: SessionDep):
     return Response(status_code=204)
 
 
-@router.post("/events", response_model=MemoResult)
+@router.post("/events", response_model=MemoResult, summary="확인 완료 메모에 사건 추가")
 def add_event(body: EventCreate, session: SessionDep):
     memo = _get(session, body.memo_id)
     if memo.status != "confirmed":
