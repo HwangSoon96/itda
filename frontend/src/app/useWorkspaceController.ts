@@ -316,7 +316,7 @@ export function useWorkspaceController() {
       setAlias(patient.alias)
       setPatientError('')
       setAliasOpen(false)
-      setUtilityNotice('돌보는 분 이름을 저장했어요.')
+      setUtilityNotice('환자 이름을 저장했어요.')
       window.dispatchEvent(new Event('itda-final-updated'))
     } catch (error) {
       if (blocksPatientAccess(error)) handleAccessFailure(error)

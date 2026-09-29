@@ -49,7 +49,7 @@ beforeEach(() => {
   window.history.replaceState(null, '', '#record')
   vi.spyOn(window, 'scrollTo').mockImplementation(() => {})
   api.health.mockResolvedValue(connected)
-  api.patient.mockResolvedValue({ alias: '돌보는 분 이름' })
+  api.patient.mockResolvedValue({ alias: '환자 이름' })
 })
 afterEach(cleanup)
 
@@ -78,7 +78,7 @@ it.each([false, true])(
     render(<App />)
     await screen.findByRole('heading', { name: '기록 화면' })
     expect(
-      await screen.findByText('돌보는 분 이름을 불러오지 못했어요. 이름 조회 연결 실패'),
+      await screen.findByText('환자 이름을 불러오지 못했어요. 이름 조회 연결 실패'),
     ).toBeTruthy()
     expect(screen.queryByRole('alertdialog')).toBeNull()
     const input = screen.getByLabelText('메모 입력') as HTMLInputElement
@@ -107,8 +107,8 @@ it('작업 공간 확인이 필요 없으면 이름 조회 중에도 입력하�
   await screen.findByRole('heading', { name: '기록 화면' })
   expect((screen.getByLabelText('메모 입력') as HTMLInputElement).disabled).toBe(false)
   fireEvent.click(screen.getByText('관리'))
-  fireEvent.click(screen.getByRole('button', { name: '돌보는 분 이름 설정' }))
-  const editor = await screen.findByRole('dialog', { name: '돌보는 분 이름 설정' })
+  fireEvent.click(screen.getByRole('button', { name: '환자 이름 설정' }))
+  const editor = await screen.findByRole('dialog', { name: '환자 이름 설정' })
   fireEvent.change(within(editor).getByLabelText('이름 또는 가명'), {
     target: { value: '저장한 이름' },
   })
@@ -117,7 +117,7 @@ it('작업 공간 확인이 필요 없으면 이름 조회 중에도 입력하�
   await act(async () => finishPatient({ alias: '느리게 도착한 이름' }))
   fireEvent.click(within(notice).getByRole('button', { name: '확인' }))
   fireEvent.click(screen.getByText('관리'))
-  fireEvent.click(screen.getByRole('button', { name: '돌보는 분 이름 설정' }))
+  fireEvent.click(screen.getByRole('button', { name: '환자 이름 설정' }))
   expect((screen.getByLabelText('이름 또는 가명') as HTMLInputElement).value).toBe('저장한 이름')
 })
 
@@ -146,8 +146,8 @@ it('이름 저장 권한 오류 뒤 늦은 초기 조회가 입력 화면을 다
   render(<App />)
   await screen.findByRole('heading', { name: '기록 화면' })
   fireEvent.click(screen.getByText('관리'))
-  fireEvent.click(screen.getByRole('button', { name: '돌보는 분 이름 설정' }))
-  const editor = await screen.findByRole('dialog', { name: '돌보는 분 이름 설정' })
+  fireEvent.click(screen.getByRole('button', { name: '환자 이름 설정' }))
+  const editor = await screen.findByRole('dialog', { name: '환자 이름 설정' })
   fireEvent.change(within(editor).getByLabelText('이름 또는 가명'), {
     target: { value: '새 이름' },
   })
@@ -214,7 +214,7 @@ it('지원하지 않는 이름과 데모 기능은 UI와 직접 호출 모두 �
   render(<App />)
   await screen.findByRole('heading', { name: '기록 화면' })
   fireEvent.click(screen.getByText('관리'))
-  expect(screen.queryByRole('button', { name: '돌보는 분 이름 설정' })).toBeNull()
+  expect(screen.queryByRole('button', { name: '환자 이름 설정' })).toBeNull()
   expect(screen.queryByRole('button', { name: /데모/ })).toBeNull()
 })
 

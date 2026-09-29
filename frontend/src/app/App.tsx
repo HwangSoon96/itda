@@ -108,9 +108,9 @@ function Workspace() {
               <div>
                 {apiCapabilities.patient && (
                   <>
-                    <p>{alias || '돌보는 분'}</p>
+                    <p>{alias || '환자'}</p>
                     <button disabled={!workspaceReady || busy} onClick={openAlias}>
-                      돌보는 분 이름 설정
+                      환자 이름 설정
                     </button>
                   </>
                 )}
@@ -139,7 +139,7 @@ function Workspace() {
       <main className="mvp-main">
         {apiCapabilities.patient && patientError && workspaceReady && (
           <section className="mvp-notice" role="status">
-            <p>돌보는 분 이름을 불러오지 못했어요. {patientError}</p>
+            <p>환자 이름을 불러오지 못했어요. {patientError}</p>
             <button
               className="button outline"
               onClick={() => void retryPatient()}
@@ -213,7 +213,7 @@ function Workspace() {
       </main>
       <Modal
         open={apiCapabilities.patient && aliasOpen && workspaceReady}
-        title="돌보는 분 이름 설정"
+        title="환자 이름 설정"
         onClose={() => void closeAlias()}
         busy={busy}
         footer={
