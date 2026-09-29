@@ -62,7 +62,9 @@ def create_app() -> FastAPI:
     for r in (health.router, memos.router, schedule.router, summary.router):
         app.include_router(r)
     if (STATIC / "index.html").exists():  # itda-frontend 빌드 결과. API 경로를 가리지 않게 마지막에 등록
-        app.mount("/assets", StaticFiles(directory=STATIC / "assets"), name="assets")
+        for sub in ("assets", "fonts"):
+            if (STATIC / sub).is_dir():
+                app.mount(f"/{sub}", StaticFiles(directory=STATIC / sub), name=sub)
 
         @app.get("/", include_in_schema=False)
         def index():
