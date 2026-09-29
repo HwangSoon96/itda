@@ -178,6 +178,12 @@ def check(sentences: list[str], fx: dict, rows, falls) -> list[str]:
     return why
 
 
+def split_lines(content: str) -> list[str]:
+    """줄마다 앞의 목록 기호("- ", "1. ", "2) ")만 뗌. 날짜로 시작하는 문장("2026-08-22와 …")은 그대로 둠."""
+    lines = [re.sub(r"^\s*(?:[-*•]|\d+[.)])\s+", "", x).strip() for x in content.splitlines()]
+    return [x for x in lines if x]
+
+
 async def llm(rows, falls, fall_row, cov, cur, base) -> list[dict] | None:
     """요약 모델로 쓰고 검사. 실패하면 None (문장 틀을 씀)."""
     s = settings()
@@ -193,8 +199,7 @@ async def llm(rows, falls, fall_row, cov, cur, base) -> list[dict] | None:
             )
         except Exception:  # 연결·시간 초과·모델 없음 모두 문장 틀로
             return None
-        lines = [re.sub(r"^[\s\-*\d.)]+", "", x).strip() for x in (res.message.content or "").splitlines()]
-        lines = [x for x in lines if x]
+        lines = split_lines(res.message.content or "")
         if not check(lines, fx, rows, falls):
             by_type = {_ko(r["type"]): r for r in rows}
             out = []

@@ -11,7 +11,7 @@ import pytest
 from fastapi.testclient import TestClient
 
 from app.routers import memos as memos_router
-from app.services import extract
+from app.services import extract, summarize
 
 TEXT = "새벽 3시쯤 깨서 현관문 열려고 하심. 저녁은 반 공기밖에 안 드심. 낮에는 혼자 있으면 불안해하심."
 MODEL = {
@@ -75,6 +75,17 @@ def test_parse_sorts_by_evidence_and_rejects_bad_output():
     assert extract.parse(TEXT, json.dumps(bad))[1][0] == "time_mismatch"
     assert extract.parse(TEXT, '{"events": [{"type": "sleepy"}]}')[1][0] == "invalid_format"
     assert extract.parse(TEXT, "not json")[1][0] == "invalid_format"
+
+
+def test_summary_lines_keep_leading_date():
+    out = "1. 2026-08-22와 2026-09-14에 낙상이 기록됨.\n- 야간 각성: 증가 표시됨.\n\n2) 환각: 기록됨.\n"
+    out += "2026-07-24에 처음 기록됨."
+    assert summarize.split_lines(out) == [
+        "2026-08-22와 2026-09-14에 낙상이 기록됨.",
+        "야간 각성: 증가 표시됨.",
+        "환각: 기록됨.",
+        "2026-07-24에 처음 기록됨.",
+    ]
 
 
 # ── 기록 흐름 ──────────────────────────────────────
