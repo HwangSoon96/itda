@@ -1,0 +1,17 @@
+:root {
+  --color-background: #e0e8ea;
+  --color-surface: #ffffff;
+  --color-foreground: #0b3561;
+  --color-primary: #1b426d;
+  --color-primary-fg: #ffffff;
+  --color-secondary: #79bca8;
+  --color-secondary-fg: #0b3561;
+  --color-accent: #ebb49b;
+  --color-accent-fg: #0b3561;
+  --color-accent-border: #dda088;
+  --color-accent-tint: #f8e9e1;
+  --color-muted: #acc0cb;
+  --color-muted-fg: #4b617d;
+  --color-border: #acc0cb;
+  --color-input-border: #7f93ab;
+}

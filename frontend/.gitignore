@@ -1,5 +1,34 @@
+# Dependencies and package-manager cache
+node_modules/
+.pnpm-store/
+
+# Build output and cache
+/dist/
+/dist-ssr/
+.vite/
+*.tsbuildinfo
+
+# Environment settings (share only the template and synthetic-data mode)
+.env
+.env.*
+!/.env.example
+!/.env.mock
+
+# Personal overrides and reference notes
+*.local
+*.local.*
+/docs/backend-ai-integration-guide.local.md
+
+# Test results, browser sessions, screenshots and exported files
+/coverage/
+/output/
+/.playwright-cli/
+/playwright-report/
+/test-results/
+/blob-report/
+
 # Logs
-logs
+logs/
 *.log
 npm-debug.log*
 yarn-debug.log*
@@ -7,18 +36,11 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
-
-# Editor directories and files
+# Editor and operating-system files
+.idea/
+*.iml
 .vscode/*
 !.vscode/extensions.json
-.idea
 .DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
+Thumbs.db
 *.sw?

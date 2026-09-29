@@ -1,0 +1,206 @@
+.itda-modal {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  width: min(500px, calc(100vw - 32px));
+  max-height: calc(100dvh - 32px);
+  padding: 0;
+  border: 1px solid var(--color-border);
+  border-radius: 24px;
+  background: var(--color-surface, #fff);
+  color: var(--color-foreground);
+  box-shadow: 0 20px 80px #17324c35;
+  overflow: auto;
+  overscroll-behavior: contain;
+}
+.itda-modal::backdrop {
+  background: #142b465c;
+}
+.itda-modal-wide {
+  width: min(880px, calc(100vw - 32px));
+}
+.itda-modal-wide > .itda-modal-heading {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: var(--color-surface, #fff);
+  border-bottom: 1px solid var(--color-border);
+}
+.itda-modal-heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 24px 24px 12px;
+}
+.itda-modal-heading h2 {
+  flex: 1;
+  min-width: 0;
+  font-size: 21px;
+  line-height: 1.5;
+  margin: 0;
+  overflow-wrap: anywhere;
+  outline: none;
+}
+.itda-modal-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border: 0;
+  background: transparent;
+  border-radius: 50%;
+  color: var(--color-muted-fg);
+}
+.itda-modal-close:hover {
+  background: var(--color-background);
+}
+.itda-modal-body {
+  padding: 4px 24px 24px;
+  font-size: 16px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+.itda-modal-body > p:last-child {
+  margin-bottom: 0;
+}
+.itda-modal-body label {
+  font-size: 16px;
+}
+.itda-modal-body input,
+.itda-modal-body select,
+.itda-modal-body textarea {
+  background: #fff;
+  font-size: 16px;
+  min-height: 48px;
+}
+.itda-modal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 18px 24px 24px;
+  border-top: 1px solid var(--color-border);
+  background: var(--color-surface, #fff);
+}
+.itda-modal-actions > .button {
+  flex: 1;
+  min-width: 100px;
+  min-height: 48px;
+  white-space: normal;
+}
+.itda-danger-button {
+  background: #a63d35 !important;
+  border-color: #a63d35 !important;
+  color: #fff !important;
+}
+.itda-feedback {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+.itda-feedback > svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--color-primary);
+}
+.is-danger .itda-feedback > svg {
+  color: #a63d35;
+}
+.itda-feedback p {
+  margin: 0;
+  white-space: pre-line;
+}
+.itda-modal-message {
+  width: min(420px, calc(100vw - 32px));
+}
+.itda-modal-message > .itda-modal-heading {
+  justify-content: center;
+  padding: 52px 24px 12px;
+  text-align: center;
+}
+.itda-modal-message .itda-modal-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  margin: 0;
+}
+.itda-modal-message > .itda-modal-body {
+  padding: 0 24px;
+  text-align: center;
+}
+.itda-modal-message > .itda-modal-body > p {
+  margin: 0;
+}
+.itda-modal-message > .itda-modal-body > p + p {
+  margin-top: 12px;
+}
+.itda-modal-message .itda-feedback {
+  display: block;
+}
+.itda-modal-message .itda-feedback > svg {
+  display: block;
+  margin: 0 auto 12px;
+}
+.itda-modal-compact > .itda-modal-heading {
+  padding: 0;
+}
+.itda-modal-compact > .itda-modal-body {
+  padding-top: 56px;
+}
+.itda-modal-compact .itda-feedback p {
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: -0.02em;
+}
+.itda-modal-message > .itda-modal-actions {
+  justify-content: center;
+  padding: 20px 24px 24px;
+  border-top: 0;
+}
+.itda-modal-message > .itda-modal-actions > .button {
+  flex: 0 1 auto;
+  min-width: 96px;
+  max-width: 100%;
+  padding-inline: 24px;
+}
+@media (max-width: 480px) {
+  .itda-modal {
+    border-radius: 22px;
+  }
+  .itda-modal-heading {
+    padding: 18px 18px 10px;
+  }
+  .itda-modal-heading h2 {
+    font-size: 20px;
+  }
+  .itda-modal-body {
+    padding: 4px 18px 20px;
+  }
+  .itda-modal-actions {
+    padding: 16px 18px 20px;
+  }
+  .itda-modal-close {
+    margin-right: -6px;
+  }
+  .itda-modal-message > .itda-modal-body,
+  .itda-modal-message > .itda-modal-actions {
+    padding-inline: 20px;
+  }
+  .itda-modal-compact .itda-feedback p {
+    font-size: 20px;
+  }
+}
+@media print {
+  body {
+    overflow: visible !important;
+  }
+  .itda-modal {
+    display: none !important;
+  }
+  .itda-modal::backdrop {
+    display: none !important;
+  }
+}
