@@ -1,5 +1,5 @@
 # config/settings.yaml — 기획안 5-7 기준, v3 변경은 # v3
-model_name: itda-a                            # 모델 테스트가 끝나면 AI팀이 실제 이름으로
+model_name: itda-gemma4-e4b-q4_k_m                            # 모델 테스트가 끝나면 AI팀이 실제 이름으로
 temporary_model: false                        # v3 파인튜닝 전 임시 모델이면 true → /health로 헤더 안내 (F12)
 ollama_timeout_sec: 120
 ollama_retry: 1
@@ -12,7 +12,7 @@ low_coverage_week_days: 4
 trend_top_n: 3
 trend_min_days: 3
 memo_max_chars: 1000                          # v3 (R06)
-summary_model: "gemma4:e4b-it-q4_K_M"         # 모델 테스트가 끝나면 AI팀이 확정
+summary_model: itda-gemma4-e4b-q4_k_m         # 모델 테스트가 끝나면 AI팀이 확정
 summary_timeout_sec: 180
 summary_retry: 1
 cause_expressions: ["때문", "로 인해", "탓", "영향으로", "덕분", "원인"]
