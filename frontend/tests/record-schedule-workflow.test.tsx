@@ -141,7 +141,7 @@ function selectManualEvidence(excerpt: string) {
   return sourceInput
 }
 async function savedRecord(user: ReturnType<typeof userEvent.setup>) {
-  await screen.findByRole('heading', { name: '오늘의 기록' })
+  await screen.findByRole('heading', { name: '오늘 하루는 어떠셨나요?' })
   expect((screen.getByLabelText('어떤 일이 있었나요?') as HTMLTextAreaElement).value).toBe('')
   await user.click(
     within(screen.getByRole('dialog', { name: '완료했어요' })).getByRole('button', {

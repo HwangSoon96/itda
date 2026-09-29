@@ -6,6 +6,7 @@ import { SchedulePage } from '../features/schedule'
 import { reportHref } from '../shared/lib/reportSelection'
 import { BrandLogo, FeedbackDialog, Modal } from '../shared/ui'
 import { ErrorBoundary } from './ErrorBoundary'
+import { modelStatusLabel } from './modelStatus'
 import { navigation } from './navigation'
 import { useWorkspaceController } from './useWorkspaceController'
 
@@ -72,15 +73,7 @@ function Workspace() {
               role="status"
             >
               <i aria-hidden="true" />
-              {connectionError
-                ? 'PC 연결 끊김'
-                : !health
-                  ? '연결 확인 중'
-                  : health.ai_available === true
-                    ? '모델 준비됨'
-                    : health.ai_available === false
-                      ? '모델 연결 필요'
-                      : '모델 상태 미확인'}
+              {modelStatusLabel(health, connectionError)}
             </span>
             {apiCapabilities.demo && health?.demo_loaded && (
               <span

@@ -11,19 +11,23 @@ import {
   RotateCcw,
   Search,
   ShieldAlert,
+  Sparkles,
   Trash2,
+  TriangleAlert,
 } from 'lucide-react'
 import { api } from '../../api'
 import { EVENT_TYPES } from '../../api/types'
-import { localToday } from '../../shared/lib/date'
+import { localToday, openDatePicker } from '../../shared/lib/date'
 import { reportHref } from '../../shared/lib/reportSelection'
 import type { EventCard, Health, MemoResult, Question } from '../../api/types'
 import { FeedbackDialog, Modal, useConfirmation } from '../../shared/ui'
+import { CareTipLoader, Mascot } from './CareTipLoader'
 import { EvidenceSelector } from './EvidenceSelector'
 import '../../shared/styles/record-schedule.css'
 import './record-improvements.css'
 import './record.css'
 
+const TODAY_TITLE = '오늘 하루는 어떠셨나요?'
 type EditableEvent = EventCard & { uiKey: string }
 // Persist only editable API fields; revisions and server records may carry extra metadata.
 const apiEvent = (event: EventCard): EventCard => ({
@@ -1114,7 +1118,7 @@ export function RecordPage({ health, active = true }: { health: Health | null; a
           ? '기록 상세'
           : '확인·수정'
         : reviewOrigin === 'saved' || recordDate === today
-          ? '오늘의 기록'
+          ? TODAY_TITLE
           : '지난날의 기록'
 
   const recentMemos = [...history]
@@ -1132,6 +1136,7 @@ export function RecordPage({ health, active = true }: { health: Health | null; a
     setManualError('')
     setError('')
   }
+  const organizing = busy === 'create' || busy === 'retry'
   const showReview =
     active &&
     (view === 'write' || reviewOrigin === 'saved') &&
@@ -1181,43 +1186,50 @@ export function RecordPage({ health, active = true }: { health: Health | null; a
       )}
     </div>
   )
-  const emergencyNotice = (
-    <>
-      {emergency && (
-        <section className="mvp-rc-emergency" role="alert">
-          <div>
-            <ShieldAlert size={22} />
-            <h2>응급 안내</h2>
-          </div>
-          <p>{result?.emergency.message || health?.emergency_message}</p>
-          <div className="mvp-rc-emergency-calls">
-            <a className="button" href="tel:119">
-              119 전화
-            </a>
-            <a className="button outline" href="tel:112">
-              112 전화
-            </a>
-            <a className="button outline" href="tel:18999988">
-              1899-9988
-            </a>
-            <a className="button outline" href="tel:109">
-              109
-            </a>
-          </div>
-        </section>
-      )}
-      <p className="mvp-rc-hint mvp-rc-emergency-limit">
-        응급 안내가 뜨지 않았다고 괜찮은 상황이라는 뜻은 아니에요.
-      </p>
-    </>
+  const emergencyAlert = emergency && (
+    <section className="mvp-rc-emergency" role="alert">
+      <div>
+        <ShieldAlert size={22} />
+        <h2>응급 안내</h2>
+      </div>
+      <p>{result?.emergency.message || health?.emergency_message}</p>
+      <div className="mvp-rc-emergency-calls">
+        <a className="button" href="tel:119">
+          119 전화
+        </a>
+        <a className="button outline" href="tel:112">
+          112 전화
+        </a>
+        <a className="button outline" href="tel:18999988">
+          1899-9988
+        </a>
+        <a className="button outline" href="tel:109">
+          109
+        </a>
+      </div>
+    </section>
+  )
+  // A missing emergency alert is not an all-clear: say so where the user decides the memo is fine.
+  const emergencyLimit = (
+    <p className="mvp-rc-hint mvp-rc-emergency-limit">
+      <TriangleAlert size={18} aria-hidden="true" />
+      응급 안내가 뜨지 않았다고 괜찮은 상황이라는 뜻은 아니에요.
+    </p>
   )
 
   return (
     <div className="mvp-rc-page mvp-rc-v2 stack is-composing">
       <header className="mvp-rc-heading" ref={topRef} tabIndex={-1}>
-        <div>
-          <h1 tabIndex={-1}>{pageTitle}</h1>
-          <p>말하듯 적으면 AI가 정리해요.</p>
+        <div className="mvp-rc-greeting">
+          <Mascot />
+          <div className="mvp-rc-speech-bubble">
+            <h1 tabIndex={-1}>{pageTitle}</h1>
+            <p>
+              {pageTitle === TODAY_TITLE
+                ? '알려 주시면 제가 정리해 드릴게요!'
+                : '말하듯 적으면 AI가 정리해요.'}
+            </p>
+          </div>
         </div>
         <button
           className="button outline mvp-rc-history-link"
@@ -1264,6 +1276,7 @@ export function RecordPage({ health, active = true }: { health: Health | null; a
                     <input
                       id="record-date"
                       type="date"
+                      onClick={(e) => openDatePicker(e.currentTarget)}
                       className="itda-date-input"
                       required
                       max={today}
@@ -1330,7 +1343,12 @@ export function RecordPage({ health, active = true }: { health: Health | null; a
               </button>
             )}
           </form>
-          {!showReview && emergencyNotice}
+          {!showReview && (
+            <>
+              {emergencyAlert}
+              {emergencyLimit}
+            </>
+          )}
           <section className="card mvp-rc-question-card" aria-labelledby="record-question-heading">
             <div className="mvp-rc-row">
               <h2 id="record-question-heading">의사에게 물어볼 것</h2>
@@ -1469,16 +1487,8 @@ export function RecordPage({ health, active = true }: { health: Health | null; a
       >
         <div className="mvp-rc-page mvp-rc-v2 mvp-rc-review-dialog">
           <section className="mvp-rc-confirm-column stack" aria-label="메모 정리 결과">
-            {emergencyNotice}
-            {(busy === 'create' || busy === 'retry') && (
-              <div className="mvp-rc-loading" role="status" aria-live="polite">
-                <LoaderCircle className="mvp-rc-spin" size={24} />
-                <div>
-                  <strong>정리하고 있어요</strong>
-                  <p>작성한 메모는 그대로 보관해요.</p>
-                </div>
-              </div>
-            )}
+            {emergencyAlert}
+            {organizing && <CareTipLoader />}
             {result && (
               <section className="card mvp-rc-original stack">
                 <div className="mvp-rc-row">
@@ -1539,6 +1549,7 @@ export function RecordPage({ health, active = true }: { health: Health | null; a
                     <span className="mvp-rc-status is-pending">확인 대기</span>
                   </div>
                   <p className="mvp-rc-ai-notice">
+                    <Sparkles size={20} aria-hidden="true" />
                     {editMode === 'failed'
                       ? '원문에서 사건을 골라 직접 정리해 주세요.'
                       : editMode === 'confirmed'
@@ -1580,6 +1591,7 @@ export function RecordPage({ health, active = true }: { health: Health | null; a
                       </button>
                     )}
                   </div>
+                  {emergencyLimit}
                   {recordActions}
                 </form>
               </section>
@@ -1623,6 +1635,7 @@ export function RecordPage({ health, active = true }: { health: Health | null; a
                 </div>
               </section>
             )}
+            {result && !reviewable && !organizing && emergencyLimit}
             {!reviewable && recordActions}
           </section>
         </div>
@@ -1848,6 +1861,7 @@ export function RecordPage({ health, active = true }: { health: Health | null; a
                   <input
                     id="record-filter-from"
                     type="date"
+                    onClick={(e) => openDatePicker(e.currentTarget)}
                     className="itda-date-input"
                     value={from}
                     max={to || today}
@@ -1859,6 +1873,7 @@ export function RecordPage({ health, active = true }: { health: Health | null; a
                   <input
                     id="record-filter-to"
                     type="date"
+                    onClick={(e) => openDatePicker(e.currentTarget)}
                     className="itda-date-input"
                     value={to}
                     min={from}

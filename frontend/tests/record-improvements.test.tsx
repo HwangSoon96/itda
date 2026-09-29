@@ -112,7 +112,7 @@ async function savedBack(
   destination: 'history' | 'write' = 'history',
 ) {
   await screen.findByRole('heading', {
-    name: destination === 'history' ? '지난 기록 찾기' : '오늘의 기록',
+    name: destination === 'history' ? '지난 기록 찾기' : '오늘 하루는 어떠셨나요?',
   })
   expect(screen.queryByRole('dialog', { name: '정리된 내용', exact: true })).toBeNull()
   expect((screen.getByLabelText('어떤 일이 있었나요?') as HTMLTextAreaElement).value).toBe('')

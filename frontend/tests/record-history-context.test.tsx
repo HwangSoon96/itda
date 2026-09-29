@@ -178,7 +178,7 @@ it('수정한 지난 기록에서 기록 메뉴로 이동하면 확인하고 취
   confirmation = within(await screen.findByRole('alertdialog', { name: '수정을 그만할까요?' }))
   await user.click(confirmation.getByRole('button', { name: '수정 그만하기' }))
   expect(screen.queryByRole('dialog', { name: '정리된 내용' })).toBeNull()
-  expect(screen.getByRole('heading', { name: '오늘의 기록', level: 1 })).toBeTruthy()
+  expect(screen.getByRole('heading', { name: '오늘 하루는 어떠셨나요?', level: 1 })).toBeTruthy()
   expect(composer().value).toBe('')
   expect(composer().matches(':disabled')).toBe(false)
   expect(window.location.hash).toBe('#record')

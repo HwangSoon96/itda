@@ -196,7 +196,7 @@ it.each(['summary', 'unknown', 'https://example.com'])(
     await user.click(detail().getByRole('button', { name: '닫기', exact: true }))
     expect(route()).toBe('record')
     expect(query().has('memo')).toBe(false)
-    expect(screen.getByRole('heading', { name: '오늘의 기록', level: 1 })).toBeTruthy()
+    expect(screen.getByRole('heading', { name: '오늘 하루는 어떠셨나요?', level: 1 })).toBeTruthy()
   },
 )
 
@@ -260,6 +260,6 @@ it.each(['확인 완료', '기록 삭제'] as const)(
     await finishFeedback(user)
     expect(route()).toBe('record')
     expect(query().get('review')).not.toBe('print')
-    expect(screen.getByRole('heading', { name: '오늘의 기록', level: 1 })).toBeTruthy()
+    expect(screen.getByRole('heading', { name: '오늘 하루는 어떠셨나요?', level: 1 })).toBeTruthy()
   },
 )

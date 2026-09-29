@@ -78,7 +78,7 @@ it('최근 기록의 더 보기에서 지난 기록을 열고 닫으면 목록�
   api.memos.mockResolvedValue([{ ...memo, status: '확인 완료' }])
   const user = userEvent.setup()
   render(<RecordPage health={health} />)
-  const heading = screen.getByRole('heading', { level: 1, name: '오늘의 기록' })
+  const heading = screen.getByRole('heading', { level: 1, name: '오늘 하루는 어떠셨나요?' })
   heading.focus({ preventScroll: true })
   expect(document.activeElement).toBe(heading)
   expect(heading.tabIndex).toBe(-1)
@@ -100,7 +100,7 @@ it('최근 기록의 더 보기에서 지난 기록을 열고 닫으면 목록�
   expect(screen.getByRole('heading', { level: 1, name: '지난 기록 찾기' })).toBeTruthy()
   expect(history.getByRole('button', { name: /2026년 9월 27일/ })).toBeTruthy()
   await user.click(screen.getByRole('button', { name: '기록하기' }))
-  expect(screen.getByRole('heading', { level: 1, name: '오늘의 기록' })).toBeTruthy()
+  expect(screen.getByRole('heading', { level: 1, name: '오늘 하루는 어떠셨나요?' })).toBeTruthy()
   expect((screen.getByLabelText('어떤 일이 있었나요?') as HTMLTextAreaElement).value).toBe('')
   expect((screen.getByLabelText('기록 날짜') as HTMLInputElement).value).toBe('2026-09-27')
   expect(screen.getByLabelText('어떤 일이 있었나요?').matches(':disabled')).toBe(false)
@@ -132,7 +132,7 @@ it('지난 기록에서 확인을 마치면 목록에 남고 다시 열 때 확�
 it('관찰 입력 아래 질문 카드를 두고 화면 이동 뒤에도 초안을 유지한다', async () => {
   const user = userEvent.setup()
   render(<RecordPage health={health} />)
-  expect(screen.getByRole('heading', { level: 1, name: '오늘의 기록' })).toBeTruthy()
+  expect(screen.getByRole('heading', { level: 1, name: '오늘 하루는 어떠셨나요?' })).toBeTruthy()
   expect((screen.getByLabelText('기록 날짜') as HTMLInputElement).value).toBe('2026-09-27')
   expect(screen.queryByText('오늘', { exact: true })).toBeNull()
   expect(screen.queryByRole('button', { name: '오늘', exact: true })).toBeNull()
@@ -206,7 +206,7 @@ it('원문 다음에 모든 결과를 한 확인 영역에 보여 주고 같은 
   expect(screen.queryByText(/일괄 승인 가능|개별 확인 필요/)).toBeNull()
   expect(screen.queryByRole('button', { name: '맞아요', exact: true })).toBeNull()
   await user.click(within(recordActions).getByRole('button', { name: '확인 완료' }))
-  await screen.findByRole('heading', { level: 1, name: '오늘의 기록' })
+  await screen.findByRole('heading', { level: 1, name: '오늘 하루는 어떠셨나요?' })
   expect(screen.queryByRole('region', { name: '메모 정리 결과' })).toBeNull()
   await user.click(
     within(screen.getByRole('dialog', { name: '완료했어요' })).getByRole('button', {
@@ -228,10 +228,10 @@ it('원문 다음에 모든 결과를 한 확인 영역에 보여 주고 같은 
       .map((quote) => quote.querySelector('mark')?.textContent),
   ).toEqual(events.map((event) => event.evidence))
   await user.click(screen.getByRole('button', { name: '확정 내용 수정' }))
-  expect(screen.getByRole('heading', { level: 1, name: '오늘의 기록' })).toBeTruthy()
+  expect(screen.getByRole('heading', { level: 1, name: '오늘 하루는 어떠셨나요?' })).toBeTruthy()
   expect(screen.getByRole('heading', { name: '확정 내용 수정' })).toBeTruthy()
   await user.click(screen.getByRole('button', { name: '수정 취소' }))
-  expect(screen.getByRole('heading', { level: 1, name: '오늘의 기록' })).toBeTruthy()
+  expect(screen.getByRole('heading', { level: 1, name: '오늘 하루는 어떠셨나요?' })).toBeTruthy()
   expect(screen.getByRole('heading', { name: '확인 완료한 내용' })).toBeTruthy()
 })
 
@@ -386,7 +386,7 @@ it('작성 중인 질문은 관찰 확인·확정 화면에도 남아 바로 이
   expect(screen.getByLabelText('질문 메모')).toBe(question)
   await user.type(question, '새로 정리한 질문')
   await user.click(screen.getByRole('button', { name: '확인 완료' }))
-  await screen.findByRole('heading', { name: '오늘의 기록' })
+  await screen.findByRole('heading', { name: '오늘 하루는 어떠셨나요?' })
   await user.click(
     within(screen.getByRole('dialog', { name: '완료했어요' })).getByRole('button', {
       name: '확인',
@@ -488,7 +488,7 @@ it('한 번 고른 기록 날짜로 여러 사건을 확인하고 상세에서�
   expect(original.querySelector('time')?.dateTime).toBe(selected)
   expect(original.querySelectorAll('time')).toHaveLength(1)
   await user.click(screen.getByRole('button', { name: '확인 완료' }))
-  await screen.findByRole('heading', { level: 1, name: '오늘의 기록' })
+  await screen.findByRole('heading', { level: 1, name: '오늘 하루는 어떠셨나요?' })
   await user.click(
     within(screen.getByRole('dialog', { name: '완료했어요' })).getByRole('button', {
       name: '확인',
@@ -532,7 +532,7 @@ it('빈 메모는 오늘 날짜로 시작하고 달력에서 고른 과거 날�
   expect(screen.queryByText('오늘', { exact: true })).toBeNull()
   fireEvent.change(date, { target: { value: '2026-09-27' } })
   expect(date.value).toBe('2026-09-27')
-  expect(screen.getByRole('heading', { name: '오늘의 기록' })).toBeTruthy()
+  expect(screen.getByRole('heading', { name: '오늘 하루는 어떠셨나요?' })).toBeTruthy()
   expect(screen.queryByText('오늘', { exact: true })).toBeNull()
   fireEvent.change(date, { target: { value: '2026-09-25' } })
   expect(screen.queryByText('오늘', { exact: true })).toBeNull()

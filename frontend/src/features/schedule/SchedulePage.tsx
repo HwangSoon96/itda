@@ -3,7 +3,7 @@ import type { FormEvent, KeyboardEvent } from 'react'
 import { CalendarDays } from 'lucide-react'
 import { api } from '../../api'
 import { FeedbackDialog, Modal } from '../../shared/ui'
-import { localToday } from '../../shared/lib/date'
+import { localToday, openDatePicker } from '../../shared/lib/date'
 import { MEDICATION_CHANGE_LABELS, medicationChangeLabel } from '../../shared/lib/medication'
 import type { Medication, Period, Question, Visit } from '../../api/types'
 import { useReportSelection } from '../../shared/lib/reportSelection'
@@ -48,7 +48,7 @@ export function SchedulePage({ active = true }: { active?: boolean }) {
   const [questionsReady, setQuestionsReady] = useState(false)
   const [visitsReady, setVisitsReady] = useState(false)
   const [medicationsReady, setMedicationsReady] = useState(false)
-  const [visitDate, setVisitDate] = useState('')
+  const [visitDate, setVisitDate] = useState(localToday)
   const [visitStatus, setVisitStatus] = useState<Visit['status']>('완료')
   const [desktop, setDesktop] = useState(() =>
     window.matchMedia
@@ -62,7 +62,7 @@ export function SchedulePage({ active = true }: { active?: boolean }) {
   const [medicationRevealId, setMedicationRevealId] = useState<number | null>(null)
   const [managedQuestionId, setManagedQuestionId] = useState<number | null>(null)
   const [questionRevealId, setQuestionRevealId] = useState<number | null>(null)
-  const [medicationDate, setMedicationDate] = useState('')
+  const [medicationDate, setMedicationDate] = useState(localToday)
   const [medicationName, setMedicationName] = useState('')
   const [changeType, setChangeType] = useState<Medication['change_type'] | ''>('')
   const [questionText, setQuestionText] = useState('')
@@ -86,9 +86,11 @@ export function SchedulePage({ active = true }: { active?: boolean }) {
     media.addEventListener('change', update)
     return () => media.removeEventListener('change', update)
   }, [])
+  // Dates default to today, so only a date the user changed counts as unsaved input.
+  const today = localToday()
   const dirty = Boolean(
-    visitDate ||
-    medicationDate ||
+    (visitDate && visitDate !== today) ||
+    (medicationDate && medicationDate !== today) ||
     medicationName.trim() ||
     changeType ||
     questionText.trim() ||
@@ -290,7 +292,7 @@ export function SchedulePage({ active = true }: { active?: boolean }) {
       if (kind === 'visits') {
         const saved = await api.addVisit({ visit_date: visitDate, status: visitStatus })
         setVisits((previous) => [...previous.filter((item) => item.id !== saved.id), saved])
-        setVisitDate('')
+        setVisitDate(localToday())
         message = saved.status === '완료' ? '받은 진료를 등록했어요.' : '다음 예약을 등록했어요.'
       } else if (kind === 'medications') {
         if (!changeType) return
@@ -301,7 +303,7 @@ export function SchedulePage({ active = true }: { active?: boolean }) {
         })
         setMedications((previous) => [...previous.filter((item) => item.id !== saved.id), saved])
         setMedicationName('')
-        setMedicationDate('')
+        setMedicationDate(localToday())
         setChangeType('')
         savedMedicationId = saved.id
         message = '약 변경을 저장했어요.'
@@ -507,6 +509,8 @@ export function SchedulePage({ active = true }: { active?: boolean }) {
                 <input
                   id="schedule-visit-date"
                   type="date"
+                  className="itda-date-input"
+                  onClick={(e) => openDatePicker(e.currentTarget)}
                   value={visitDate}
                   required
                   min={visitStatus === '예정' ? localToday() : undefined}
@@ -594,6 +598,7 @@ export function SchedulePage({ active = true }: { active?: boolean }) {
                 <input
                   id="schedule-medication-date"
                   type="date"
+                  onClick={(e) => openDatePicker(e.currentTarget)}
                   className="itda-date-input"
                   value={medicationDate}
                   required

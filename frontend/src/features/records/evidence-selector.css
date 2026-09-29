@@ -27,7 +27,8 @@
   border-radius: 14px;
   background: var(--color-surface);
   color: var(--color-foreground);
-  font-size: 16px;
+  font-family: var(--font-handwriting);
+  font-size: 19px;
   line-height: 1.7;
   resize: vertical;
   cursor: text;

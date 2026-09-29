@@ -148,7 +148,8 @@ it.each([1440, 360])(
       name: '다음 예약 등록',
     }) as HTMLButtonElement
     expect(date.type).toBe('date')
-    expect(register.disabled).toBe(true)
+    expect(date.value).toBe('2026-09-28')
+    expect(register.disabled).toBe(false)
     fireEvent.change(date, { target: { value: '2026-10-05' } })
     expect(register.disabled).toBe(false)
     await user.click(register)
@@ -160,8 +161,8 @@ it.each([1440, 360])(
     )
     expect(screen.getByText('다음 예약을 등록했어요.')).toBeTruthy()
     await finishFeedback(user)
-    expect(date.value).toBe('')
-    expect(register.disabled).toBe(true)
+    expect(date.value).toBe('2026-09-28')
+    expect(register.disabled).toBe(false)
     expect(screen.getByRole('button', { name: '2026년 10월 5일 진료일 관리' })).toBeTruthy()
   },
 )
@@ -203,7 +204,7 @@ it.each([
       ),
     ).toBeTruthy()
     await finishFeedback(user)
-    expect((within(form).getByLabelText(field) as HTMLInputElement).value).toBe('')
+    expect((within(form).getByLabelText(field) as HTMLInputElement).value).toBe('2026-09-28')
   },
 )
 
@@ -283,7 +284,7 @@ it.each([
     screen.getByRole('button', { name: `2026년 9월 26일 처방약 C ${label} 관리` }),
   ).toBeTruthy()
   expect(input('약 이름').value).toBe('')
-  expect(input('바뀐 날').value).toBe('')
+  expect(input('바뀐 날').value).toBe('2026-09-28')
   expect(
     within(screen.getByRole('group', { name: '어떻게 바뀌었나요?' })).queryByRole('radio', {
       checked: true,
@@ -665,9 +666,9 @@ it.each(['visits', 'medications'] as const)(
       ).queryByRole('heading'),
     ).toBeNull()
     await finishFeedback(user)
-    expect(input('진료받은 날').value).toBe(kind === 'visits' ? '' : '2026-09-28')
+    expect(input('진료받은 날').value).toBe('2026-09-28')
     expect(input('약 이름').value).toBe(kind === 'medications' ? '' : '처방약 B')
-    expect(input('바뀐 날').value).toBe(kind === 'medications' ? '' : '2026-09-28')
+    expect(input('바뀐 날').value).toBe('2026-09-28')
     const changeChoices = within(screen.getByRole('group', { name: '어떻게 바뀌었나요?' }))
     if (kind === 'medications')
       expect(changeChoices.queryByRole('radio', { checked: true })).toBeNull()
@@ -825,7 +826,7 @@ it('다른 화면에서 저장 응답이 도착하면 목록을 반영하고 돌
   rerender(<SchedulePage active />)
   expect(screen.getByRole('dialog', { name: '등록했어요' })).toBeTruthy()
   await finishFeedback(user)
-  expect(input('진료받은 날').value).toBe('')
+  expect(input('진료받은 날').value).toBe('2026-09-28')
   expect(screen.getByRole('button', { name: '2026년 9월 28일 진료일 관리' })).toBeTruthy()
 })
 
@@ -856,7 +857,7 @@ it('다른 화면에서 도착한 저장 실패는 돌아왔을 때 알리고 �
   await finishFeedback(user)
   expect(api.addVisit).toHaveBeenCalledTimes(2)
   expect(api.addVisit.mock.calls[0]).toEqual(api.addVisit.mock.calls[1])
-  expect(input('진료받은 날').value).toBe('')
+  expect(input('진료받은 날').value).toBe('2026-09-28')
 })
 
 it.each([

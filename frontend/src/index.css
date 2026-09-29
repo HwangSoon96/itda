@@ -4,11 +4,12 @@
 @import '@fontsource/noto-sans-kr/700.css';
 @import './shared/styles/tokens.css';
 @import './shared/styles/date-input.css';
+@import './shared/styles/fonts.css';
 * {
   box-sizing: border-box;
 }
 html {
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: 'Binggrae', 'Noto Sans KR', sans-serif;
   color: var(--color-foreground);
   background: var(--color-background);
   font-size: 16px;

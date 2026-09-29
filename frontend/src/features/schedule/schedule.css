@@ -446,6 +446,8 @@
   background: #edf5f3;
 }
 .mvp-sc-v2 .mvp-sc-question-form textarea {
+  font-family: var(--font-handwriting);
+  font-size: 19px;
   min-height: 130px;
   border-radius: 14px;
   padding: 12px 14px;

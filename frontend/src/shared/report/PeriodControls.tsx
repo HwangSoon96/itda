@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { localToday } from '../lib/date'
+import { localToday, openDatePicker } from '../lib/date'
 import { ReportFeedback } from './ReportFeedback'
 
 function completeDate(value: string) {
@@ -103,6 +103,7 @@ export function PeriodControls({
           <input
             ref={startInput}
             type="date"
+            onClick={(e) => openDatePicker(e.currentTarget)}
             aria-label="시작 날짜"
             className="itda-date-input"
             value={draftStart}
@@ -119,6 +120,7 @@ export function PeriodControls({
         <label>
           <input
             type="date"
+            onClick={(e) => openDatePicker(e.currentTarget)}
             aria-label="마지막 날짜"
             className="itda-date-input"
             value={draftEnd}

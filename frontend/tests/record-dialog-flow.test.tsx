@@ -370,7 +370,7 @@ it.each(['확인 대기', '확인 완료', '정리 실패'] as const)(
       await user.click(screen.getByRole('button', { name: '확인 완료' }))
     } else await user.click(screen.getByRole('button', { name: '확인 완료' }))
     await closeSuccess(user)
-    expect(screen.getByRole('heading', { level: 1, name: '오늘의 기록' })).toBeTruthy()
+    expect(screen.getByRole('heading', { level: 1, name: '오늘 하루는 어떠셨나요?' })).toBeTruthy()
     expect((screen.getByLabelText('어떤 일이 있었나요?') as HTMLTextAreaElement).value).toBe('')
     expect((screen.getByLabelText('어떤 일이 있었나요?') as HTMLTextAreaElement).disabled).toBe(
       false,
@@ -489,7 +489,9 @@ it.each(['확인 대기', '확인 완료', '정리 실패'] as const)(
       expect(api.deleteMemo).toHaveBeenCalledExactlyOnceWith(memo.memo_id)
       expect(onUpdated).toHaveBeenCalledTimes(1)
       expect(screen.queryByRole('dialog', { name: '정리된 내용', exact: true })).toBeNull()
-      expect(screen.getByRole('heading', { name: '오늘의 기록', level: 1 })).toBeTruthy()
+      expect(
+        screen.getByRole('heading', { name: '오늘 하루는 어떠셨나요?', level: 1 }),
+      ).toBeTruthy()
       expect((screen.getByLabelText('어떤 일이 있었나요?') as HTMLTextAreaElement).value).toBe('')
       expect(window.location.hash).not.toContain('memo=')
       await closeSuccess(user)
@@ -526,7 +528,7 @@ it('상세에서 삭제 실패 시 메모가 남고 재시도 후에도 작성 �
   )
   await closeSuccess(user)
   expect(screen.queryByRole('dialog', { name: '정리된 내용', exact: true })).toBeNull()
-  expect(screen.getByRole('heading', { name: '오늘의 기록', level: 1 })).toBeTruthy()
+  expect(screen.getByRole('heading', { name: '오늘 하루는 어떠셨나요?', level: 1 })).toBeTruthy()
   expect((screen.getByLabelText('질문 메모') as HTMLTextAreaElement).value).toBe(
     '아직 작성 중인 질문',
   )
@@ -591,7 +593,7 @@ it.each(['기록하기', '기록 메뉴'])(
         window.dispatchEvent(new HashChangeEvent('hashchange'))
       })
     }
-    expect(screen.getByRole('heading', { name: '오늘의 기록', level: 1 })).toBeTruthy()
+    expect(screen.getByRole('heading', { name: '오늘 하루는 어떠셨나요?', level: 1 })).toBeTruthy()
     expect((screen.getByLabelText('어떤 일이 있었나요?') as HTMLTextAreaElement).value).toBe(
       '작성 중인 관찰 메모',
     )

@@ -92,6 +92,8 @@
   padding: 36px 38px 25px;
   border-radius: 6px;
   box-shadow: 0 3px 14px #183f5614;
+  /* The A4 report keeps the original document font instead of the app-wide Binggrae. */
+  font-family: 'Noto Sans KR', sans-serif;
   font-size: 12px;
   line-height: 1.55;
   overflow-wrap: anywhere;

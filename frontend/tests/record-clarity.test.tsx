@@ -186,7 +186,7 @@ it('메모 링크는 목록 기간 밖의 기록도 열고 접힌 카드 전체�
   await user.click(screen.getByRole('button', { name: '확인 완료' }))
   expect(api.confirmMemo).toHaveBeenCalledExactlyOnceWith(8, { events: old.events })
   expect(location.hash).toBe('#record?as_of=2026-08-02')
-  expect(screen.getByRole('heading', { name: '오늘의 기록' })).toBeTruthy()
+  expect(screen.getByRole('heading', { name: '오늘 하루는 어떠셨나요?' })).toBeTruthy()
 })
 
 it('잘못된 값은 수정 창에서 적용하지 않고 취소하면 원래 카드로 돌아온다', async () => {
