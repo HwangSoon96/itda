@@ -84,8 +84,8 @@ it('이름 수정 취소를 확인하고 저장 실패 시 같은 입력에서 �
   render(<App />)
   await screen.findByText('내 기록 화면')
   fireEvent.click(screen.getByText('관리'))
-  fireEvent.click(screen.getByRole('button', { name: '돌보는 분 이름 설정' }))
-  const editor = await screen.findByRole('dialog', { name: '돌보는 분 이름 설정' })
+  fireEvent.click(screen.getByRole('button', { name: '환자 이름 설정' }))
+  const editor = await screen.findByRole('dialog', { name: '환자 이름 설정' })
   fireEvent.change(within(editor).getByLabelText('이름 또는 가명'), {
     target: { value: '새 이름' },
   })
@@ -101,8 +101,8 @@ it('이름 수정 취소를 확인하고 저장 실패 시 같은 입력에서 �
     '새 이름',
   )
   fireEvent.click(within(editor).getByRole('button', { name: '저장', exact: true }))
-  await screen.findByText('돌보는 분 이름을 저장했어요.')
-  expect(screen.queryByRole('dialog', { name: '돌보는 분 이름 설정' })).toBeNull()
+  await screen.findByText('환자 이름을 저장했어요.')
+  expect(screen.queryByRole('dialog', { name: '환자 이름 설정' })).toBeNull()
   expect(api.savePatient.mock.calls).toEqual([[{ alias: '새 이름' }], [{ alias: '새 이름' }]])
 })
 
@@ -117,18 +117,18 @@ it('이름 저장 중에는 닫기와 중복 요청을 막는다', async () => {
   render(<App />)
   await screen.findByText('내 기록 화면')
   fireEvent.click(screen.getByText('관리'))
-  fireEvent.click(screen.getByRole('button', { name: '돌보는 분 이름 설정' }))
-  const editor = await screen.findByRole('dialog', { name: '돌보는 분 이름 설정' })
+  fireEvent.click(screen.getByRole('button', { name: '환자 이름 설정' }))
+  const editor = await screen.findByRole('dialog', { name: '환자 이름 설정' })
   const input = within(editor).getByLabelText('이름 또는 가명') as HTMLInputElement
   fireEvent.change(input, { target: { value: '새 이름' } })
   fireEvent.submit(input.closest('form')!)
   fireEvent.submit(input.closest('form')!)
   fireEvent(editor, new Event('cancel', { cancelable: true }))
   expect(api.savePatient).toHaveBeenCalledOnce()
-  expect(screen.getByRole('dialog', { name: '돌보는 분 이름 설정' })).toBe(editor)
+  expect(screen.getByRole('dialog', { name: '환자 이름 설정' })).toBe(editor)
   expect(input.disabled).toBe(true)
   await act(async () => finish({ alias: '새 이름' }))
-  await screen.findByText('돌보는 분 이름을 저장했어요.')
+  await screen.findByText('환자 이름을 저장했어요.')
 })
 
 it('저장 전 시작한 이름 조회가 늦게 도착해도 저장한 이름을 되돌리지 않는다', async () => {
@@ -144,8 +144,8 @@ it('저장 전 시작한 이름 조회가 늦게 도착해도 저장한 이름�
   render(<App />)
   await screen.findByText('내 기록 화면')
   fireEvent.click(screen.getByText('관리'))
-  fireEvent.click(screen.getByRole('button', { name: '돌보는 분 이름 설정' }))
-  const editor = await screen.findByRole('dialog', { name: '돌보는 분 이름 설정' })
+  fireEvent.click(screen.getByRole('button', { name: '환자 이름 설정' }))
+  const editor = await screen.findByRole('dialog', { name: '환자 이름 설정' })
   fireEvent.change(within(editor).getByLabelText('이름 또는 가명'), {
     target: { value: '저장한 이름' },
   })
@@ -154,11 +154,11 @@ it('저장 전 시작한 이름 조회가 늦게 도착해도 저장한 이름�
   fireEvent.click(within(editor).getByRole('button', { name: '저장', exact: true }))
   const success = await screen.findByRole('dialog', { name: '완료했어요' })
   expect(within(success).queryByRole('heading')).toBeNull()
-  expect(within(success).getAllByText('돌보는 분 이름을 저장했어요.')).toHaveLength(1)
+  expect(within(success).getAllByText('환자 이름을 저장했어요.')).toHaveLength(1)
   await act(async () => finishOldRead({ alias: '이전 이름' }))
   fireEvent.click(within(success).getByRole('button', { name: '확인', exact: true }))
   fireEvent.click(screen.getByText('관리'))
-  fireEvent.click(screen.getByRole('button', { name: '돌보는 분 이름 설정' }))
+  fireEvent.click(screen.getByRole('button', { name: '환자 이름 설정' }))
   expect((screen.getByLabelText('이름 또는 가명') as HTMLInputElement).value).toBe('저장한 이름')
 })
 
