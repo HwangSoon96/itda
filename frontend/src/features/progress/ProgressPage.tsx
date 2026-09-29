@@ -14,6 +14,7 @@ import {
   TrendChart,
   weeklyCount,
   useSummary,
+  useVisitPeriod,
   useTrends,
 } from '../../shared/report'
 import type { EvidenceSelection } from '../../shared/report'
@@ -69,6 +70,7 @@ export function ProgressPage({ active }: { health: Health; active: boolean }) {
   const { asOf, periodStart } = selection
   const [periodPending, setPeriodPending] = useState(false)
   const { data, error, loading, reload } = useSummary(asOf, active, periodStart, false)
+  const visitPeriod = useVisitPeriod(active, data?.period.start)
   const [selectedType, setSelectedType] = useState<EventType | null>(null)
   const type =
     selectedType ?? data?.trends?.[0]?.type ?? data?.rows.find(isChange)?.type ?? '배회·출입문 시도'
@@ -131,7 +133,8 @@ export function ProgressPage({ active }: { health: Health; active: boolean }) {
         <PeriodControls
           {...selection}
           active={active}
-          defaultStart={data?.period.start}
+          defaultStart={visitPeriod.start}
+          defaultEnd={visitPeriod.end}
           onPendingChange={setPeriodPending}
         />
       </div>

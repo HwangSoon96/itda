@@ -20,6 +20,7 @@ import {
   TrendChart,
   useReportMemos,
   useSummary,
+  useVisitPeriod,
   weeklyCount,
 } from '../../shared/report'
 import type { EvidenceSelection } from '../../shared/report'
@@ -663,6 +664,7 @@ export function SummaryPage({ active }: { health: Health; active: boolean }) {
   const [periodPending, setPeriodPending] = useState(false)
   const [aiEnabled, setAiEnabled] = useState(true)
   const { data, error, loading, reload } = useSummary(asOf, active, periodStart, aiEnabled)
+  const visitPeriod = useVisitPeriod(active, data?.period.start)
   const source = useReportMemos(data, active && !loading && !error)
   const [legacyCharts, setLegacyCharts] = useState<{
     data: Summary
@@ -902,7 +904,8 @@ export function SummaryPage({ active }: { health: Health; active: boolean }) {
             <PeriodControls
               {...selection}
               active={active}
-              defaultStart={data?.period.start}
+              defaultStart={visitPeriod.start}
+              defaultEnd={visitPeriod.end}
               summary
               onPendingChange={setPeriodPending}
             />

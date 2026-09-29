@@ -1,7 +1,45 @@
 import { useEffect, useRef, useState } from 'react'
 import { api } from '../../api'
 import type { EventType, MemoResult, Summary, Trends } from '../../api/types'
+import { localToday } from '../lib/date'
 import { errorText } from './format'
+
+/**
+ * Default report range shown in the period fields.
+ * - previous visit → today (with or without a next visit)
+ * - no previous visit, next visit → first record → next visit
+ * - no visits → first record → today (today → today without records)
+ * `firstRecord` is the server's default start, which already falls back to today
+ * without records. `end: undefined` means "follow today"; `null` leaves the field blank.
+ */
+export function useVisitPeriod(active: boolean, firstRecord?: string) {
+  const [visits, setVisits] = useState<{ previous?: string; next?: string } | null>(null)
+  useEffect(() => {
+    if (!active) return
+    let alive = true
+    api
+      .visits()
+      .then((items) => {
+        if (!alive) return
+        const today = localToday()
+        const dates = items.map((visit) => visit.visit_date).sort()
+        setVisits({
+          previous: dates.filter((date) => date <= today).at(-1),
+          next: dates.find((date) => date > today),
+        })
+      })
+      .catch(() => {
+        if (alive) setVisits({})
+      })
+    return () => {
+      alive = false
+    }
+  }, [active])
+  if (visits?.previous) return { start: visits.previous, end: undefined }
+  if (visits?.next) return { start: firstRecord, end: visits.next }
+  if (visits) return { start: firstRecord, end: undefined }
+  return { start: undefined, end: null }
+}
 
 export function useSummary(
   asOf: string,

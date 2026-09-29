@@ -6,7 +6,12 @@ import { TrendChart } from '../src/shared/report'
 import { EVENT_TYPES } from '../src/api/types'
 import type { Health, MemoResult, Summary, Trends } from '../src/api/types'
 
-const api = vi.hoisted(() => ({ summary: vi.fn(), trends: vi.fn(), memos: vi.fn() }))
+const api = vi.hoisted(() => ({
+  summary: vi.fn(),
+  trends: vi.fn(),
+  memos: vi.fn(),
+  visits: vi.fn(),
+}))
 vi.mock('../src/api', () => ({ api }))
 const chartRender = vi.hoisted(() => ({
   points: [] as Array<{ recorded_days: number; lineRate: number | null; lowRate: number | null }>,
@@ -110,6 +115,10 @@ beforeEach(() => {
   chartRender.references = []
   chartRender.margin = { top: 0 }
   vi.resetAllMocks()
+  api.visits.mockResolvedValue([
+    { id: 1, visit_date: '2026-08-20', status: '완료' },
+    { id: 2, visit_date: '2026-09-28', status: '예정' },
+  ])
   vi.useFakeTimers({ toFake: ['Date'] })
   vi.setSystemTime(new Date(2026, 8, 27, 12))
   window.history.replaceState(null, '', '#progress?as_of=2026-09-27&period_start=2026-08-20')

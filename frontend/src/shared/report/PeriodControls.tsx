@@ -13,7 +13,9 @@ export function PeriodControls({
   asOf,
   periodStart,
   defaultStart,
+  defaultEnd,
   setPeriod,
+  setPeriodStart,
   resetPeriod,
   isFixed,
   notice,
@@ -24,7 +26,10 @@ export function PeriodControls({
   asOf: string
   periodStart: string | null
   defaultStart?: string
+  /** Shown while no end date is pinned. `null` leaves the field blank; omitted shows `asOf`. */
+  defaultEnd?: string | null
   setPeriod: (value: { asOf: string; periodStart: string | null }) => void
+  setPeriodStart?: (value: string | null) => void
   resetPeriod: () => void
   isFixed?: boolean
   summary?: boolean
@@ -34,27 +39,30 @@ export function PeriodControls({
   onPendingChange?: (pending: boolean) => void
 }) {
   const start = periodStart ?? defaultStart
+  const end = isFixed || defaultEnd === undefined ? asOf : (defaultEnd ?? '')
   const [draftStart, setDraftStart] = useState(start ?? '')
-  const [draftEnd, setDraftEnd] = useState(asOf)
+  const [draftEnd, setDraftEnd] = useState(end)
   const [formNotice, setFormNotice] = useState('')
   const startInput = useRef<HTMLInputElement>(null)
-  const previousSelection = useRef({ asOf, periodStart, active, start })
+  const previousSelection = useRef({ asOf, periodStart, active, start, end })
   useEffect(() => {
     const previous = previousSelection.current
-    previousSelection.current = { asOf, periodStart, active, start }
+    previousSelection.current = { asOf, periodStart, active, start, end }
     if (
       previous.asOf !== asOf ||
       previous.periodStart !== periodStart ||
       previous.active !== active
     ) {
       setDraftStart(start ?? '')
-      setDraftEnd(asOf)
-    } else if (previous.start !== start) {
+      setDraftEnd(end)
+    } else {
       // A late default period can fill an untouched field without replacing an edit.
-      setDraftStart((draft) => (draft === (previous.start ?? '') ? (start ?? '') : draft))
+      if (previous.start !== start)
+        setDraftStart((draft) => (draft === (previous.start ?? '') ? (start ?? '') : draft))
+      if (previous.end !== end) setDraftEnd((draft) => (draft === previous.end ? end : draft))
     }
     if (!active) setFormNotice('')
-  }, [start, asOf, periodStart, active])
+  }, [start, end, asOf, periodStart, active])
   useEffect(() => {
     if (!editRequest || !active) return
     const frame = requestAnimationFrame(() => startInput.current?.focus())
@@ -62,29 +70,30 @@ export function PeriodControls({
   }, [editRequest, active])
   const invalidOrder = Boolean(draftStart && draftEnd && draftStart > draftEnd)
   const futureStart = completeDate(draftStart) && draftStart > localToday()
-  const changed = draftStart !== (start ?? '') || draftEnd !== asOf
+  const changed = draftStart !== (start ?? '') || draftEnd !== end
+  // The visit-based default end may be blank or in the future. Leaving it untouched
+  // changes only the start and keeps the summary following today.
+  const keepDefaultEnd = Boolean(setPeriodStart) && end !== asOf && draftEnd === end
   useEffect(() => {
     onPendingChange?.(active && changed)
   }, [active, changed, onPendingChange])
   useEffect(() => {
+    if (!active || !changed || !completeDate(draftStart) || draftStart > localToday()) return
     if (
-      !active ||
-      !changed ||
-      !completeDate(draftStart) ||
-      !completeDate(draftEnd) ||
-      draftStart > draftEnd ||
-      draftEnd > localToday()
+      !keepDefaultEnd &&
+      (!completeDate(draftEnd) || draftStart > draftEnd || draftEnd > localToday())
     )
       return
     // Coalesce edits to both dates and ignore incomplete ranges while the user types.
     const timer = setTimeout(() => {
-      setPeriod({ asOf: draftEnd, periodStart: draftStart })
+      if (keepDefaultEnd) setPeriodStart?.(draftStart)
+      else setPeriod({ asOf: draftEnd, periodStart: draftStart })
     }, 400)
     return () => clearTimeout(timer)
-  }, [active, changed, draftStart, draftEnd, setPeriod])
+  }, [active, changed, keepDefaultEnd, draftStart, draftEnd, setPeriod, setPeriodStart])
   function cancelChanges() {
     setDraftStart(start ?? '')
-    setDraftEnd(asOf)
+    setDraftEnd(end)
     setFormNotice('')
     startInput.current?.focus()
   }
@@ -125,10 +134,10 @@ export function PeriodControls({
             className="itda-date-input"
             value={draftEnd}
             min={draftStart || undefined}
-            max={localToday()}
+            max={keepDefaultEnd && end > localToday() ? end : localToday()}
             onChange={(event) => {
               const value = event.target.value
-              if (value > localToday()) {
+              if (value > localToday() && value !== end) {
                 setDraftEnd(localToday())
                 setFormNotice(`미래 날짜는 사용할 수 없어 오늘(${localToday()})로 바꿨어요.`)
               } else {
@@ -147,7 +156,7 @@ export function PeriodControls({
                 resetPeriod()
                 cancelChanges()
               }}
-              title="마지막 완료 진료일부터 오늘까지. 완료한 진료가 없으면 첫 기록부터 보여 드려요."
+              title="직전 진료일부터 오늘까지. 지난 진료가 없으면 첫 기록부터 다음 진료일까지 보여 드려요."
             >
               기본 기간으로 돌아가기
             </button>

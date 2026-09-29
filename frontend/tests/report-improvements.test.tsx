@@ -9,7 +9,12 @@ import { EVENT_TYPES } from '../src/api/types'
 import { localToday } from '../src/shared/lib/date'
 import type { Health, MemoResult, Summary, Trends } from '../src/api/types'
 
-const api = vi.hoisted(() => ({ summary: vi.fn(), trends: vi.fn(), memos: vi.fn() }))
+const api = vi.hoisted(() => ({
+  summary: vi.fn(),
+  trends: vi.fn(),
+  memos: vi.fn(),
+  visits: vi.fn(),
+}))
 vi.mock('../src/api', () => ({ api }))
 vi.mock('recharts', () => ({
   ResponsiveContainer: () => null,
@@ -111,6 +116,7 @@ function nativePrintShowsReport() {
 }
 beforeEach(() => {
   data = summaryFixture()
+  api.visits.mockResolvedValue([{ id: 1, visit_date: '2026-08-20', status: '완료' }])
   setHash('#summary?as_of=2026-09-27')
   api.summary.mockResolvedValue(data)
   api.trends.mockImplementation((type: string) => Promise.resolve(chart(type)))

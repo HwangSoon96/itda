@@ -5,7 +5,12 @@ import { SummaryPage } from '../src/features/summary/SummaryPage'
 import { summaryTrendTypes } from '../src/features/summary/model'
 import { ExcludedRecords } from '../src/shared/report/ExcludedRecords'
 import type { Health, MemoResult, Summary, Trends } from '../src/api/types'
-const api = vi.hoisted(() => ({ summary: vi.fn(), trends: vi.fn(), memos: vi.fn() }))
+const api = vi.hoisted(() => ({
+  summary: vi.fn(),
+  trends: vi.fn(),
+  memos: vi.fn(),
+  visits: vi.fn(),
+}))
 vi.mock('../src/api', () => ({ api }))
 vi.mock('recharts', () => ({
   ResponsiveContainer: () => null,
@@ -115,6 +120,7 @@ function applyPrintStyles() {
 }
 beforeEach(() => {
   data = fixture()
+  api.visits.mockResolvedValue([{ id: 1, visit_date: '2026-08-20', status: '완료' }])
   coreOverflows = false
   setHash('#summary?as_of=2026-09-27')
   api.summary.mockResolvedValue(data)

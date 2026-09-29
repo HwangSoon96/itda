@@ -20,7 +20,7 @@ export {
 } from './format'
 export { matchingEvidence, currentOccurrence, representativeEvidence } from './evidence'
 export type { EvidenceSelection, ObservationEvidence } from './evidence'
-export { useSummary, useTrends, useReportMemos } from './hooks'
+export { useSummary, useTrends, useReportMemos, useVisitPeriod } from './hooks'
 export { ExcludedRecords } from './ExcludedRecords'
 export { ReportFeedback } from './ReportFeedback'
 export { PeriodControls } from './PeriodControls'
