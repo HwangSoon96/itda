@@ -22,10 +22,40 @@ uv run python -m app                               # http://127.0.0.1:8000
 uv run uvicorn app.main:app --reload --port 8000   # 개발 중 코드 변경 시 자동 재시작
 ```
 
-- `http://localhost:8000/docs`에서 API를 바로 눌러 볼 수 있다.
 - 주소는 `config/settings.yaml`의 `allow_lan`이 `true`일 때만 `0.0.0.0`으로 연다(기획안 7-4).
 - DB는 레포 루트의 `itda.db`에 처음 실행할 때 만들어진다. 다른 파일을 쓰려면 `ITDA_DB=demo.db uv run python -m app`.
 - Ollama 주소는 기본 `http://127.0.0.1:11434`, 바꾸려면 `OLLAMA_HOST`.
+
+### API 문서 (Swagger)
+
+서버를 켠 뒤 브라우저에서 연다. 코드에서 자동으로 만들어지므로 항상 실제 API와 같다.
+
+| 주소 | 내용 |
+| --- | --- |
+| http://127.0.0.1:8000/docs | **Swagger UI**. 경로마다 [Try it out] → 값 입력 → [Execute]로 바로 호출해 볼 수 있다 |
+| http://127.0.0.1:8000/redoc | ReDoc. 읽기용 문서 |
+| http://127.0.0.1:8000/openapi.json | OpenAPI 스펙(JSON). 다른 도구에 가져갈 때 |
+
+API는 공통·기록·일정·요약지 · 경과 네 묶음, 23개다. 빈 DB로 시험하려면 `ITDA_DB=/tmp/try.db uv run python -m app`처럼 임시 파일을 쓰면 실제 기록(`itda.db`)과 섞이지 않는다. 데모 기록이 필요하면 아래 "데모"를 본다.
+
+### 데모 기록
+
+```bash
+ITDA_DB=demo.db uv run python -m app.demo load   # 빈 demo.db에 데모 메모 109개 등 (itda-frontend 샘플과 같은 데이터)
+ITDA_DB=demo.db uv run python -m app             # 이 DB로 서버 실행
+```
+
+기존 기록이 있는 DB에는 넣지 않는다. 데모 기준일은 2026-09-27이라, 화면에서 기간 끝을 이 날짜로 고르면 샘플 모드와 같은 숫자가 나온다.
+
+### 모델
+
+모델은 `config/settings.yaml`의 `model_name`(정리)·`summary_model`(요약)이다. 모델이 정해지기 전 시험할 때는 동결 파일을 고치지 말고 환경변수로 바꾼다. 이때 화면 헤더에 '임시 AI로 시험 중'이 뜬다.
+
+```bash
+ITDA_MODEL=itda-qwen ITDA_SUMMARY_MODEL=qwen3.5:9b uv run python -m app
+```
+
+모델 호출은 비동기라 AI가 정리하는 동안에도 다른 요청은 바로 응답하고, 보호자가 도중에 창을 닫아도 정리는 끝까지 되어 저장된다.
 
 ### 프론트와 함께 실행
 

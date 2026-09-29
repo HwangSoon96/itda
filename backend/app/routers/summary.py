@@ -85,7 +85,7 @@ def _public(row: dict) -> dict:
     return {k: v for k, v in row.items() if not k.startswith("_")}
 
 
-@router.get("/summary", response_model=Summary)
+@router.get("/summary", response_model=Summary, summary="요약지 계산 (전부 한 번에)")
 async def summary(
     session: SessionDep,
     as_of: dt.date | None = None,
@@ -147,7 +147,7 @@ async def summary(
     }
 
 
-@router.get("/trends", response_model=Trends)
+@router.get("/trends", response_model=Trends, summary="한 유형의 주간 추이")
 def trends(
     session: SessionDep,
     type: Annotated[EventType, Query()],
@@ -160,13 +160,13 @@ def trends(
     return _trends(data, type, cur, base)
 
 
-@router.get("/patient", response_model=PatientOut)
+@router.get("/patient", response_model=PatientOut, summary="환자 가명")
 def get_patient(session: SessionDep):
     p = session.get(Patient, 1)
     return {"alias": p.alias if p else ""}
 
 
-@router.put("/patient", response_model=PatientOut)
+@router.put("/patient", response_model=PatientOut, summary="환자 가명 저장")
 def put_patient(body: PatientOut, session: SessionDep):
     alias = body.alias.strip()
     if not alias:

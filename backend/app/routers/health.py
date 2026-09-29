@@ -19,7 +19,7 @@ async def model_ready(name: str) -> bool:
     return name in names or f"{name}:latest" in names
 
 
-@router.get("/health", response_model=Health)
+@router.get("/health", response_model=Health, summary="서버·모델 상태와 고정 문구")
 async def health() -> Health:  # Ollama를 비동기로 확인 (명세 V04)
     s = settings()
     return Health(
