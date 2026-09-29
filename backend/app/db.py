@@ -1,13 +1,14 @@
 """SQLite 테이블 8개 (ERD · 테이블 정의서 v3). 제약은 문서의 DDL과 같게 둔다."""
 
 from collections.abc import Iterator
-from datetime import date, datetime
+from datetime import date
+from typing import Annotated
 
+from fastapi import Depends
 from sqlalchemy import (
     Boolean,
     CheckConstraint,
     Date,
-    DateTime,
     ForeignKey,
     Integer,
     String,
@@ -52,7 +53,7 @@ def _in(column: str, values: tuple[str, ...]) -> str:
 
 
 class Base(DeclarativeBase):
-    pass
+    """시각은 로컬 시각+시간대 ISO 문자열('2026-09-24T21:10:00+09:00')로 저장. SQLite DateTime은 시간대를 버림."""
 
 
 class Memo(Base):
@@ -71,8 +72,8 @@ class Memo(Base):
     error: Mapped[str | None] = mapped_column(Text)
     failure_code: Mapped[str | None] = mapped_column(String)
     text_version: Mapped[int] = mapped_column(Integer, default=1)  # 원문을 고칠 때마다 +1
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True))
-    updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True))
+    created_at: Mapped[str] = mapped_column(String)
+    updated_at: Mapped[str] = mapped_column(String)
 
     events: Mapped[list["Event"]] = relationship(
         back_populates="memo", cascade="all, delete-orphan", passive_deletes=True, order_by="Event.ord"
@@ -113,7 +114,7 @@ class MemoRevision(Base):
     kind: Mapped[str] = mapped_column(String)  # 프론트가 한글로 읽음 (명세 F21)
     before_events: Mapped[str] = mapped_column(Text)  # JSON 배열
     after_events: Mapped[str] = mapped_column(Text)
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True))
+    created_at: Mapped[str] = mapped_column(String)
 
 
 class RequestKey(Base):
@@ -127,7 +128,7 @@ class RequestKey(Base):
     text: Mapped[str] = mapped_column(Text)
     record_date: Mapped[date | None] = mapped_column(Date)
     deleted: Mapped[bool] = mapped_column(Boolean, default=False)
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True))
+    created_at: Mapped[str] = mapped_column(String)
 
 
 class Visit(Base):
@@ -160,7 +161,7 @@ class Question(Base):
     )
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
     text: Mapped[str] = mapped_column(Text)
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True))  # 로컬 시각+시간대 (명세 R03)
+    created_at: Mapped[str] = mapped_column(String)  # 로컬 시각+시간대 (명세 R03)
     period_start: Mapped[date | None] = mapped_column(Date)
     period_end: Mapped[date | None] = mapped_column(Date)
 
@@ -185,14 +186,21 @@ def make_engine(url: str | None = None):
     return engine
 
 
-engine = make_engine()
-SessionLocal = sessionmaker(bind=engine, expire_on_commit=False)
+SessionLocal = sessionmaker(expire_on_commit=False)
+
+
+def configure(url: str | None = None) -> None:
+    """DB 파일에 연결. 앱을 만들 때 부름 (ITDA_DB를 그때 읽음)."""
+    SessionLocal.configure(bind=make_engine(url))
 
 
 def init_db(bind=None) -> None:
-    Base.metadata.create_all(bind or engine)
+    Base.metadata.create_all(bind or SessionLocal.kw["bind"])
 
 
 def get_session() -> Iterator[Session]:
     with SessionLocal() as session:
         yield session
+
+
+SessionDep = Annotated[Session, Depends(get_session)]

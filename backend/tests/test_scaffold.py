@@ -1,7 +1,7 @@
 """스캐폴드 확인: 동결 파일끼리 맞는지, DB 제약, /health, /api 접두어."""
 
 import sqlite3
-from datetime import date, datetime
+from datetime import date
 
 import pytest
 from fastapi.testclient import TestClient
@@ -9,6 +9,7 @@ from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 
 from app import db
+from app.errors import now_iso
 from app.routers import health as health_router
 from app.schemas import EventType
 from app.settings import event_schema, labels, settings
@@ -32,7 +33,7 @@ def session(tmp_path):
 
 
 def memo(**kw):
-    now = datetime.now().astimezone()
+    now = now_iso()
     return db.Memo(
         **{"record_date": date(2026, 9, 23), "text": "새벽에 깨심", "created_at": now, "updated_at": now, **kw}
     )
@@ -46,7 +47,7 @@ def memo(**kw):
         lambda: memo(status="failed", failure_code="timeot"),
         lambda: db.Visit(visit_date=date(2026, 8, 20), status="done"),
         lambda: db.Patient(id=2, alias="b"),
-        lambda: db.Question(text="q", created_at=datetime.now().astimezone(), period_start=date(2026, 9, 1)),
+        lambda: db.Question(text="q", created_at=now_iso(), period_start=date(2026, 9, 1)),
     ],
 )
 def test_db_rejects_bad_rows(session, bad):
@@ -69,9 +70,7 @@ def test_event_rules_and_cascade(session):
             session.commit()
         session.rollback()
     session.add(db.Event(memo_id=m.id, ord=0, type="fall", status="present", count=1, evidence="x"))
-    session.add(
-        db.RequestKey(request_id="r1", memo_id=m.id, kind="create", text="가", created_at=datetime.now().astimezone())
-    )
+    session.add(db.RequestKey(request_id="r1", memo_id=m.id, kind="create", text="가", created_at=now_iso()))
     session.commit()
     session.delete(m)
     session.commit()
@@ -96,7 +95,10 @@ def test_health_without_ollama(client, monkeypatch):
 
 @pytest.mark.parametrize("path", ["/health", "/api/health"])
 def test_api_prefix_is_optional(client, monkeypatch, path):
-    monkeypatch.setattr(health_router, "model_ready", lambda _name: True)
+    async def ready(_name):
+        return True
+
+    monkeypatch.setattr(health_router, "model_ready", ready)
     r = client.get(path)
     assert r.status_code == 200 and r.json()["ai_available"] is True
 

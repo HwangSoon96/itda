@@ -6,7 +6,8 @@ from fastapi import FastAPI
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
-from .db import init_db
+from .db import configure, init_db
+from .errors import ApiError, api_error_handler
 from .routers import health, memos, schedule, summary
 from .settings import STATIC
 
@@ -14,6 +15,7 @@ from .settings import STATIC
 @asynccontextmanager
 async def lifespan(_app: FastAPI):
     init_db()
+    memos.recover_interrupted()
     yield
 
 
@@ -33,7 +35,9 @@ class StripApiPrefix:
 
 
 def create_app() -> FastAPI:
+    configure()
     app = FastAPI(title="itda", lifespan=lifespan)
+    app.add_exception_handler(ApiError, api_error_handler)
     for r in (health.router, memos.router, schedule.router, summary.router):
         app.include_router(r)
     if (STATIC / "index.html").exists():  # itda-frontend 빌드 결과. API 경로를 가리지 않게 마지막에 등록
