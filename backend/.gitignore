@@ -216,3 +216,11 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# itda-backend (상세 개발 가이드 1-1)
+*.db
+*.db-journal
+static/
+.ruff_cache/
+*.local
+*.local.*
