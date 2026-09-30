@@ -66,7 +66,7 @@ function Metric({ row, onSelect }: { row: SummaryRow; onSelect: () => void }) {
 }
 export function ProgressPage({ active }: { health: Health; active: boolean }) {
   const selection = useReportSelection()
-  const { asOf, periodStart } = selection
+  const { requestAsOf: asOf, periodStart } = selection
   const [periodPending, setPeriodPending] = useState(false)
   const { data, error, loading, reload } = useSummary(asOf, active, periodStart, false)
   const [selectedType, setSelectedType] = useState<EventType | null>(null)
@@ -132,6 +132,7 @@ export function ProgressPage({ active }: { health: Health; active: boolean }) {
           {...selection}
           active={active}
           defaultStart={data?.period.start}
+          defaultEnd={data?.period.end}
           onPendingChange={setPeriodPending}
         />
       </div>

@@ -238,7 +238,7 @@ it('외부 주소로 선택을 복원하고 뒤로가기로 이전 고정 구간
   expect(api.summary).toHaveBeenCalledTimes(2)
   expect(api.summary).toHaveBeenLastCalledWith('2026-09-26', '2026-08-01', true)
   fireEvent.click(screen.getByRole('button', { name: '기본 기간으로 돌아가기' }))
-  await waitFor(() => expect(api.summary).toHaveBeenLastCalledWith(localToday(), undefined, true))
+  await waitFor(() => expect(api.summary).toHaveBeenLastCalledWith(undefined, undefined, true))
   expect(window.location.hash).not.toContain('period_start')
   expect(window.location.hash).not.toContain('as_of')
 })
@@ -248,7 +248,7 @@ it('종료일만 고정한 주소에서도 기본 기간으로 돌아가 오늘�
   render(<SummaryPage health={health} active />)
   await ready()
   fireEvent.click(screen.getByRole('button', { name: '기본 기간으로 돌아가기' }))
-  await waitFor(() => expect(api.summary).toHaveBeenLastCalledWith(localToday(), undefined, true))
+  await waitFor(() => expect(api.summary).toHaveBeenLastCalledWith(undefined, undefined, true))
   expect(window.location.hash).toBe('#summary')
 })
 

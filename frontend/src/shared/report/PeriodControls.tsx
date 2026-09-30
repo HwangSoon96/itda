@@ -13,6 +13,7 @@ export function PeriodControls({
   asOf,
   periodStart,
   defaultStart,
+  defaultEnd,
   setPeriod,
   resetPeriod,
   isFixed,
@@ -24,6 +25,7 @@ export function PeriodControls({
   asOf: string
   periodStart: string | null
   defaultStart?: string
+  defaultEnd?: string
   setPeriod: (value: { asOf: string; periodStart: string | null }) => void
   resetPeriod: () => void
   isFixed?: boolean
@@ -34,27 +36,31 @@ export function PeriodControls({
   onPendingChange?: (pending: boolean) => void
 }) {
   const start = periodStart ?? defaultStart
+  // 마지막 날짜를 고정하지 않았으면 서버가 계산한 기준일(period.end)을 따른다.
+  const end = isFixed ? asOf : (defaultEnd ?? asOf)
   const [draftStart, setDraftStart] = useState(start ?? '')
-  const [draftEnd, setDraftEnd] = useState(asOf)
+  const [draftEnd, setDraftEnd] = useState(end)
   const [formNotice, setFormNotice] = useState('')
   const startInput = useRef<HTMLInputElement>(null)
-  const previousSelection = useRef({ asOf, periodStart, active, start })
+  const previousSelection = useRef({ asOf, periodStart, active, start, end })
   useEffect(() => {
     const previous = previousSelection.current
-    previousSelection.current = { asOf, periodStart, active, start }
+    previousSelection.current = { asOf, periodStart, active, start, end }
     if (
       previous.asOf !== asOf ||
       previous.periodStart !== periodStart ||
       previous.active !== active
     ) {
       setDraftStart(start ?? '')
-      setDraftEnd(asOf)
-    } else if (previous.start !== start) {
+      setDraftEnd(end)
+    } else {
       // A late default period can fill an untouched field without replacing an edit.
-      setDraftStart((draft) => (draft === (previous.start ?? '') ? (start ?? '') : draft))
+      if (previous.start !== start)
+        setDraftStart((draft) => (draft === (previous.start ?? '') ? (start ?? '') : draft))
+      if (previous.end !== end) setDraftEnd((draft) => (draft === previous.end ? end : draft))
     }
     if (!active) setFormNotice('')
-  }, [start, asOf, periodStart, active])
+  }, [start, end, asOf, periodStart, active])
   useEffect(() => {
     if (!editRequest || !active) return
     const frame = requestAnimationFrame(() => startInput.current?.focus())
@@ -62,7 +68,7 @@ export function PeriodControls({
   }, [editRequest, active])
   const invalidOrder = Boolean(draftStart && draftEnd && draftStart > draftEnd)
   const futureStart = completeDate(draftStart) && draftStart > localToday()
-  const changed = draftStart !== (start ?? '') || draftEnd !== asOf
+  const changed = draftStart !== (start ?? '') || draftEnd !== end
   useEffect(() => {
     onPendingChange?.(active && changed)
   }, [active, changed, onPendingChange])
@@ -84,7 +90,7 @@ export function PeriodControls({
   }, [active, changed, draftStart, draftEnd, setPeriod])
   function cancelChanges() {
     setDraftStart(start ?? '')
-    setDraftEnd(asOf)
+    setDraftEnd(end)
     setFormNotice('')
     startInput.current?.focus()
   }

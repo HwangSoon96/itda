@@ -20,6 +20,7 @@ import {
   TrendChart,
   useReportMemos,
   useSummary,
+  useSummaryPeriod,
   weeklyCount,
 } from '../../shared/report'
 import type { EvidenceSelection } from '../../shared/report'
@@ -28,6 +29,7 @@ import { medicationChangeLabel } from '../../shared/lib/medication'
 import '../../shared/report/report.css'
 import './summary.css'
 import { summaryTrendTypes } from './model'
+import { SummaryLoader } from './SummaryLoader'
 
 type SourceSelection = EvidenceSelection & {
   quote?: string
@@ -659,10 +661,13 @@ function consumePrintReviewRequest() {
 }
 export function SummaryPage({ active }: { health: Health; active: boolean }) {
   const selection = useReportSelection()
-  const { asOf, periodStart } = selection
+  const { requestAsOf: asOf, periodStart } = selection
   const [periodPending, setPeriodPending] = useState(false)
   const [aiEnabled, setAiEnabled] = useState(true)
   const { data, error, loading, reload } = useSummary(asOf, active, periodStart, aiEnabled)
+  // AI 요약이 끝나기 전에도 기간 입력칸을 채우도록 구간만 먼저 조회한다.
+  const quickPeriod = useSummaryPeriod(asOf, active, periodStart)
+  const periodDefault = data?.period ?? quickPeriod
   const source = useReportMemos(data, active && !loading && !error)
   const [legacyCharts, setLegacyCharts] = useState<{
     data: Summary
@@ -902,7 +907,8 @@ export function SummaryPage({ active }: { health: Health; active: boolean }) {
             <PeriodControls
               {...selection}
               active={active}
-              defaultStart={data?.period.start}
+              defaultStart={periodDefault?.start}
+              defaultEnd={periodDefault?.end}
               summary
               onPendingChange={setPeriodPending}
             />
@@ -918,9 +924,7 @@ export function SummaryPage({ active }: { health: Health; active: boolean }) {
           </div>
         </section>
         {loading ? (
-          <p className="card v2-summary-loading" role="status">
-            요약지를 불러오고 있어요…
-          </p>
+          <SummaryLoader />
         ) : error ? (
           <div className="card mvp-error">
             <p>요약지를 불러오지 못했어요.</p>

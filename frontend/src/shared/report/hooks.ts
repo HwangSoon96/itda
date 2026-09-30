@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
 import { api } from '../../api'
-import type { EventType, MemoResult, Summary, Trends } from '../../api/types'
+import type { EventType, MemoResult, Period, Summary, Trends } from '../../api/types'
 import { errorText } from './format'
 
 export function useSummary(
-  asOf: string,
+  asOf: string | undefined,
   active: boolean,
   periodStart: string | null = null,
   ai = false,
@@ -15,7 +15,7 @@ export function useSummary(
   const [revision, setRevision] = useState(0)
   const [settledKey, setSettledKey] = useState('')
   const cache = useRef(new Map<string, { promise: Promise<Summary>; value?: Summary }>())
-  const requestKey = `${asOf}|${periodStart ?? ''}|${ai}|${revision}`
+  const requestKey = `${asOf ?? ''}|${periodStart ?? ''}|${ai}|${revision}`
   function invalidate() {
     cache.current.clear()
     setRevision((value) => value + 1)
@@ -83,9 +83,33 @@ export function useSummary(
   }
 }
 
+// AI 요약보다 먼저 도착하는 구간 정보. 실패해도 기간 입력칸만 비므로 조용히 넘어간다.
+export function useSummaryPeriod(
+  asOf: string | undefined,
+  active: boolean,
+  periodStart: string | null = null,
+) {
+  const key = `${asOf ?? ''}|${periodStart ?? ''}`
+  const [result, setResult] = useState<{ key: string; period: Period } | null>(null)
+  useEffect(() => {
+    if (!active) return
+    let alive = true
+    Promise.resolve()
+      .then(() => api.summaryPeriod(asOf, periodStart ?? undefined))
+      .then((value) => {
+        if (alive && value) setResult({ key, period: value.period })
+      })
+      .catch(() => undefined)
+    return () => {
+      alive = false
+    }
+  }, [asOf, periodStart, active, key])
+  return result?.key === key ? result.period : undefined
+}
+
 export function useTrends(
   type: EventType,
-  asOf: string,
+  asOf: string | undefined,
   active: boolean,
   periodStart: string | null = null,
 ) {
