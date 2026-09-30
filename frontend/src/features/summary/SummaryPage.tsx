@@ -29,6 +29,7 @@ import { medicationChangeLabel } from '../../shared/lib/medication'
 import '../../shared/report/report.css'
 import './summary.css'
 import { summaryTrendTypes } from './model'
+import { SummaryLoader } from './SummaryLoader'
 
 type SourceSelection = EvidenceSelection & {
   quote?: string
@@ -923,9 +924,7 @@ export function SummaryPage({ active }: { health: Health; active: boolean }) {
           </div>
         </section>
         {loading ? (
-          <p className="card v2-summary-loading" role="status">
-            요약지를 불러오고 있어요…
-          </p>
+          <SummaryLoader />
         ) : error ? (
           <div className="card mvp-error">
             <p>요약지를 불러오지 못했어요.</p>
