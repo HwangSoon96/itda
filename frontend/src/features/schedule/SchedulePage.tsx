@@ -40,7 +40,7 @@ const errorText = (err: unknown) =>
 const normalize = (value: string) => value.trim().replace(/\s+/g, ' ').toLocaleLowerCase()
 
 export function SchedulePage({ active = true }: { active?: boolean }) {
-  const { asOf, periodStart } = useReportSelection()
+  const { requestAsOf: asOf, periodStart } = useReportSelection()
   const [tab, setTab] = useState<ItemKind>('visits')
   const [visits, setVisits] = useState<Visit[]>([])
   const [medications, setMedications] = useState<Medication[]>([])

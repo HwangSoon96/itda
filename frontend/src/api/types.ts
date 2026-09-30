@@ -86,6 +86,10 @@ export interface Period {
   start: string
   end: string
 }
+export interface PeriodInfo {
+  period: Period
+  baseline: Period | null
+}
 export interface SummaryRow {
   type: EventType
   baseline_rate: number | null

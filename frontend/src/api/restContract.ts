@@ -139,6 +139,12 @@ export function createRestContract(options: RestContractOptions = {}): ApiContra
         }),
         decode: decode(decoders.summary),
       },
+      summaryPeriod: {
+        request: (asOf, periodStart) => ({
+          path: '/summary/period' + query({ as_of: asOf, period_start: periodStart ?? undefined }),
+        }),
+        decode: decode(decoders.summaryPeriod),
+      },
       trends: {
         request: (type, asOf, periodStart) => ({
           path:

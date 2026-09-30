@@ -808,6 +808,10 @@ export const mockApi: Api = {
   async summary(asOf = demo ? SAMPLE_AS_OF : localToday(), periodStart) {
     return copy(summary(asOf, periodStart))
   },
+  async summaryPeriod(asOf = demo ? SAMPLE_AS_OF : localToday(), periodStart) {
+    const { current, baseline } = periods(asOf, periodStart)
+    return copy({ period: current, baseline })
+  },
   async trends(type, asOf = demo ? SAMPLE_AS_OF : localToday(), periodStart) {
     return copy(trends(type, asOf, periodStart))
   },

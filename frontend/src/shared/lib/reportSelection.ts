@@ -101,6 +101,8 @@ export function useReportSelection() {
   }, [state])
   return {
     asOf: current.asOf,
+    // 고정하지 않았다면 서버 기준일(오늘)을 따르도록 요청에 as_of를 싣지 않음.
+    requestAsOf: current.isFixed ? current.asOf : undefined,
     periodStart: current.periodStart,
     isFixed: current.isFixed,
     notice: current.notice || (notice.key === key ? notice.text : ''),

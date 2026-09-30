@@ -7,6 +7,7 @@ import type {
   MemoRevision,
   Question,
   Summary,
+  PeriodInfo,
   Trends,
   Visit,
 } from './types'
@@ -33,6 +34,7 @@ export interface Api {
   addQuestion(body: { text: string; period_start?: string; period_end?: string }): Promise<Question>
   deleteQuestion(id: number): Promise<void>
   summary(asOf?: string, periodStart?: string | null, ai?: boolean): Promise<Summary>
+  summaryPeriod(asOf?: string, periodStart?: string | null): Promise<PeriodInfo>
   trends(type: EventType, asOf?: string, periodStart?: string | null): Promise<Trends>
   patient(): Promise<{ alias: string }>
   savePatient(body: { alias: string }): Promise<{ alias: string }>

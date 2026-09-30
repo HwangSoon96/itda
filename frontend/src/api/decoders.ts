@@ -12,6 +12,7 @@ import {
   type Summary,
   type SummaryMarker,
   type SummaryRow,
+  type PeriodInfo,
   type Trends,
   type Visit,
 } from './types'
@@ -342,6 +343,13 @@ const trends: Decoder<Trends> = (value, path) => {
     medications: array(reportMedication)(data.medications, `${path}.medications`),
   }
 }
+const periodInfo: Decoder<PeriodInfo> = (value, path) => {
+  const data = object(value, path)
+  return {
+    period: period(data.period, `${path}.period`),
+    baseline: nullable(period)(data.baseline, `${path}.baseline`),
+  }
+}
 const summary: Decoder<Summary> = (value, path) => {
   const data = object(value, path)
   return {
@@ -394,6 +402,7 @@ export const decoders = {
   question: (value: unknown) => question(value, 'question'),
   questions: (value: unknown) => array(question)(value, 'questions'),
   summary: (value: unknown) => summary(value, 'summary'),
+  summaryPeriod: (value: unknown) => periodInfo(value, 'summaryPeriod'),
   trends: (value: unknown) => trends(value, 'trends'),
   patient: (value: unknown) => ({ alias: string(object(value, 'patient').alias, 'patient.alias') }),
   workspace: (value: unknown) => {
