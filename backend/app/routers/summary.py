@@ -9,7 +9,7 @@ from sqlalchemy.orm import Session, selectinload
 
 from ..db import Medication, Memo, Patient, Question, SessionDep, Visit
 from ..errors import invalid
-from ..schemas import EventType, Summary, Trends
+from ..schemas import EventType, PeriodInfo, Summary, Trends
 from ..schemas import Patient as PatientOut
 from ..services import stats, summarize
 from ..settings import labels, settings
@@ -83,6 +83,14 @@ def _trends(data, t, cur, base) -> dict:
 
 def _public(row: dict) -> dict:
     return {k: v for k, v in row.items() if not k.startswith("_")}
+
+
+@router.get("/summary/period", response_model=PeriodInfo, summary="이번·기준 구간만 계산 (AI 요약 없이 즉시)")
+def summary_period(session: SessionDep, as_of: dt.date | None = None, period_start: dt.date | None = None):
+    end, start = _dates(as_of, period_start)
+    data = _load(session)
+    cur, base = stats.periods(data["visits"], data["memos"], end, start)
+    return {"period": cur, "baseline": base}
 
 
 @router.get("/summary", response_model=Summary, summary="요약지 계산 (전부 한 번에)")

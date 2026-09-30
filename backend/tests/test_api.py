@@ -239,6 +239,9 @@ def test_summary_matches_frontend_mock(client):
         client.get("/trends", params={"type": "night_waking", "as_of": FIX["as_of"]}).json()
         == FIX["trends_night_waking"]
     )
+    got_period = client.get("/summary/period", params={"as_of": FIX["as_of"]}).json()
+    assert got_period == {"period": want["period"], "baseline": want["baseline"]}
+    assert client.get("/summary/period", params={"as_of": "2026-09-01", "period_start": "2026-09-02"}).status_code == 422
     assert client.get("/summary", params={"as_of": "2026-09-01", "period_start": "2026-09-02"}).status_code == 422
     assert client.get("/trends", params={"type": "sleepy"}).status_code == 422
 

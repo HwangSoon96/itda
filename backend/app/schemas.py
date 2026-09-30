@@ -170,6 +170,11 @@ class Period(Strict):
     end: date
 
 
+class PeriodInfo(Strict):
+    period: Period
+    baseline: Period | None
+
+
 class Coverage(Strict):
     recorded_days: int = Field(ge=0)
     total_days: int = Field(ge=0)
