@@ -4,6 +4,7 @@ import type { Api } from '../itdaApi'
 import demoMemos from './fixtures/demo_memos.json'
 import demoEvents from './fixtures/demo_events.json'
 import demoContext from './fixtures/demo_context.json'
+import { uuid } from '../../shared/lib/uuid'
 import { EVENT_TYPES } from '../types'
 import { localToday } from '../../shared/lib/date'
 import type {
@@ -89,7 +90,7 @@ let state: State = {
 let backup: State | null = null
 let savedDemo: State | null = null
 let demo = false
-let workspaceId = crypto.randomUUID()
+let workspaceId = uuid()
 const copy = <T>(value: T): T => structuredClone(value)
 const nextId = () => state.sequence++
 const shift = (value: string, days: number) => {
@@ -830,7 +831,7 @@ export const mockApi: Api = {
       else seed()
     }
     demo = true
-    workspaceId = crypto.randomUUID()
+    workspaceId = uuid()
     return { ok: true, workspace_id: workspaceId }
   },
   async exitDemo() {
@@ -840,7 +841,7 @@ export const mockApi: Api = {
       backup = null
     }
     demo = false
-    workspaceId = crypto.randomUUID()
+    workspaceId = uuid()
     return { ok: true, workspace_id: workspaceId }
   },
 }

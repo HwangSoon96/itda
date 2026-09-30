@@ -19,6 +19,7 @@ import { api } from '../../api'
 import { EVENT_TYPES } from '../../api/types'
 import { localToday, openDatePicker } from '../../shared/lib/date'
 import { reportHref } from '../../shared/lib/reportSelection'
+import { uuid } from '../../shared/lib/uuid'
 import type { EventCard, Health, MemoResult, Question } from '../../api/types'
 import { FeedbackDialog, Modal, useConfirmation } from '../../shared/ui'
 import { CareTipLoader, Mascot } from './CareTipLoader'
@@ -44,7 +45,7 @@ const apiEvent = (event: EventCard): EventCard => ({
 // occurrences. Preserve model indices so filtering cannot change attribution.
 const occurred = (events: EventCard[]) => events.filter((event) => event.status === '있었음')
 const editable = (events: EventCard[]): EditableEvent[] =>
-  occurred(events).map((event) => ({ ...apiEvent(event), uiKey: crypto.randomUUID() }))
+  occurred(events).map((event) => ({ ...apiEvent(event), uiKey: uuid() }))
 const newManualEvent = (): EventCard => ({
   type: EVENT_TYPES[0],
   status: '있었음',
@@ -692,7 +693,7 @@ export function RecordPage({ health, active = true }: { health: Health | null; a
     }
     const signature = JSON.stringify([text, recordDate])
     if (request.current.signature !== signature)
-      request.current = { signature, id: crypto.randomUUID() }
+      request.current = { signature, id: uuid() }
     requestBusy.current = true
     setBusy('create')
     setReviewOpen(true)
@@ -755,7 +756,7 @@ export function RecordPage({ health, active = true }: { health: Health | null; a
     }
     const signature = JSON.stringify([result.memo_id, sourceDraft])
     if (sourceRequest.current.signature !== signature)
-      sourceRequest.current = { signature, id: crypto.randomUUID() }
+      sourceRequest.current = { signature, id: uuid() }
     requestBusy.current = true
     setBusy('update')
     setSourceError('')
