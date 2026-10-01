@@ -20,7 +20,7 @@
 
 ## 시연 영상
 
-[![잇다 시연 영상](docs/images/demo-thumbnail.jpg)](https://drive.google.com/file/d/1nnUYdGCZUmEd2ZNHY3z8OdvTObeGlW57/view?usp=sharing)
+[![잇다 시연 영상](docs/images/demo-thumbnail.jpg)](https://drive.google.com/file/d/1-lVVVcLBXhm9VTV219TXaRlNyY2ujBOM/view?usp=sharing)
 
 ## 왜 만들었나
 
