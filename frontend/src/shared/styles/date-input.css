@@ -1,0 +1,32 @@
+/* Keep native date text and its calendar control close together across forms. */
+.mvp-shell input.itda-date-input[type='date'] {
+  width: 140px;
+  max-width: 100%;
+  min-width: 0;
+  min-height: 48px;
+  flex: 0 1 auto;
+  padding: 8px 10px 8px 14px;
+  font-size: 14px;
+  line-height: 1.7;
+}
+.mvp-shell input.itda-date-input[type='date']:not(:disabled) {
+  cursor: pointer;
+  transition:
+    background-color 120ms ease,
+    border-color 120ms ease;
+}
+.mvp-shell input.itda-date-input[type='date']:not(:disabled):hover {
+  background: var(--color-accent-tint);
+  border-color: var(--color-accent-border);
+}
+.mvp-shell input.itda-date-input[type='date']::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+}
+/* Disabled date fields keep their calendar icon visible while a memo is being organized. */
+.mvp-shell input.itda-date-input[type='date']:disabled {
+  color: var(--color-foreground);
+  opacity: 1;
+}
+.mvp-shell input.itda-date-input[type='date']:disabled::-webkit-calendar-picker-indicator {
+  opacity: 0.6;
+}

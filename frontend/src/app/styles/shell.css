@@ -1,0 +1,364 @@
+/* Shared responsive navigation and workspace layout. */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+input,
+select,
+textarea {
+  background: #fff;
+  border-color: #a9b6c0;
+  border-radius: 22px;
+}
+.card {
+  border-color: #c5d0d6;
+  border-radius: 26px 26px 26px 8px;
+  box-shadow: 0 2px 6px #1b426d0d;
+}
+.mvp-shell {
+  display: block;
+  max-width: 1440px;
+  min-height: 100dvh;
+  padding: 0;
+  background: var(--color-background);
+}
+.mvp-shell::before,
+.mvp-shell::after {
+  display: none;
+}
+/* Keep scrollIntoView targets clear of the sticky header. */
+html {
+  scroll-padding-top: 88px;
+}
+.mvp-sidebar {
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 30px;
+  min-height: 72px;
+  padding: 10px 40px;
+  background: #fff;
+  border: 0;
+  border-bottom: 1px solid #d7e0e4;
+  border-radius: 0;
+  z-index: 25;
+}
+.mvp-header {
+  min-height: 48px;
+  height: auto;
+  padding: 0;
+  margin: 0;
+  flex-shrink: 0;
+}
+.mvp-header > a {
+  gap: 8px;
+  text-decoration: none;
+  font-size: 23px;
+  font-weight: 700;
+}
+.mvp-header .brand-logo {
+  width: 46px;
+  height: 46px;
+}
+.mvp-navigation {
+  position: static;
+  display: flex;
+  flex-direction: row;
+  gap: 6px;
+  padding: 0;
+  border-radius: 0;
+  box-shadow: none;
+  background: #fff;
+}
+.mvp-navigation a {
+  flex-direction: row;
+  min-height: 48px;
+  padding: 10px 20px;
+  border-radius: 999px;
+  font-size: 16px;
+  font-weight: 400;
+}
+.mvp-navigation a[aria-current='page'] {
+  background: var(--color-background);
+  font-weight: 700;
+}
+.mvp-navigation a {
+  transition:
+    background-color 220ms ease,
+    border-color 220ms ease,
+    color 220ms ease;
+}
+.mvp-navigation svg {
+  display: none;
+}
+.mvp-account {
+  position: static;
+  display: block;
+  height: auto;
+  margin: 0 0 0 auto;
+  padding: 0;
+  min-width: 0;
+}
+.mvp-header-actions {
+  width: auto;
+  gap: 14px;
+}
+.mvp-model-state {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--color-muted-fg);
+  font-size: 12px;
+  white-space: nowrap;
+}
+.mvp-model-state i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #be826a;
+}
+.mvp-model-state.is-ready i {
+  background: var(--color-secondary);
+}
+.mvp-header-demo {
+  font-size: 13px;
+  font-weight: 400;
+  min-height: 42px;
+  padding: 8px 16px;
+  border-color: #bdc9d1 !important;
+}
+.mvp-utilities > summary {
+  padding: 10px;
+  min-width: 40px;
+  min-height: 42px;
+  background: none;
+  box-shadow: none;
+  border-radius: 50%;
+}
+.mvp-utilities > div {
+  left: auto;
+  right: 0;
+  top: calc(100% + 8px);
+  bottom: auto;
+}
+.mvp-main {
+  padding: 40px max(40px, calc((100% - 1120px) / 2)) 80px;
+  min-height: calc(100dvh - 72px);
+  overflow: clip;
+  isolation: isolate;
+}
+.mvp-main::before {
+  display: block;
+  position: absolute;
+  inset: 0 0 auto;
+  width: 100%;
+  height: 225px;
+  background: #79bca826;
+  border-radius: 0 0 60% 18%;
+  z-index: -2;
+}
+.mvp-main::after {
+  display: block;
+  right: auto;
+  left: calc((100% - min(1120px, 100% - 80px)) / 2 - 16px);
+  top: 35px;
+  width: 40px;
+  height: 40px;
+  background: #ebb49b35;
+  z-index: -1;
+}
+.mvp-main > [hidden] {
+  display: none;
+}
+.mvp-page-heading h1 {
+  font-size: 28px;
+}
+.mvp-status > p,
+.mvp-status > div {
+  font-size: 14px;
+}
+.mvp-demo-badge {
+  font-size: 12px;
+  padding: 2px 8px;
+}
+@media (min-width: 1441px) {
+  .mvp-shell {
+    box-shadow: 0 0 0 1px #d4dfe4;
+  }
+}
+@media (max-width: 1100px) {
+  .mvp-sidebar {
+    gap: 20px;
+    padding-inline: 24px;
+  }
+  .mvp-navigation a {
+    padding-inline: 15px;
+  }
+  .mvp-header-actions {
+    gap: 8px;
+  }
+  .mvp-main {
+    padding: 32px 28px 60px;
+  }
+  .mvp-main::after {
+    left: 14px;
+  }
+}
+@media (max-width: 760px) {
+  html {
+    scroll-padding-top: 122px;
+  }
+  .mvp-sidebar {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0;
+    padding: 4px 16px 0;
+    min-height: 106px;
+  }
+  .mvp-header {
+    height: 50px;
+    min-height: 50px;
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .mvp-header > a {
+    font-size: 18px;
+    gap: 4px;
+  }
+  .mvp-header .brand-logo {
+    width: 36px;
+    height: 36px;
+  }
+  .mvp-account {
+    grid-column: 2;
+    grid-row: 1;
+    position: static;
+    margin: 0;
+  }
+  .mvp-model-state {
+    font-size: 11px;
+    gap: 5px;
+  }
+  .mvp-model-state i {
+    width: 6px;
+    height: 6px;
+  }
+  .mvp-header-actions {
+    gap: 5px;
+  }
+  .mvp-header-demo {
+    display: none;
+  }
+  .mvp-utilities > summary {
+    min-height: 44px;
+    min-width: 36px;
+    padding: 8px;
+  }
+  .mvp-demo-badge {
+    font-size: 10px;
+    padding: 2px 5px;
+  }
+  .mvp-navigation {
+    grid-row: 2;
+    grid-column: 1/-1;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0;
+    margin: 0 -16px;
+    padding: 0;
+    border-radius: 0;
+  }
+  .mvp-navigation a {
+    justify-content: center;
+    min-height: 52px;
+    padding: 12px 4px;
+    border-radius: 0;
+    font-size: 14px;
+    border-bottom: 3px solid transparent;
+  }
+  .mvp-navigation a[aria-current='page'] {
+    background: white;
+    border-color: var(--color-primary);
+  }
+  .mvp-main {
+    padding: 24px 16px 40px;
+    min-height: calc(100dvh - 106px);
+  }
+  .mvp-main::before {
+    height: 170px;
+    border-radius: 0 0 85% 12%;
+  }
+  .mvp-main::after {
+    display: none;
+  }
+  .mvp-page-heading h1 {
+    font-size: 24px;
+  }
+  .card {
+    padding: 20px;
+    border-radius: 24px 24px 24px 8px;
+  }
+  .mvp-status > div,
+  .mvp-status > p {
+    margin-bottom: 16px;
+    font-size: 13px;
+  }
+  .mvp-utilities > div {
+    right: -2px;
+    width: min(280px, calc(100vw - 32px));
+  }
+}
+@media (max-width: 380px) {
+  .mvp-main {
+    padding-inline: 14px;
+  }
+  .card {
+    padding: 18px;
+  }
+}
+@media print {
+  .mvp-sidebar,
+  .mvp-main::before,
+  .mvp-main::after {
+    display: none !important;
+  }
+  .mvp-shell {
+    max-width: none;
+    background: white;
+  }
+  .mvp-main {
+    padding: 0;
+    overflow: visible;
+  }
+}
+/* Tab switches fade the next page in so moving between tabs feels continuous. */
+[data-page]:not([hidden]) {
+  animation: mvp-page-enter 260ms ease-out;
+}
+@keyframes mvp-page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-page]:not([hidden]) {
+    animation: none;
+  }
+  .mvp-navigation a {
+    transition: none;
+  }
+}

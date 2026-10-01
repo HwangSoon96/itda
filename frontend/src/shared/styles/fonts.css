@@ -1,0 +1,28 @@
+/* Handwriting font for observation memos: the memo editor and every box that shows a memo again. */
+@font-face {
+  font-family: 'Kyobo Handwriting 2025';
+  src: url('/fonts/KyoboHandwriting2025lyb.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Binggrae';
+  src: url('/fonts/Binggrae.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Binggrae';
+  src: url('/fonts/Binggrae-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --font-handwriting: 'Kyobo Handwriting 2025', 'Noto Sans KR', sans-serif;
+}
