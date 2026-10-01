@@ -1,13 +1,13 @@
-# 데모·평가 시나리오 (상세개발가이드 2-9)
+# 데모·평가 시나리오
 
-itda-ai의 `ml/demo_gen/`에서 만든 파일임. 시드가 고정되어 있어 다시 돌려도 같은 내용이 나옴.
+`ml/demo_gen/`에서 만든 파일입니다. 시드가 고정되어 있어 다시 돌려도 같은 내용이 나옵니다.
 
 ## demo/demo_memos.json
 
 메모 108건. `[{id, written_date, text}]`
 
-- /demo/load에서 memos 테이블에 그대로 넣음. status는 "confirmed", written_date는 파일 값 그대로 씀
-- 대부분 다음 날 아침에 전날 일을 쓴 메모임("어젯밤", "어제 저녁" 등). 사건이 없는 날은 그날 쓴 "별일 없었음" 메모가 있음
+- 백엔드의 `python -m app.demo load`가 memos 테이블에 그대로 넣습니다. status는 "confirmed", written_date는 파일 값 그대로 씁니다
+- 대부분 다음 날 아침에 전날 일을 쓴 메모입니다("어젯밤", "어제 저녁" 등). 사건이 없는 날은 그날 쓴 "별일 없었음" 메모가 있습니다
 
 ## demo/demo_events.json
 
@@ -17,12 +17,12 @@ itda-ai의 `ml/demo_gen/`에서 만든 파일임. 시드가 고정되어 있어 
   "events": [{memo_id, event_date, date_unknown, type, status, time_expr, count, evidence}] }
 ```
 
-- events는 events 테이블에 source="model"로 넣음. memo_id는 demo_memos.json의 id임
-- event_date는 가이드 3-3 규칙으로 계산해 둔 값임. 다시 계산하지 않고 그대로 넣음
-- visits, medications, questions도 각 테이블에 넣음
-- 요약지 기준일(as_of)은 2026-09-26으로 두고 봄
+- events는 events 테이블에 source="model"로 넣습니다. memo_id는 demo_memos.json의 id입니다
+- event_date는 메모 날짜와 시간 표현으로 미리 계산해 둔 값입니다. 다시 계산하지 않고 그대로 넣습니다
+- visits, medications, questions도 각 테이블에 넣습니다
+- 요약지 기준일(as_of)은 2026-09-26으로 두고 봅니다
 
-## 가이드 3-5 함수로 미리 계산한 결과 (ml/demo_gen/check_scenarios.py)
+## 미리 계산한 결과 (ml/demo_gen/check_scenarios.py)
 
 | 항목 | 값 |
 |---|---|
@@ -34,7 +34,7 @@ itda-ai의 `ml/demo_gen/`에서 만든 파일임. 시드가 고정되어 있어 
 | 낙상 | 9/3 |
 | 날짜 특정 불가 사건 | 1건 ("요즘", 9/25 메모) |
 
-- 확인 필요: 낙상도 기준 구간에 0건이라 mark_for를 그대로 돌리면 "새로 나타남"이 붙음. 낙상은 목록으로 따로 보여 주는 유형이므로 표시 계산에서 빼는지 백엔드에서 정해야 함
+- 낙상은 경과·요약지 화면에서 증가 표시 대신 낙상 날짜를 따로 보여 줍니다 (한 번만 있어도 중요한 안전 사건이라)
 
 ## ml/eval/signal_scenarios.json (평가 ③)
 
@@ -46,8 +46,8 @@ itda-ai의 `ml/demo_gen/`에서 만든 파일임. 시드가 고정되어 있어 
   events: [{type, event_date, status, count}], generator_rates}]
 ```
 
-- 메모가 없으므로 기록일은 recorded_days를 그대로 씀
+- 메모가 없으므로 기록일은 recorded_days를 그대로 씁니다
 - 탐지율: planted_changes의 유형에 increase 또는 new가 붙은 비율
 - 오경보율: SIG-N 환자에게서 한 번이라도 나온 유형에 표시가 붙은 비율
-- generator_rates는 생성할 때 쓴 확률임. 실제 발생 비율은 날마다 무작위로 뽑아서 조금씩 다름
+- generator_rates는 생성할 때 쓴 확률입니다. 실제 발생 비율은 날마다 무작위로 뽑아서 조금씩 다릅니다
 - 참고값 (같은 함수로 계산): sigma 3에서 탐지율 13/20(65%), 오경보율 3/76(3.9%). sigma 2에서 탐지율 17/20(85%), 오경보율 5/76(6.6%)

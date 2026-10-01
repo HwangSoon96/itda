@@ -55,7 +55,7 @@ flowchart LR
 
 ### 1-1. 출력 스키마
 
-모델이 내는 JSON은 [config/event_schema.json](config/event_schema.json)으로 고정하고, 서빙 때 Ollama `format`에 그대로 넣어 강제함.
+모델이 내는 JSON은 [config/event_schema.json](config/event_schema.json)으로 고정하고, 서빙 때 Ollama `format`에 그대로 넣어 강제합니다.
 
 ```mermaid
 classDiagram
@@ -80,7 +80,7 @@ classDiagram
 | `count` | 언급 없으면 1 | |
 | `evidence` | 메모 구절을 **고치지 않고** 복사 | 보호자가 확인 카드에서 근거를 바로 대조. 평가 때 원문 포함 여부 자동 검사 |
 
-필드 순서(`type → status → time_expr → count → evidence`)도 학습의 일부임. 순서가 바뀌면 성능이 떨어지는 모델이 있음 ([4-4](#4-4-발견-사항) 참고).
+필드 순서(`type → status → time_expr → count → evidence`)도 학습의 일부입니다. 순서가 바뀌면 성능이 떨어지는 모델이 있습니다 ([4-4](#4-4-발견-사항) 참고).
 
 ### 1-2. 증상 유형 12종
 
@@ -97,7 +97,7 @@ classDiagram
 
 ### 1-3. 라벨링 규칙 (경계 사례)
 
-실제 메모에서 헷갈리는 경우를 규칙으로 정해 [config/system_prompt.txt](config/system_prompt.txt)와 데이터에 똑같이 반영함. 결정 이력은 [docs/decisions.md](docs/decisions.md).
+실제 메모에서 헷갈리는 경우를 규칙으로 정해 [config/system_prompt.txt](config/system_prompt.txt)와 데이터에 똑같이 반영했습니다. 결정 이력은 [docs/decisions.md](docs/decisions.md).
 
 | 상황 | 처리 |
 |---|---|
@@ -114,11 +114,11 @@ classDiagram
 
 ## 2. 합성 데이터 생성
 
-실제 보호자 메모는 개인정보라 모을 수 없어, **정답을 먼저 정하고 문장을 나중에 만드는** 방식으로 합성함.
+실제 보호자 메모는 개인정보라 모을 수 없어, **정답을 먼저 정하고 문장을 나중에 만드는** 방식으로 합성했습니다.
 
 ### 2-1. 정답 먼저 (계획 파일)
 
-[make_plans.py](ml/data_gen/make_plans.py)가 메모마다 담을 사건 목록을 먼저 뽑음. Claude는 이 계획을 문장으로 바꾸기만 하므로 **라벨이 틀릴 여지가 구조적으로 작음**.
+[make_plans.py](ml/data_gen/make_plans.py)가 메모마다 담을 사건 목록을 먼저 뽑습니다. Claude는 이 계획을 문장으로 바꾸기만 하므로 **라벨이 틀릴 여지가 구조적으로 작음**.
 
 ```mermaid
 pie showData title 메모당 사건 수 (계획 설계 비율)
@@ -135,7 +135,7 @@ pie showData title 메모당 사건 수 (계획 설계 비율)
 
 ### 2-2. 문체 13종 (personas.yaml)
 
-[personas.yaml](ml/data_gen/personas.yaml)에 관계·말투·길이·습관·오타 수준을 정의함. **학습·검증·평가 문체를 완전히 분리**해 평가가 "본 적 없는 문체"에 대한 일반화를 재도록 함.
+[personas.yaml](ml/data_gen/personas.yaml)에 관계·말투·길이·습관·오타 수준을 정의했습니다. **학습·검증·평가 문체를 완전히 분리**해 평가가 "본 적 없는 문체"에 대한 일반화를 재도록 합니다.
 
 | 용도 | 문체 | 예 |
 |---|---|---|
@@ -167,7 +167,7 @@ pie showData title 메모당 사건 수 (계획 설계 비율)
 
 ### 3-1. 모델 선택 기준
 
-보호자 기록은 민감 정보라 **외부 API로 보내지 않고 로컬(Ollama)에서 돌릴 수 있는 4B급 이하**를 후보로 함. 후보 5종을 같은 데이터·같은 방식으로 학습해 비교.
+보호자 기록은 민감 정보라 **외부 API로 보내지 않고 로컬(Ollama)에서 돌릴 수 있는 4B급 이하**를 후보로 합니다. 후보 5종을 같은 데이터·같은 방식으로 학습해 비교.
 
 | 후보 | 결과 |
 |---|---|
@@ -202,7 +202,7 @@ flowchart LR
     MF --> OL["ollama create<br/>ollama cp → itda-a"]
 ```
 
-- 모델을 바꿀 때는 `ollama cp <모델> itda-a` 한 줄. 백엔드 설정은 건드리지 않음
+- 모델을 바꿀 때는 `ollama cp <모델> itda-a` 한 줄. 백엔드 설정은 건드리지 않습니다
 - Modelfile을 손으로 쓰지 않고 gguf의 jinja 템플릿에서 만들어 **학습 때와 같은 프롬프트**를 보장
 - Q8_0 대비 F1 차이 0.003, 크기 8.0GB → 5.3GB, CPU 최대 처리 시간 30초 → 20초라 Q4_K_M 채택
 
@@ -210,7 +210,7 @@ flowchart LR
 
 ## 4. 평가
 
-네 가지 질문으로 나눠 평가함. 상세: [docs/모델평가_4질문_0929.md](docs/모델평가_4질문_0929.md)
+네 가지 질문으로 나눠 평가했습니다. 상세: [docs/모델평가_4질문_0929.md](docs/모델평가_4질문_0929.md)
 
 | 질문 | 방법 | 결과 |
 |---|---|---|
@@ -224,7 +224,7 @@ flowchart LR
 ![학습 곡선](ml/eval/results/train_curves_gemma4-e4b-qlora.png)
 
 - train loss 0.129 → 0.005, eval loss 0.0163 → 0.0119 (최저점 = 마지막 스텝 496)
-- grad_norm 최대 0.34, NaN 0건, 기울기 자르기 기준(1.0)에 닿은 적 없음
+- grad_norm 최대 0.34, NaN 0건, 기울기 자르기 기준(1.0)에 닿은 적 없습니다
 - 2에폭 이후 train이 eval보다 낮아지는 구간이라 2에폭에서 멈춘 것이 적절
 
 ### 4-2. 추출 정확도 (베이스 vs QLoRA, 같은 조건)
@@ -271,7 +271,7 @@ xychart-beta
 | **전체 80** | **70.0%** | **68.8%** |
 | 일반 질문에 추출 JSON으로 답한 비율 | 0% | 0% |
 
-추출 전용으로 학습했어도 일반 질문에 JSON으로 답하는 "모드 고착"이 없음. KMMLU 50문항은 오차가 약 ±14%p라 차이 없음으로 봄.
+추출 전용으로 학습했어도 일반 질문에 JSON으로 답하는 "모드 고착"이 없습니다. KMMLU 50문항은 오차가 약 ±14%p라 차이 없음으로 봅니다.
 
 ### 4-4. 사람이 보아도 좋은가
 
@@ -304,9 +304,9 @@ pie showData title GPT Judge 승패 (메모 50건)
 
 ### 4-5. 발견 사항
 
-- **스키마 강제 시 필드 순서 문제**: Ollama `format`에 JSON 스키마를 넣으면 EXAONE·Qwen은 필드가 알파벳순(`count → evidence → …`)으로 강제되어 학습 순서와 달라지고 성능이 떨어짐. Gemma 계열은 순서가 유지됨 → 모델 선택의 결정적 근거
+- **스키마 강제 시 필드 순서 문제**: Ollama `format`에 JSON 스키마를 넣으면 EXAONE·Qwen은 필드가 알파벳순(`count → evidence → …`)으로 강제되어 학습 순서와 달라지고 성능이 떨어집니다. Gemma 계열은 순서가 유지됨 → 모델 선택의 결정적 근거
 - **Ollama 템플릿 무시**: gguf에 jinja 템플릿이 든 일부 모델(EXAONE)은 Modelfile의 TEMPLATE을 무시하고 생각 모드가 켜진 채 등록됨 → F1 0.24. raw 호출 시 0.96
-- **베이스는 `think: false` 필수**: 생각 모드를 켠 기본 설정이면 384토큰 안에 JSON을 못 냄(JSON 통과 13%)
+- **베이스는 `think: false` 필수**: 생각 모드를 켠 기본 설정이면 384토큰 안에 JSON을 못 냅니다(JSON 통과 13%)
 - **목록 밖 관찰에서 짝 밀림**: 긴 메모에 목록 밖 행동("벽에 대변을 칠함")이 섞이면 근거와 유형의 짝이 한 칸씩 밀리는 사례. 사건 단위 채점에서는 1건 오류로만 보여 수작업 확인이 필요
 
 ---
@@ -314,7 +314,7 @@ pie showData title GPT Judge 승패 (메모 50건)
 ## 5. 한계와 다음 과제
 
 - **모든 수치는 합성 평가 세트 기준.** 문체는 분리했지만 학습 데이터와 같은 방식으로 만들어 점수가 부풀었을 수 있음 → 사람이 쓴 실제 메모 100건 평가 예정
-- Judge·사람 평가 표본은 두 답이 다른 메모 위주라 승률이 전체 기준보다 높게 나옴
+- Judge·사람 평가 표본은 두 답이 다른 메모 위주라 승률이 전체 기준보다 높게 나옵니다
 - 남은 약점: 목록 밖 관찰(반복 질문 → 식사량 감소로 오추출), 없었음 판별("다 드심"), 잡담 메모 35건 중 2건에서 사건 추출
 - 모델 간 차이의 통계적 유의성(부트스트랩 신뢰구간) 미계산
 
@@ -385,7 +385,7 @@ python ml/eval/judge_pairwise.py \
   --ft   ml/eval/results/eval_itda-gemma4-e4b_q4_k_m_gpu.json                         # LLM Judge
 ```
 
-## 담당 배정 (데이터 v1.2)
+## 데이터 생성 분담
 
 | 담당 | 슬롯 | 문체 |
 |---|---|---|
@@ -394,5 +394,3 @@ python ml/eval/judge_pairwise.py \
 | 이주영 | S3 | T03, T10 |
 | 조성률 | S4 | T05, T06 |
 | 김우진 | W_val / W_test | V01 / E01, E02 |
-
-자세한 개발 가이드는 [먼저읽기.txt](먼저읽기.txt)와 "잇다_상세개발가이드" 문서 참고.
