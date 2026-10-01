@@ -662,3 +662,22 @@ it.each(['write', 'history'] as const)(
     expect(api.createMemo).not.toHaveBeenCalled()
   },
 )
+
+it('관찰 메모는 서버 한도(1000자)까지만 입력되고 남은 글자를 알려 준다', async () => {
+  render(<RecordPage health={health} />)
+  const box = screen.getByRole('textbox', { name: '어떤 일이 있었나요?' })
+  expect((box as HTMLTextAreaElement).maxLength).toBe(1000)
+  expect(screen.queryByText(/ \/ 1000자$/)).toBeNull()
+  fireEvent.change(box, { target: { value: '가'.repeat(950) } })
+  expect(screen.getByText('950 / 1000자')).toBeTruthy()
+})
+
+it('주소에 #record가 없는 첫 화면에서도 지난 기록 찾기가 열린다', async () => {
+  window.history.replaceState(null, '', '/')
+  api.memos.mockResolvedValue([{ ...memo, status: '확인 완료' }])
+  const user = userEvent.setup()
+  render(<RecordPage health={health} />)
+  await user.click(screen.getByRole('button', { name: '지난 기록 찾기' }))
+  expect(await screen.findByRole('heading', { level: 1, name: '지난 기록 찾기' })).toBeTruthy()
+  expect(window.location.hash).toBe('#record?view=history')
+})

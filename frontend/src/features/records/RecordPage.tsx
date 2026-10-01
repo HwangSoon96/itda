@@ -21,6 +21,7 @@ import { localToday, openDatePicker } from '../../shared/lib/date'
 import { reportHref } from '../../shared/lib/reportSelection'
 import { uuid } from '../../shared/lib/uuid'
 import type { EventCard, Health, MemoResult, Question } from '../../api/types'
+import { route } from '../../app/navigation'
 import { FeedbackDialog, Modal, useConfirmation } from '../../shared/ui'
 import { CareTipLoader, Mascot } from './CareTipLoader'
 import { EvidenceSelector } from './EvidenceSelector'
@@ -54,21 +55,21 @@ const newManualEvent = (): EventCard => ({
   evidence: '',
   model_event_index: null,
 })
+/** 주소의 화면과 쿼리. 빈 주소·모르는 화면은 App처럼 기록 화면으로 본다. */
+function recordHash() {
+  const [, query = ''] = location.hash.slice(1).split('?')
+  return { isRecord: route(location.hash) === 'record', params: new URLSearchParams(query) }
+}
 function linkedMemoId() {
-  const [page, query] = location.hash.slice(1).split('?')
-  const params = new URLSearchParams(query)
+  const { isRecord, params } = recordHash()
   const value = params.get('memo')
-  return page === 'record' &&
-    value &&
-    /^[1-9]\d*$/.test(value) &&
-    Number.isSafeInteger(Number(value))
+  return isRecord && value && /^[1-9]\d*$/.test(value) && Number.isSafeInteger(Number(value))
     ? Number(value)
     : null
 }
 function linkedHistory() {
-  const [page, query] = location.hash.slice(1).split('?')
-  const params = new URLSearchParams(query)
-  if (page !== 'record' || params.get('view') !== 'history') return null
+  const { isRecord, params } = recordHash()
+  if (!isRecord || params.get('view') !== 'history') return null
   const from = params.get('from') ?? ''
   const to = params.get('to') ?? ''
   const validDate = (value: string) =>
@@ -80,9 +81,8 @@ function linkedHistory() {
     : { from: '', to: '' }
 }
 function showHistoryHash() {
-  const [page, query] = location.hash.slice(1).split('?')
-  if (page !== 'record') return
-  const params = new URLSearchParams(query)
+  const { isRecord, params } = recordHash()
+  if (!isRecord) return
   params.set('view', 'history')
   params.delete('memo')
   params.delete('return_to')
@@ -93,9 +93,8 @@ function showHistoryHash() {
   window.dispatchEvent(new HashChangeEvent('hashchange', { oldURL, newURL: location.href }))
 }
 function replaceMemoHash(id: number | null, view?: 'write' | 'history') {
-  const [page, query] = location.hash.slice(1).split('?')
-  if (page !== 'record') return
-  const params = new URLSearchParams(query)
+  const { isRecord, params } = recordHash()
+  if (!isRecord) return
   if (view === 'history') params.set('view', 'history')
   if (view === 'write') {
     params.delete('view')
@@ -113,8 +112,8 @@ function replaceMemoHash(id: number | null, view?: 'write' | 'history') {
   window.dispatchEvent(new HashChangeEvent('hashchange', { oldURL, newURL: location.href }))
 }
 function printReviewReturnHref() {
-  const [page, query] = location.hash.slice(1).split('?')
-  return page === 'record' && new URLSearchParams(query).get('return_to') === 'summary-print'
+  const { isRecord, params } = recordHash()
+  return isRecord && params.get('return_to') === 'summary-print'
     ? reportHref('summary', { review: 'print' })
     : null
 }
@@ -149,6 +148,15 @@ const failureMessages: Record<NonNullable<MemoResult['failure_code']>, string> =
   unknown_error: '실패 원인을 확인할 수 없어요.',
 }
 const updated = () => window.dispatchEvent(new Event('itda-final-updated'))
+
+/** 서버 memo_max_chars(settings.yaml)와 같은 한도. 넘기면 서버가 422로 거절한다. */
+const MEMO_MAX = 1000
+const memoCount = (text: string) =>
+  text.length >= MEMO_MAX * 0.8 ? (
+    <p className="mvp-rc-hint" aria-live="polite">
+      {text.length} / {MEMO_MAX}자
+    </p>
+  ) : null
 
 function Highlight({ text, evidence }: { text: string; evidence: string }) {
   const index = evidence ? text.indexOf(evidence) : -1
@@ -498,7 +506,7 @@ export function RecordPage({ health, active = true }: { health: Health | null; a
         feedbackReturnHref.current = null
       }
       if (
-        location.hash.slice(1).split('?')[0] === 'record' &&
+        recordHash().isRecord &&
         id === null &&
         selectedMemoId.current !== null &&
         reviewOriginRef.current === 'saved'
@@ -517,7 +525,7 @@ export function RecordPage({ health, active = true }: { health: Health | null; a
           setRange('custom')
           setStatusFilter('전체')
         }
-      } else if (location.hash.slice(1).split('?')[0] === 'record' && id === null) {
+      } else if (recordHash().isRecord && id === null) {
         setView('write')
       }
       // Internal URL updates also notify App, but must not reopen an edited memo.
@@ -1292,7 +1300,7 @@ export function RecordPage({ health, active = true }: { health: Health | null; a
                 aria-label="어떤 일이 있었나요?"
                 rows={5}
                 value={reviewOrigin === 'saved' ? '' : text}
-                maxLength={10000}
+                maxLength={MEMO_MAX}
                 required
                 placeholder="새벽 3시쯤 깨서 현관문 열려고 하심."
                 onChange={(e) => {
@@ -1301,6 +1309,7 @@ export function RecordPage({ health, active = true }: { health: Health | null; a
                   setError('')
                 }}
               />
+              {reviewOrigin !== 'saved' && memoCount(text)}
             </fieldset>
             {result && reviewOrigin === 'compose' ? (
               <div className="mvp-rc-result-actions stack">
@@ -1682,7 +1691,7 @@ export function RecordPage({ health, active = true }: { health: Health | null; a
                 id="record-source-text"
                 rows={6}
                 value={sourceDraft ?? ''}
-                maxLength={10000}
+                maxLength={MEMO_MAX}
                 required
                 disabled={busy === 'update'}
                 onChange={(event) => {
@@ -1690,6 +1699,7 @@ export function RecordPage({ health, active = true }: { health: Health | null; a
                   setSourceError('')
                 }}
               />
+              {memoCount(sourceDraft ?? '')}
               {sourceError && (
                 <p className="mvp-rc-error" role="alert">
                   {sourceError}
