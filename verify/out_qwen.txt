@@ -1,0 +1,53 @@
+[itda-qwen] synth 40건 F1=0.968 P=0.962 R=0.974 JSON실패=0 evidence원문없음=0/79
+  지연 중앙 1.5s 최대 7.6s
+
+(1.6s) 아침에 일어나시더니 여기가 어디냐고 물으심. 밤에 두 번 깨셔서 거실을 왔다 갔다 하셨음.
+   confusion          present time='아침에'          → 알수없음  ev='아침에 일어나시더니 여기가 어디냐고 물으심'
+   night_waking       present time=None           → 09/24  ev='밤에 두 번 깨셔서 거실을 왔다 갔다 하셨음'
+
+(1.4s) 지난밤에 한숨도 안 주무시고 현관문을 계속 여시려고 함. 결국 새벽 다섯 시쯤 겨우 잠드심.
+   night_waking       present time='지난밤'          → 알수없음  ev='지난밤에 한숨도 안 주무시고'
+   wandering_exit     present time=None           → 09/24  ev='현관문을 계속 여시려고 함'
+
+(0.9s) 이틀 전 목욕시키려는데 소리 지르며 밀치셨음. 오늘은 조용하셨다.
+   agitation          present time='이틀 전'         → 알수없음  ev='이틀 전 목욕시키려는데 소리 지르며 밀치셨음'
+
+(1.6s) 점심때 밥을 몇 숟갈만 드시고 안 드신다고 하심. 약도 뱉어 내셨음.
+   reduced_intake     present time='점심때'          → 알수없음  ev='점심때 밥을 몇 숟갈만 드시고 안 드신다고 하심'
+   medication_refusal present time=None           → 09/24  ev='약도 뱉어 내셨음'
+
+(0.9s) 사흘 전에 화장실에서 미끄러져 넘어지셨는데 다친 데는 없음.
+   fall               present time='사흘 전'         → 알수없음  ev='사흘 전에 화장실에서 미끄러져 넘어지셨는데'
+
+(1.0s) 엊그제 밤에 누가 창문 밖에 서 있다고 하셨음.
+   hallucination      present time='엊그제'          → 09/22  ev='엊그제 밤에 누가 창문 밖에 서 있다고 하셨음'
+
+(0.9s) 오늘 오후에 지갑을 며느리가 가져갔다고 화내심.
+   delusion           present time='오늘'           → 09/24  ev='오늘 오후에 지갑을 며느리가 가져갔다고 화내심'
+
+(1.0s) 요즘 부쩍 우울해 보이시고 하루 종일 누워만 계심.
+   low_mood_apathy    present time='요즘'           → 알수없음  ev='요즘 부쩍 우울해 보이시고 하루 종일 누워만 계심'
+
+(0.2s) 오늘은 별일 없었음. 산책 잘 하심.
+
+(0.9s) 어제 저녁 식사 후에 나보고 누구냐고 하셨어요ㅠㅠ 한참 설명드림.
+   confusion          present time='어제 저녁'        → 09/23  ev='어제 저녁 식사 후에 나보고 누구냐고 하셨어요'
+
+(1.0s) 새벽 두 시쯤 깨셔서 옷 입고 나가시려고 함. 아침엔 기억 못 하심.
+   night_waking       present time='새벽 두 시쯤'      → 09/23  ev='새벽 두 시쯤 깨셔서 옷 입고 나가시려고 함'
+
+(0.8s) 밤마다 깨시는 것 같은데 확실하진 않음. 반 공기 드심.
+   night_waking       present time=None           → 09/24  ev='밤마다 깨시는 것 같은데'
+
+(0.8s) 혼자 있으면 불안해하셔서 잠깐 장보러 가는 것도 못 함. 나도 너무 지친다.
+   anxiety            present time=None           → 09/24  ev='혼자 있으면 불안해하셔서'
+
+(1.6s) 어머니가 오늘 아침 약을 안 드시겠다고 버티셨는데 점심 때 드셨음. 저녁에 딸 이름을 헷갈리심.
+   medication_refusal present time='오늘'           → 09/24  ev='오늘 아침 약을 안 드시겠다고 버티셨는데'
+   confusion          present time='저녁에'          → 09/24  ev='저녁에 딸 이름을 헷갈리심'
+
+(1.3s) 아까 머리를 부딪히셨는데 괜찮다고 하심. 지갑이 없어졌다고 난리.
+   fall               present time='아까'           → 09/24  ev='아까 머리를 부딪히셨는데'
+   delusion           present time=None           → 09/24  ev='지갑이 없어졌다고 난리'
+
+실제형 메모 사건 19건 중 날짜 알수없음 6건

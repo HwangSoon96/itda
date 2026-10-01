@@ -1,0 +1,20 @@
+[project]
+name = "itda-verify"
+version = "0.3.0"
+description = "잇다 백엔드 명세 검증 (제품 코드 아님)"
+requires-python = ">=3.12"
+dependencies = []
+
+[dependency-groups]
+dev = [
+    "pytest>=8",
+    "pyyaml>=6",
+    "fastapi>=0.115",
+    "uvicorn>=0.30",
+    "httpx>=0.27",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = "-q"

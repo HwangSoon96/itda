@@ -1,0 +1,107 @@
+[
+ {
+  "case": "CORS: 다른 출처에 허용 헤더 안 줌",
+  "ok": true,
+  "note": "{'date': 'Wed, 30 Sep 2026 03:33:18 GMT', 'server': 'uvicorn', 'content-length': '13864', 'content-type': 'application/json'}"
+ },
+ {
+  "case": "CORS 사전 요청 거절",
+  "ok": true,
+  "note": "405"
+ },
+ {
+  "case": "경로 탈출 막힘 /../../etc/passwd",
+  "ok": true,
+  "note": "404"
+ },
+ {
+  "case": "경로 탈출 막힘 /static/../app/settings.py",
+  "ok": true,
+  "note": "404"
+ },
+ {
+  "case": "경로 탈출 막힘 /%2e%2e/%2e%2e/etc/passwd",
+  "ok": true,
+  "note": "404"
+ },
+ {
+  "case": "경로 탈출 막힘 /assets/..%2f..%2fitda.db",
+  "ok": true,
+  "note": "404"
+ },
+ {
+  "case": "SQL 주입: 날짜 파라미터 422",
+  "ok": true,
+  "note": "422"
+ },
+ {
+  "case": "SQL 주입: 메모 원문은 글자로 저장",
+  "ok": true,
+  "note": "200"
+ },
+ {
+  "case": "깨진 JSON → 422 (500 아님)",
+  "ok": true,
+  "note": "422"
+ },
+ {
+  "case": "5M자 본문 → 422, 서버 생존",
+  "ok": true,
+  "note": "422"
+ },
+ {
+  "case": "모르는 필드(status 위조) → 422",
+  "ok": true,
+  "note": "422"
+ },
+ {
+  "case": "거대한 count → 422/404 (500 아님)",
+  "ok": true,
+  "note": "422"
+ },
+ {
+  "case": "범위 밖 id → 4xx",
+  "ok": true,
+  "note": "422"
+ },
+ {
+  "case": "Swagger 문서 공개 여부(LAN 허용 시 노출)",
+  "ok": true,
+  "note": "/docs 200"
+ },
+ {
+  "case": "보안 헤더(참고)",
+  "ok": true,
+  "note": "{'x-content-type-options': None, 'x-frame-options': None, 'content-security-policy': None}"
+ },
+ {
+  "case": "부하 GET /memos ×200 동시",
+  "ok": true,
+  "note": "실패 0, 54 req/s, p50 2504ms, p95 3638ms"
+ },
+ {
+  "case": "부하 GET /summary/period ×200 동시",
+  "ok": true,
+  "note": "실패 0, 86 req/s, p50 1554ms, p95 2248ms"
+ },
+ {
+  "case": "부하 GET /summary?ai=false ×100 동시",
+  "ok": true,
+  "note": "실패 0, 259 req/s, p50 188ms, p95 343ms"
+ },
+ {
+  "case": "부하 GET /trends?type=night_waking ×100 동시",
+  "ok": true,
+  "note": "실패 0, 87 req/s, p50 981ms, p95 1112ms"
+ },
+ {
+  "case": "동시 저장 20건 (실제 모델)",
+  "ok": true,
+  "note": "30.7s, 상태 {'pending': 20}"
+ },
+ {
+  "case": "저장 몰리는 동안 /health 응답",
+  "ok": true,
+  "note": "최대 629ms"
+ }
+]
