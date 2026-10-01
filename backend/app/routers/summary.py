@@ -45,6 +45,8 @@ def _load(session: Session) -> dict:
 
 def _dates(as_of: dt.date | None, period_start: dt.date | None) -> tuple[str, str | None]:
     end = as_of or dt.date.today()
+    if end > dt.date.today():  # 기록·받은 진료도 미래 날짜는 없음. 9999-12-31은 주 계산에서 날짜가 넘쳐 500이 났음
+        raise invalid("미래 날짜는 기준 날짜로 고를 수 없어요.", "future_date")
     if period_start and period_start > end:
         raise invalid("시작일은 기준 날짜보다 늦을 수 없어요.")
     return end.isoformat(), period_start.isoformat() if period_start else None

@@ -16,7 +16,7 @@ from sqlalchemy.orm import Session
 
 from ..db import Event as EventRow
 from ..db import Memo, MemoRevision, RequestKey, SessionDep, SessionLocal
-from ..errors import ApiError, invalid, not_found, now_iso
+from ..errors import ApiError, Id, invalid, not_found, now_iso
 from ..schemas import (
     ConfirmRequest,
     Event,
@@ -80,7 +80,7 @@ def _check_events(memo: Memo, events: list[Event]) -> None:
             raise invalid("시간 표현은 원문에 있는 내용으로 적어 주세요.", "time_not_in_text")
 
 
-async def _run_ai(memo_id: int, version: int) -> None:
+async def _run_ai(memo_id: Id, version: int) -> None:
     """AI를 부르는 동안에는 DB 세션을 잡지 않는다. 끝나고 원문 버전이 그대로일 때만 결과를 쓴다 (F05)."""
     with SessionLocal() as s:
         text = s.get(Memo, memo_id).text
@@ -105,7 +105,7 @@ async def _run_ai(memo_id: int, version: int) -> None:
 _running: set[asyncio.Task] = set()
 
 
-async def _organize(memo_id: int, version: int) -> None:
+async def _organize(memo_id: Id, version: int) -> None:
     """정리를 서버 쪽 작업으로 띄우고 기다린다. 화면이 새로고침·창 닫기로 요청을 끊어도
     작업은 끝까지 돌아 결과가 DB에 남는다 (shield). 화면은 지금처럼 응답을 기다리면 된다."""
     task = asyncio.create_task(_run_ai(memo_id, version))
@@ -154,13 +154,14 @@ async def create_memo(body: MemoCreate, session: SessionDep):
             )
         )
     session.commit()  # 원문부터 저장: AI가 실패해도 메모는 남음
-    await _organize(memo.id, memo.text_version)
+    memo_id = memo.id  # 정리 중에 지워질 수 있어 id를 먼저 잡아 둠 (지워졌으면 _get이 404)
+    await _organize(memo_id, memo.text_version)
     session.expire_all()
-    return to_result(_get(session, memo.id))
+    return to_result(_get(session, memo_id))
 
 
 @router.patch("/memos/{memo_id}", response_model=MemoResult, summary="원문 수정하고 다시 정리")
-async def update_memo(memo_id: int, body: MemoUpdate, session: SessionDep):
+async def update_memo(memo_id: Id, body: MemoUpdate, session: SessionDep):
     _check_text(body.text)
     if body.request_id and (key := session.get(RequestKey, body.request_id)):
         if key.deleted:
@@ -184,13 +185,13 @@ async def update_memo(memo_id: int, body: MemoUpdate, session: SessionDep):
             )
         )
     session.commit()
-    await _organize(memo.id, memo.text_version)
+    await _organize(memo_id, memo.text_version)
     session.expire_all()
     return to_result(_get(session, memo_id))
 
 
 @router.post("/memos/{memo_id}/confirm", response_model=MemoResult, summary="카드 확정 (처음 확인 · 정정 · 직접 정리)")
-def confirm_memo(memo_id: int, body: ConfirmRequest, session: SessionDep):
+def confirm_memo(memo_id: Id, body: ConfirmRequest, session: SessionDep):
     memo = _get(session, memo_id)
     if memo.status == "failed" and not body.manual:
         raise ApiError(409, "memo_failed", "직접 정리한 내용을 확인하거나 메모 정리를 다시 시도해 주세요.")
@@ -218,17 +219,17 @@ def confirm_memo(memo_id: int, body: ConfirmRequest, session: SessionDep):
 
 
 @router.post("/memos/{memo_id}/retry", response_model=MemoResult, summary="정리 실패 메모 다시 정리")
-async def retry_memo(memo_id: int, session: SessionDep):
+async def retry_memo(memo_id: Id, session: SessionDep):
     memo = _get(session, memo_id)
     if memo.status != "failed":
         raise ApiError(409, "memo_not_failed", "정리 실패 메모만 다시 시도할 수 있어요.")
-    await _organize(memo.id, memo.text_version)
+    await _organize(memo_id, memo.text_version)
     session.expire_all()
     return to_result(_get(session, memo_id))
 
 
 @router.get("/memos/{memo_id}/revisions", response_model=list[RevisionOut], summary="수정 이력")
-def memo_revisions(memo_id: int, session: SessionDep):
+def memo_revisions(memo_id: Id, session: SessionDep):
     _get(session, memo_id)
     rows = session.scalars(select(MemoRevision).where(MemoRevision.memo_id == memo_id).order_by(MemoRevision.id.desc()))
     return [
@@ -260,7 +261,7 @@ def list_memos(
 
 
 @router.delete("/memos/{memo_id}", status_code=204, summary="메모 삭제")
-def delete_memo(memo_id: int, session: SessionDep):
+def delete_memo(memo_id: Id, session: SessionDep):
     memo = _get(session, memo_id)
     for key in session.scalars(select(RequestKey).where(RequestKey.memo_id == memo_id)):
         key.deleted = True

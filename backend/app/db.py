@@ -18,6 +18,7 @@ from sqlalchemy import (
     event,
 )
 from sqlalchemy.orm import DeclarativeBase, Mapped, Session, mapped_column, relationship, sessionmaker
+from sqlalchemy.pool import NullPool
 
 from .settings import db_path
 
@@ -177,7 +178,11 @@ class Patient(Base):
 
 
 def make_engine(url: str | None = None):
-    engine = create_engine(url or f"sqlite:///{db_path()}", connect_args={"check_same_thread": False})
+    # 연결을 풀에 모아 두지 않음: async API가 AI를 기다리는 동안 연결을 쥐고 있으면, 동시 저장이 풀 크기(15)를
+    # 넘을 때 다음 요청이 이벤트 루프를 막은 채 빈 연결을 기다려 서버 전체가 멈춘다. SQLite 파일 연결은 바로 열린다.
+    engine = create_engine(
+        url or f"sqlite:///{db_path()}", connect_args={"check_same_thread": False}, poolclass=NullPool
+    )
 
     @event.listens_for(engine, "connect")
     def _foreign_keys(conn, _record):  # 연결할 때마다 켜야 CASCADE가 동작함

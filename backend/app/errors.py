@@ -1,9 +1,13 @@
 """오류 응답: {"detail": "보여 줄 문장", "code": "코드"} (명세 F19)."""
 
 from datetime import datetime
+from typing import Annotated
 
-from fastapi import Request
+from fastapi import Path, Request
 from fastapi.responses import JSONResponse
+
+# 경로의 id: SQLite INTEGER 범위 밖이면 DB까지 가지 않고 422 (그대로 두면 OverflowError로 500)
+Id = Annotated[int, Path(ge=1, le=2**63 - 1)]
 
 
 class ApiError(Exception):

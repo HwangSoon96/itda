@@ -7,7 +7,7 @@ from fastapi.responses import JSONResponse
 from sqlalchemy import select
 
 from ..db import Medication, Question, SessionDep, Visit
-from ..errors import ApiError, invalid, not_found, now_iso
+from ..errors import ApiError, Id, invalid, not_found, now_iso
 from ..schemas import Medication as MedicationOut
 from ..schemas import MedicationCreate, QuestionCreate, VisitCreate, VisitUpdate
 from ..schemas import Question as QuestionOut
@@ -42,7 +42,7 @@ def add_visit(body: VisitCreate, session: SessionDep):
 
 
 @router.patch("/visits/{visit_id}", response_model=VisitOut, summary="진료 상태 바꾸기")
-def update_visit(visit_id: int, body: VisitUpdate, session: SessionDep):
+def update_visit(visit_id: Id, body: VisitUpdate, session: SessionDep):
     v = session.get(Visit, visit_id)
     if v is None:
         raise not_found("진료일", "visit_not_found")
@@ -53,7 +53,7 @@ def update_visit(visit_id: int, body: VisitUpdate, session: SessionDep):
 
 
 @router.delete("/visits/{visit_id}", status_code=204, summary="진료일 삭제")
-def delete_visit(visit_id: int, session: SessionDep):
+def delete_visit(visit_id: Id, session: SessionDep):
     v = session.get(Visit, visit_id)
     if v is None:
         raise not_found("진료일", "visit_not_found")
@@ -94,7 +94,7 @@ def add_medication(body: MedicationCreate, session: SessionDep):
 
 
 @router.delete("/medications/{medication_id}", status_code=204, summary="약 변경 삭제")
-def delete_medication(medication_id: int, session: SessionDep):
+def delete_medication(medication_id: Id, session: SessionDep):
     m = session.get(Medication, medication_id)
     if m is None:
         raise not_found("약 변경", "medication_not_found")
@@ -135,7 +135,7 @@ def add_question(body: QuestionCreate, session: SessionDep):
 
 
 @router.delete("/questions/{question_id}", status_code=204, summary="질문 삭제")
-def delete_question(question_id: int, session: SessionDep):
+def delete_question(question_id: Id, session: SessionDep):
     q = session.get(Question, question_id)
     if q is None:
         raise not_found("질문", "question_not_found")

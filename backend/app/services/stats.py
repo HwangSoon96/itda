@@ -6,7 +6,7 @@
 """
 
 import datetime as dt
-import math
+from fractions import Fraction
 
 D = dt.date.fromisoformat
 
@@ -64,15 +64,17 @@ def observe(memos, period, t=None):
     }
 
 
-def mark_for(base_rate, cur_days, n_cur, n_base, cfg):
-    if base_rate is None or n_base < cfg["min_baseline_recorded_days"]:
+def mark_for(base_days, n_base, cur_days, n_cur, cfg):
+    if n_base == 0 or n_base < cfg["min_baseline_recorded_days"]:
         return "not_comparable"
     if n_cur < cfg["min_recorded_days"]:
         return "insufficient"
-    if base_rate == 0 and cur_days > 0:
+    if base_days == 0 and cur_days > 0:
         return "new"
-    upper = base_rate + cfg["sigma"] * math.sqrt(base_rate * (1 - base_rate) / n_cur)
-    if cur_days >= cfg["min_event_days"] and cur_days / n_cur > upper:
+    # c/n > p + σ·sqrt(p(1-p)/n) 를 분수로 정확히 비교 (양변 제곱). float로는 딱 기준선인 값(10/15 vs 60/72)이
+    # 증가로 잘못 판정됐음.
+    p, x, sigma = Fraction(base_days, n_base), Fraction(cur_days, n_cur), Fraction(str(cfg["sigma"]))
+    if cur_days >= cfg["min_event_days"] and x > p and (x - p) ** 2 > sigma**2 * p * (1 - p) / n_cur:
         return "increase"
     return None
 
@@ -91,7 +93,7 @@ def rows(memos, visits, types, as_of, period_start, cfg):
         n_base = len(b["recorded"]) if b else 0
         cur_rate = len(c["present"]) / cov if cov else None
         base_rate = len(b["present"]) / n_base if n_base else None
-        mark = mark_for(base_rate, len(c["present"]), cov, n_base, cfg)
+        mark = mark_for(len(b["present"]) if b else 0, n_base, len(c["present"]), cov, cfg)
         enough = mark not in ("insufficient", "not_comparable")
         out.append(
             {
