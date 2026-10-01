@@ -1,0 +1,27 @@
+# config/settings.yaml — 기획안 5-7 기준, v3 변경은 # v3
+model_name: itda-gemma4-e4b-q4_k_m                            # 모델 테스트가 끝나면 AI팀이 실제 이름으로
+temporary_model: false                        # v3 파인튜닝 전 임시 모델이면 true → /health로 헤더 안내 (F12)
+ollama_timeout_sec: 120
+ollama_retry: 1
+min_recorded_days: 14                         # 이번 구간 최소 기록일
+min_baseline_recorded_days: 14                # v3 기준 구간 최소 기록일 (V01)
+min_event_days: 3
+sigma: 3
+max_summary_sentences: 5
+low_coverage_week_days: 4
+trend_top_n: 3
+trend_min_days: 3
+memo_max_chars: 1000                          # v3 (R06)
+summary_model: itda-gemma4-e4b-q4_k_m         # 모델 테스트가 끝나면 AI팀이 확정
+summary_timeout_sec: 180
+summary_retry: 1
+cause_expressions: ["때문", "로 인해", "탓", "영향으로", "덕분", "원인"]
+# v3: date_expressions · days_ago_pattern · unknown_expressions 삭제 (F01, 사건 날짜 = 메모 날짜)
+forbidden_expressions: ["치매가 진행", "섬망", "악화되었습니다", "경증", "중등도", "중증", "초기", "중기", "말기",
+  "약 때문에", "로 인해 나빠짐", "약을 늘리", "줄이", "끊으세요", "복용을 중단", "정상", "문제없음", "괜찮습니다", "이상 없음"]
+emergency_keywords: ["의식이 없", "안 깨어나", "숨을 안 쉬", "숨이 차", "머리를 부딪", "피가 많이", "못 일어나",
+  "경련", "발작", "없어졌", "못 찾", "나가서 안 돌아", "죽고 싶", "약을 한꺼번에"]
+emergency_message: "생명이 위험하거나 응급 상황이면 즉시 119에 연락하세요. 어르신이 실종되었다면 112에 신고하세요. 치매 관련 상담은 치매상담콜센터 1899-9988, 마음이 힘드실 때는 자살예방 상담전화 109로 연락하실 수 있어요."
+ai_notice: "AI가 정리한 내용이에요. 틀린 부분은 고쳐 주세요."           # v3 /health (F12)
+disclaimer: "보호자 일지 자동 정리본이며 표준화된 임상 척도 점수가 아니고 진단적 판단을 포함하지 않음"   # v3 /health
+allow_lan: true # wi-fi, 5G, LTE 등 로컬 네트워크에서만 접근 가능하도록 허용 여부

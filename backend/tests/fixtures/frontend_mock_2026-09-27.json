@@ -1,0 +1,1658 @@
+{
+ "as_of": "2026-09-27",
+ "summary": {
+  "patient_alias": "이OO (가상 인물)",
+  "period": {
+   "start": "2026-08-20",
+   "end": "2026-09-27"
+  },
+  "baseline": {
+   "start": "2026-05-21",
+   "end": "2026-08-19"
+  },
+  "coverage": {
+   "recorded_days": 24,
+   "total_days": 39
+  },
+  "baseline_coverage": {
+   "recorded_days": 80,
+   "total_days": 91
+  },
+  "exclusions": {
+   "pending_memo_ids": [
+    105,
+    106,
+    107,
+    108
+   ],
+   "failed_memo_ids": [
+    109
+   ]
+  },
+  "summary_source": "template",
+  "basis_note": "비율은 기록일 중 해당 유형이 있었던 날의 비율이며, 주당 환산은 기록일당 평균 횟수를 7일로 환산한 값입니다.",
+  "trends": [
+   {
+    "type": "night_waking",
+    "period": {
+     "start": "2026-08-20",
+     "end": "2026-09-27"
+    },
+    "baseline": {
+     "start": "2026-05-21",
+     "end": "2026-08-19"
+    },
+    "markers": [
+     {
+      "kind": "visit",
+      "date": "2026-05-21",
+      "label": "진료일"
+     },
+     {
+      "kind": "visit",
+      "date": "2026-08-20",
+      "label": "진료일"
+     },
+     {
+      "kind": "medication",
+      "date": "2026-08-25",
+      "label": "예시 약 A (가상) · 시작"
+     },
+     {
+      "kind": "medication",
+      "date": "2026-09-08",
+      "label": "예시 약 A (가상) · 증량"
+     },
+     {
+      "kind": "medication",
+      "date": "2026-09-16",
+      "label": "예시 약 B (가상) · 시작"
+     },
+     {
+      "kind": "medication",
+      "date": "2026-09-24",
+      "label": "예시 약 B (가상) · 중단"
+     }
+    ],
+    "weeks": [
+     {
+      "start": "2026-05-21",
+      "end": "2026-05-24",
+      "period": "baseline",
+      "rate": null,
+      "recorded_days": 3,
+      "event_days": 1,
+      "low_coverage": true
+     },
+     {
+      "start": "2026-05-25",
+      "end": "2026-05-31",
+      "period": "baseline",
+      "rate": 0,
+      "recorded_days": 6,
+      "event_days": 0,
+      "low_coverage": false
+     },
+     {
+      "start": "2026-06-01",
+      "end": "2026-06-07",
+      "period": "baseline",
+      "rate": 0.1667,
+      "recorded_days": 6,
+      "event_days": 1,
+      "low_coverage": false
+     },
+     {
+      "start": "2026-06-08",
+      "end": "2026-06-14",
+      "period": "baseline",
+      "rate": 0,
+      "recorded_days": 6,
+      "event_days": 0,
+      "low_coverage": false
+     },
+     {
+      "start": "2026-06-15",
+      "end": "2026-06-21",
+      "period": "baseline",
+      "rate": 0.1667,
+      "recorded_days": 6,
+      "event_days": 1,
+      "low_coverage": false
+     },
+     {
+      "start": "2026-06-22",
+      "end": "2026-06-28",
+      "period": "baseline",
+      "rate": 0,
+      "recorded_days": 6,
+      "event_days": 0,
+      "low_coverage": false
+     },
+     {
+      "start": "2026-06-29",
+      "end": "2026-07-05",
+      "period": "baseline",
+      "rate": 0.1667,
+      "recorded_days": 6,
+      "event_days": 1,
+      "low_coverage": false
+     },
+     {
+      "start": "2026-07-06",
+      "end": "2026-07-12",
+      "period": "baseline",
+      "rate": 0,
+      "recorded_days": 6,
+      "event_days": 0,
+      "low_coverage": false
+     },
+     {
+      "start": "2026-07-13",
+      "end": "2026-07-19",
+      "period": "baseline",
+      "rate": 0.1667,
+      "recorded_days": 6,
+      "event_days": 1,
+      "low_coverage": false
+     },
+     {
+      "start": "2026-07-20",
+      "end": "2026-07-26",
+      "period": "baseline",
+      "rate": 0,
+      "recorded_days": 6,
+      "event_days": 0,
+      "low_coverage": false
+     },
+     {
+      "start": "2026-07-27",
+      "end": "2026-08-02",
+      "period": "baseline",
+      "rate": 0.1667,
+      "recorded_days": 6,
+      "event_days": 1,
+      "low_coverage": false
+     },
+     {
+      "start": "2026-08-03",
+      "end": "2026-08-09",
+      "period": "baseline",
+      "rate": 0,
+      "recorded_days": 7,
+      "event_days": 0,
+      "low_coverage": false
+     },
+     {
+      "start": "2026-08-10",
+      "end": "2026-08-16",
+      "period": "baseline",
+      "rate": 0.1429,
+      "recorded_days": 7,
+      "event_days": 1,
+      "low_coverage": false
+     },
+     {
+      "start": "2026-08-17",
+      "end": "2026-08-19",
+      "period": "baseline",
+      "rate": null,
+      "recorded_days": 3,
+      "event_days": 0,
+      "low_coverage": true
+     },
+     {
+      "start": "2026-08-20",
+      "end": "2026-08-23",
+      "period": "current",
+      "rate": null,
+      "recorded_days": 3,
+      "event_days": 2,
+      "low_coverage": true
+     },
+     {
+      "start": "2026-08-24",
+      "end": "2026-08-30",
+      "period": "current",
+      "rate": 0.5,
+      "recorded_days": 4,
+      "event_days": 2,
+      "low_coverage": false
+     },
+     {
+      "start": "2026-08-31",
+      "end": "2026-09-06",
+      "period": "current",
+      "rate": 0.6,
+      "recorded_days": 5,
+      "event_days": 3,
+      "low_coverage": false
+     },
+     {
+      "start": "2026-09-07",
+      "end": "2026-09-13",
+      "period": "current",
+      "rate": 0.25,
+      "recorded_days": 4,
+      "event_days": 1,
+      "low_coverage": false
+     },
+     {
+      "start": "2026-09-14",
+      "end": "2026-09-20",
+      "period": "current",
+      "rate": null,
+      "recorded_days": 3,
+      "event_days": 3,
+      "low_coverage": true
+     },
+     {
+      "start": "2026-09-21",
+      "end": "2026-09-27",
+      "period": "current",
+      "rate": 0.4,
+      "recorded_days": 5,
+      "event_days": 2,
+      "low_coverage": false
+     }
+    ],
+    "medications": [
+     {
+      "name": "예시 약 A (가상)",
+      "change_type": "start",
+      "date": "2026-08-25"
+     },
+     {
+      "name": "예시 약 A (가상)",
+      "change_type": "increase",
+      "date": "2026-09-08"
+     },
+     {
+      "name": "예시 약 B (가상)",
+      "change_type": "start",
+      "date": "2026-09-16"
+     },
+     {
+      "name": "예시 약 B (가상)",
+      "change_type": "stop",
+      "date": "2026-09-24"
+     }
+    ]
+   },
+   {
+    "type": "hallucination",
+    "period": {
+     "start": "2026-08-20",
+     "end": "2026-09-27"
+    },
+    "baseline": {
+     "start": "2026-05-21",
+     "end": "2026-08-19"
+    },
+    "markers": [
+     {
+      "kind": "visit",
+      "date": "2026-05-21",
+      "label": "진료일"
+     },
+     {
+      "kind": "visit",
+      "date": "2026-08-20",
+      "label": "진료일"
+     },
+     {
+      "kind": "medication",
+      "date": "2026-08-25",
+      "label": "예시 약 A (가상) · 시작"
+     },
+     {
+      "kind": "medication",
+      "date": "2026-09-08",
+      "label": "예시 약 A (가상) · 증량"
+     },
+     {
+      "kind": "medication",
+      "date": "2026-09-16",
+      "label": "예시 약 B (가상) · 시작"
+     },
+     {
+      "kind": "medication",
+      "date": "2026-09-24",
+      "label": "예시 약 B (가상) · 중단"
+     }
+    ],
+    "weeks": [
+     {
+      "start": "2026-05-21",
+      "end": "2026-05-24",
+      "period": "baseline",
+      "rate": null,
+      "recorded_days": 3,
+      "event_days": 0,
+      "low_coverage": true
+     },
+     {
+      "start": "2026-05-25",
+      "end": "2026-05-31",
+      "period": "baseline",
+      "rate": 0,
+      "recorded_days": 6,
+      "event_days": 0,
+      "low_coverage": false
+     },
+     {
+      "start": "2026-06-01",
+      "end": "2026-06-07",
+      "period": "baseline",
+      "rate": 0,
+      "recorded_days": 6,
+      "event_days": 0,
+      "low_coverage": false
+     },
+     {
+      "start": "2026-06-08",
+      "end": "2026-06-14",
+      "period": "baseline",
+      "rate": 0,
+      "recorded_days": 6,
+      "event_days": 0,
+      "low_coverage": false
+     },
+     {
+      "start": "2026-06-15",
+      "end": "2026-06-21",
+      "period": "baseline",
+      "rate": 0,
+      "recorded_days": 6,
+      "event_days": 0,
+      "low_coverage": false
+     },
+     {
+      "start": "2026-06-22",
+      "end": "2026-06-28",
+      "period": "baseline",
+      "rate": 0,
+      "recorded_days": 6,
+      "event_days": 0,
+      "low_coverage": false
+     },
+     {
+      "start": "2026-06-29",
+      "end": "2026-07-05",
+      "period": "baseline",
+      "rate": 0,
+      "recorded_days": 6,
+      "event_days": 0,
+      "low_coverage": false
+     },
+     {
+      "start": "2026-07-06",
+      "end": "2026-07-12",
+      "period": "baseline",
+      "rate": 0,
+      "recorded_days": 6,
+      "event_days": 0,
+      "low_coverage": false
+     },
+     {
+      "start": "2026-07-13",
+      "end": "2026-07-19",
+      "period": "baseline",
+      "rate": 0,
+      "recorded_days": 6,
+      "event_days": 0,
+      "low_coverage": false
+     },
+     {
+      "start": "2026-07-20",
+      "end": "2026-07-26",
+      "period": "baseline",
+      "rate": 0,
+      "recorded_days": 6,
+      "event_days": 0,
+      "low_coverage": false
+     },
+     {
+      "start": "2026-07-27",
+      "end": "2026-08-02",
+      "period": "baseline",
+      "rate": 0,
+      "recorded_days": 6,
+      "event_days": 0,
+      "low_coverage": false
+     },
+     {
+      "start": "2026-08-03",
+      "end": "2026-08-09",
+      "period": "baseline",
+      "rate": 0,
+      "recorded_days": 7,
+      "event_days": 0,
+      "low_coverage": false
+     },
+     {
+      "start": "2026-08-10",
+      "end": "2026-08-16",
+      "period": "baseline",
+      "rate": 0,
+      "recorded_days": 7,
+      "event_days": 0,
+      "low_coverage": false
+     },
+     {
+      "start": "2026-08-17",
+      "end": "2026-08-19",
+      "period": "baseline",
+      "rate": null,
+      "recorded_days": 3,
+      "event_days": 0,
+      "low_coverage": true
+     },
+     {
+      "start": "2026-08-20",
+      "end": "2026-08-23",
+      "period": "current",
+      "rate": null,
+      "recorded_days": 3,
+      "event_days": 0,
+      "low_coverage": true
+     },
+     {
+      "start": "2026-08-24",
+      "end": "2026-08-30",
+      "period": "current",
+      "rate": 0,
+      "recorded_days": 4,
+      "event_days": 0,
+      "low_coverage": false
+     },
+     {
+      "start": "2026-08-31",
+      "end": "2026-09-06",
+      "period": "current",
+      "rate": 0.2,
+      "recorded_days": 5,
+      "event_days": 1,
+      "low_coverage": false
+     },
+     {
+      "start": "2026-09-07",
+      "end": "2026-09-13",
+      "period": "current",
+      "rate": 0.25,
+      "recorded_days": 4,
+      "event_days": 1,
+      "low_coverage": false
+     },
+     {
+      "start": "2026-09-14",
+      "end": "2026-09-20",
+      "period": "current",
+      "rate": null,
+      "recorded_days": 3,
+      "event_days": 0,
+      "low_coverage": true
+     },
+     {
+      "start": "2026-09-21",
+      "end": "2026-09-27",
+      "period": "current",
+      "rate": 0.2,
+      "recorded_days": 5,
+      "event_days": 1,
+      "low_coverage": false
+     }
+    ],
+    "medications": [
+     {
+      "name": "예시 약 A (가상)",
+      "change_type": "start",
+      "date": "2026-08-25"
+     },
+     {
+      "name": "예시 약 A (가상)",
+      "change_type": "increase",
+      "date": "2026-09-08"
+     },
+     {
+      "name": "예시 약 B (가상)",
+      "change_type": "start",
+      "date": "2026-09-16"
+     },
+     {
+      "name": "예시 약 B (가상)",
+      "change_type": "stop",
+      "date": "2026-09-24"
+     }
+    ]
+   },
+   {
+    "type": "medication_refusal",
+    "period": {
+     "start": "2026-08-20",
+     "end": "2026-09-27"
+    },
+    "baseline": {
+     "start": "2026-05-21",
+     "end": "2026-08-19"
+    },
+    "markers": [
+     {
+      "kind": "visit",
+      "date": "2026-05-21",
+      "label": "진료일"
+     },
+     {
+      "kind": "visit",
+      "date": "2026-08-20",
+      "label": "진료일"
+     },
+     {
+      "kind": "medication",
+      "date": "2026-08-25",
+      "label": "예시 약 A (가상) · 시작"
+     },
+     {
+      "kind": "medication",
+      "date": "2026-09-08",
+      "label": "예시 약 A (가상) · 증량"
+     },
+     {
+      "kind": "medication",
+      "date": "2026-09-16",
+      "label": "예시 약 B (가상) · 시작"
+     },
+     {
+      "kind": "medication",
+      "date": "2026-09-24",
+      "label": "예시 약 B (가상) · 중단"
+     }
+    ],
+    "weeks": [
+     {
+      "start": "2026-05-21",
+      "end": "2026-05-24",
+      "period": "baseline",
+      "rate": null,
+      "recorded_days": 3,
+      "event_days": 1,
+      "low_coverage": true
+     },
+     {
+      "start": "2026-05-25",
+      "end": "2026-05-31",
+      "period": "baseline",
+      "rate": 0.1667,
+      "recorded_days": 6,
+      "event_days": 1,
+      "low_coverage": false
+     },
+     {
+      "start": "2026-06-01",
+      "end": "2026-06-07",
+      "period": "baseline",
+      "rate": 0.1667,
+      "recorded_days": 6,
+      "event_days": 1,
+      "low_coverage": false
+     },
+     {
+      "start": "2026-06-08",
+      "end": "2026-06-14",
+      "period": "baseline",
+      "rate": 0.3333,
+      "recorded_days": 6,
+      "event_days": 2,
+      "low_coverage": false
+     },
+     {
+      "start": "2026-06-15",
+      "end": "2026-06-21",
+      "period": "baseline",
+      "rate": 0.1667,
+      "recorded_days": 6,
+      "event_days": 1,
+      "low_coverage": false
+     },
+     {
+      "start": "2026-06-22",
+      "end": "2026-06-28",
+      "period": "baseline",
+      "rate": 0.1667,
+      "recorded_days": 6,
+      "event_days": 1,
+      "low_coverage": false
+     },
+     {
+      "start": "2026-06-29",
+      "end": "2026-07-05",
+      "period": "baseline",
+      "rate": 0.1667,
+      "recorded_days": 6,
+      "event_days": 1,
+      "low_coverage": false
+     },
+     {
+      "start": "2026-07-06",
+      "end": "2026-07-12",
+      "period": "baseline",
+      "rate": 0.1667,
+      "recorded_days": 6,
+      "event_days": 1,
+      "low_coverage": false
+     },
+     {
+      "start": "2026-07-13",
+      "end": "2026-07-19",
+      "period": "baseline",
+      "rate": 0.3333,
+      "recorded_days": 6,
+      "event_days": 2,
+      "low_coverage": false
+     },
+     {
+      "start": "2026-07-20",
+      "end": "2026-07-26",
+      "period": "baseline",
+      "rate": 0.1667,
+      "recorded_days": 6,
+      "event_days": 1,
+      "low_coverage": false
+     },
+     {
+      "start": "2026-07-27",
+      "end": "2026-08-02",
+      "period": "baseline",
+      "rate": 0.1667,
+      "recorded_days": 6,
+      "event_days": 1,
+      "low_coverage": false
+     },
+     {
+      "start": "2026-08-03",
+      "end": "2026-08-09",
+      "period": "baseline",
+      "rate": 0.1429,
+      "recorded_days": 7,
+      "event_days": 1,
+      "low_coverage": false
+     },
+     {
+      "start": "2026-08-10",
+      "end": "2026-08-16",
+      "period": "baseline",
+      "rate": 0.2857,
+      "recorded_days": 7,
+      "event_days": 2,
+      "low_coverage": false
+     },
+     {
+      "start": "2026-08-17",
+      "end": "2026-08-19",
+      "period": "baseline",
+      "rate": null,
+      "recorded_days": 3,
+      "event_days": 0,
+      "low_coverage": true
+     },
+     {
+      "start": "2026-08-20",
+      "end": "2026-08-23",
+      "period": "current",
+      "rate": null,
+      "recorded_days": 3,
+      "event_days": 0,
+      "low_coverage": true
+     },
+     {
+      "start": "2026-08-24",
+      "end": "2026-08-30",
+      "period": "current",
+      "rate": 0,
+      "recorded_days": 4,
+      "event_days": 0,
+      "low_coverage": false
+     },
+     {
+      "start": "2026-08-31",
+      "end": "2026-09-06",
+      "period": "current",
+      "rate": 0.2,
+      "recorded_days": 5,
+      "event_days": 1,
+      "low_coverage": false
+     },
+     {
+      "start": "2026-09-07",
+      "end": "2026-09-13",
+      "period": "current",
+      "rate": 0.25,
+      "recorded_days": 4,
+      "event_days": 1,
+      "low_coverage": false
+     },
+     {
+      "start": "2026-09-14",
+      "end": "2026-09-20",
+      "period": "current",
+      "rate": null,
+      "recorded_days": 3,
+      "event_days": 0,
+      "low_coverage": true
+     },
+     {
+      "start": "2026-09-21",
+      "end": "2026-09-27",
+      "period": "current",
+      "rate": 0,
+      "recorded_days": 5,
+      "event_days": 0,
+      "low_coverage": false
+     }
+    ],
+    "medications": [
+     {
+      "name": "예시 약 A (가상)",
+      "change_type": "start",
+      "date": "2026-08-25"
+     },
+     {
+      "name": "예시 약 A (가상)",
+      "change_type": "increase",
+      "date": "2026-09-08"
+     },
+     {
+      "name": "예시 약 B (가상)",
+      "change_type": "start",
+      "date": "2026-09-16"
+     },
+     {
+      "name": "예시 약 B (가상)",
+      "change_type": "stop",
+      "date": "2026-09-24"
+     }
+    ]
+   }
+  ],
+  "markers": [
+   {
+    "kind": "visit",
+    "date": "2026-05-21",
+    "label": "진료일"
+   },
+   {
+    "kind": "visit",
+    "date": "2026-08-20",
+    "label": "진료일"
+   },
+   {
+    "kind": "medication",
+    "date": "2026-08-25",
+    "label": "예시 약 A (가상) · 시작"
+   },
+   {
+    "kind": "medication",
+    "date": "2026-09-08",
+    "label": "예시 약 A (가상) · 증량"
+   },
+   {
+    "kind": "medication",
+    "date": "2026-09-16",
+    "label": "예시 약 B (가상) · 시작"
+   },
+   {
+    "kind": "medication",
+    "date": "2026-09-24",
+    "label": "예시 약 B (가상) · 중단"
+   }
+  ],
+  "rows": [
+   {
+    "type": "night_waking",
+    "baseline_rate": 0.0875,
+    "current_rate": 0.5417,
+    "weekly_count": 7.3,
+    "mark": "increase",
+    "evidence_dates": [
+     "2026-05-22",
+     "2026-05-23",
+     "2026-06-06",
+     "2026-06-20",
+     "2026-07-04",
+     "2026-07-18",
+     "2026-08-01",
+     "2026-08-14",
+     "2026-08-20",
+     "2026-08-23",
+     "2026-08-26",
+     "2026-08-28",
+     "2026-08-30",
+     "2026-09-02",
+     "2026-09-03",
+     "2026-09-06",
+     "2026-09-10",
+     "2026-09-14",
+     "2026-09-18",
+     "2026-09-20",
+     "2026-09-23",
+     "2026-09-26"
+    ],
+    "memo_ids": [
+     2,
+     3,
+     15,
+     27,
+     39,
+     51,
+     63,
+     75,
+     81,
+     83,
+     85,
+     86,
+     87,
+     89,
+     90,
+     92,
+     94,
+     97,
+     98,
+     99,
+     101,
+     103
+    ],
+    "occurrence_days": 13,
+    "recorded_days": 24,
+    "mentioned_days": 14,
+    "absent_days": 1,
+    "unmentioned_days": 10,
+    "baseline_recorded_days": 80,
+    "baseline_occurrence_days": 7,
+    "baseline_mentioned_days": 8,
+    "baseline_absent_days": 1,
+    "baseline_unmentioned_days": 72
+   },
+   {
+    "type": "wandering_exit",
+    "baseline_rate": 0.05,
+    "current_rate": 0.125,
+    "weekly_count": 1.2,
+    "mark": null,
+    "evidence_dates": [
+     "2026-05-30",
+     "2026-06-17",
+     "2026-06-22",
+     "2026-07-15",
+     "2026-08-06",
+     "2026-08-23",
+     "2026-09-03",
+     "2026-09-26"
+    ],
+    "memo_ids": [
+     9,
+     24,
+     28,
+     48,
+     67,
+     83,
+     90,
+     103
+    ],
+    "occurrence_days": 3,
+    "recorded_days": 24,
+    "mentioned_days": 3,
+    "absent_days": 0,
+    "unmentioned_days": 21,
+    "baseline_recorded_days": 80,
+    "baseline_occurrence_days": 4,
+    "baseline_mentioned_days": 5,
+    "baseline_absent_days": 1,
+    "baseline_unmentioned_days": 75
+   },
+   {
+    "type": "agitation",
+    "baseline_rate": 0.0375,
+    "current_rate": 0.0417,
+    "weekly_count": 0.3,
+    "mark": null,
+    "evidence_dates": [
+     "2026-06-04",
+     "2026-07-09",
+     "2026-07-23",
+     "2026-08-08",
+     "2026-09-18"
+    ],
+    "memo_ids": [
+     13,
+     43,
+     55,
+     69,
+     98
+    ],
+    "occurrence_days": 1,
+    "recorded_days": 24,
+    "mentioned_days": 1,
+    "absent_days": 0,
+    "unmentioned_days": 23,
+    "baseline_recorded_days": 80,
+    "baseline_occurrence_days": 3,
+    "baseline_mentioned_days": 4,
+    "baseline_absent_days": 1,
+    "baseline_unmentioned_days": 76
+   },
+   {
+    "type": "irritability",
+    "baseline_rate": 0.0375,
+    "current_rate": 0.0417,
+    "weekly_count": 0.3,
+    "mark": null,
+    "evidence_dates": [
+     "2026-05-28",
+     "2026-06-10",
+     "2026-06-27",
+     "2026-07-28",
+     "2026-08-26",
+     "2026-09-06"
+    ],
+    "memo_ids": [
+     7,
+     18,
+     33,
+     59,
+     85,
+     92
+    ],
+    "occurrence_days": 1,
+    "recorded_days": 24,
+    "mentioned_days": 2,
+    "absent_days": 1,
+    "unmentioned_days": 22,
+    "baseline_recorded_days": 80,
+    "baseline_occurrence_days": 3,
+    "baseline_mentioned_days": 4,
+    "baseline_absent_days": 1,
+    "baseline_unmentioned_days": 76
+   },
+   {
+    "type": "anxiety",
+    "baseline_rate": 0.15,
+    "current_rate": 0.1667,
+    "weekly_count": 1.2,
+    "mark": null,
+    "evidence_dates": [
+     "2026-05-25",
+     "2026-05-29",
+     "2026-06-01",
+     "2026-06-09",
+     "2026-06-16",
+     "2026-06-24",
+     "2026-07-02",
+     "2026-07-10",
+     "2026-07-16",
+     "2026-07-17",
+     "2026-07-25",
+     "2026-08-03",
+     "2026-08-09",
+     "2026-08-17",
+     "2026-08-20",
+     "2026-08-28",
+     "2026-09-05",
+     "2026-09-14",
+     "2026-09-23"
+    ],
+    "memo_ids": [
+     4,
+     8,
+     10,
+     17,
+     23,
+     30,
+     37,
+     44,
+     49,
+     50,
+     57,
+     64,
+     70,
+     78,
+     81,
+     86,
+     91,
+     97,
+     101
+    ],
+    "occurrence_days": 4,
+    "recorded_days": 24,
+    "mentioned_days": 5,
+    "absent_days": 1,
+    "unmentioned_days": 19,
+    "baseline_recorded_days": 80,
+    "baseline_occurrence_days": 12,
+    "baseline_mentioned_days": 14,
+    "baseline_absent_days": 2,
+    "baseline_unmentioned_days": 66
+   },
+   {
+    "type": "low_mood_apathy",
+    "baseline_rate": 0.05,
+    "current_rate": 0.0833,
+    "weekly_count": 0.6,
+    "mark": null,
+    "evidence_dates": [
+     "2026-06-11",
+     "2026-07-03",
+     "2026-07-27",
+     "2026-08-16",
+     "2026-09-02",
+     "2026-09-13"
+    ],
+    "memo_ids": [
+     19,
+     38,
+     58,
+     77,
+     89,
+     96
+    ],
+    "occurrence_days": 2,
+    "recorded_days": 24,
+    "mentioned_days": 2,
+    "absent_days": 0,
+    "unmentioned_days": 22,
+    "baseline_recorded_days": 80,
+    "baseline_occurrence_days": 4,
+    "baseline_mentioned_days": 4,
+    "baseline_absent_days": 0,
+    "baseline_unmentioned_days": 76
+   },
+   {
+    "type": "delusion",
+    "baseline_rate": 0.0375,
+    "current_rate": 0.0417,
+    "weekly_count": 0.3,
+    "mark": null,
+    "evidence_dates": [
+     "2026-06-15",
+     "2026-07-14",
+     "2026-07-31",
+     "2026-08-12",
+     "2026-09-24"
+    ],
+    "memo_ids": [
+     22,
+     47,
+     62,
+     73,
+     102
+    ],
+    "occurrence_days": 1,
+    "recorded_days": 24,
+    "mentioned_days": 1,
+    "absent_days": 0,
+    "unmentioned_days": 23,
+    "baseline_recorded_days": 80,
+    "baseline_occurrence_days": 3,
+    "baseline_mentioned_days": 4,
+    "baseline_absent_days": 1,
+    "baseline_unmentioned_days": 76
+   },
+   {
+    "type": "hallucination",
+    "baseline_rate": 0,
+    "current_rate": 0.125,
+    "weekly_count": 1.2,
+    "mark": "new",
+    "evidence_dates": [
+     "2026-07-06",
+     "2026-09-05",
+     "2026-09-13",
+     "2026-09-24"
+    ],
+    "memo_ids": [
+     40,
+     91,
+     96,
+     102
+    ],
+    "occurrence_days": 3,
+    "recorded_days": 24,
+    "mentioned_days": 3,
+    "absent_days": 0,
+    "unmentioned_days": 21,
+    "baseline_recorded_days": 80,
+    "baseline_occurrence_days": 0,
+    "baseline_mentioned_days": 1,
+    "baseline_absent_days": 1,
+    "baseline_unmentioned_days": 79
+   },
+   {
+    "type": "reduced_intake",
+    "baseline_rate": 0.05,
+    "current_rate": 0.0833,
+    "weekly_count": 0.6,
+    "mark": null,
+    "evidence_dates": [
+     "2026-06-03",
+     "2026-06-26",
+     "2026-07-21",
+     "2026-08-13",
+     "2026-08-21",
+     "2026-09-22"
+    ],
+    "memo_ids": [
+     12,
+     32,
+     53,
+     74,
+     82,
+     100
+    ],
+    "occurrence_days": 2,
+    "recorded_days": 24,
+    "mentioned_days": 2,
+    "absent_days": 0,
+    "unmentioned_days": 22,
+    "baseline_recorded_days": 80,
+    "baseline_occurrence_days": 4,
+    "baseline_mentioned_days": 4,
+    "baseline_absent_days": 0,
+    "baseline_unmentioned_days": 76
+   },
+   {
+    "type": "medication_refusal",
+    "baseline_rate": 0.2,
+    "current_rate": 0.0833,
+    "weekly_count": 0.9,
+    "mark": null,
+    "evidence_dates": [
+     "2026-05-21",
+     "2026-05-27",
+     "2026-06-02",
+     "2026-06-08",
+     "2026-06-13",
+     "2026-06-19",
+     "2026-06-23",
+     "2026-06-25",
+     "2026-07-01",
+     "2026-07-07",
+     "2026-07-13",
+     "2026-07-18",
+     "2026-07-24",
+     "2026-07-30",
+     "2026-08-05",
+     "2026-08-10",
+     "2026-08-15",
+     "2026-08-19",
+     "2026-08-21",
+     "2026-08-31",
+     "2026-09-10"
+    ],
+    "memo_ids": [
+     1,
+     6,
+     11,
+     16,
+     21,
+     26,
+     29,
+     31,
+     36,
+     41,
+     46,
+     51,
+     56,
+     61,
+     66,
+     71,
+     76,
+     80,
+     82,
+     88,
+     94
+    ],
+    "occurrence_days": 2,
+    "recorded_days": 24,
+    "mentioned_days": 3,
+    "absent_days": 1,
+    "unmentioned_days": 21,
+    "baseline_recorded_days": 80,
+    "baseline_occurrence_days": 16,
+    "baseline_mentioned_days": 18,
+    "baseline_absent_days": 2,
+    "baseline_unmentioned_days": 62
+   },
+   {
+    "type": "confusion",
+    "baseline_rate": 0.0625,
+    "current_rate": 0.0417,
+    "weekly_count": 0.3,
+    "mark": null,
+    "evidence_dates": [
+     "2026-05-26",
+     "2026-06-18",
+     "2026-07-11",
+     "2026-08-04",
+     "2026-08-18",
+     "2026-08-30"
+    ],
+    "memo_ids": [
+     5,
+     25,
+     45,
+     65,
+     79,
+     87
+    ],
+    "occurrence_days": 1,
+    "recorded_days": 24,
+    "mentioned_days": 1,
+    "absent_days": 0,
+    "unmentioned_days": 23,
+    "baseline_recorded_days": 80,
+    "baseline_occurrence_days": 5,
+    "baseline_mentioned_days": 5,
+    "baseline_absent_days": 0,
+    "baseline_unmentioned_days": 75
+   },
+   {
+    "type": "fall",
+    "baseline_rate": 0,
+    "current_rate": 0.0833,
+    "weekly_count": 0.6,
+    "mark": "new",
+    "evidence_dates": [
+     "2026-06-05",
+     "2026-06-30",
+     "2026-08-31",
+     "2026-09-09",
+     "2026-09-22"
+    ],
+    "memo_ids": [
+     14,
+     35,
+     88,
+     95,
+     100
+    ],
+    "occurrence_days": 2,
+    "recorded_days": 24,
+    "mentioned_days": 3,
+    "absent_days": 1,
+    "unmentioned_days": 21,
+    "baseline_recorded_days": 80,
+    "baseline_occurrence_days": 0,
+    "baseline_mentioned_days": 2,
+    "baseline_absent_days": 2,
+    "baseline_unmentioned_days": 78
+   }
+  ],
+  "sentences": [
+   {
+    "scope": "current",
+    "types": [
+     "fall"
+    ],
+    "text": "낙상: 2026-09-09, 2026-09-22에 기록됨.",
+    "evidence_dates": [
+     "2026-09-09",
+     "2026-09-22"
+    ],
+    "memo_ids": [
+     95,
+     100
+    ]
+   },
+   {
+    "scope": "current",
+    "types": [
+     "hallucination"
+    ],
+    "text": "환각: 기준 구간에는 기록이 없었고 이번 구간 2026-09-05에 처음 기록됨 (총 3일).",
+    "evidence_dates": [
+     "2026-09-05",
+     "2026-09-13",
+     "2026-09-24"
+    ],
+    "memo_ids": [
+     91,
+     96,
+     102
+    ]
+   },
+   {
+    "scope": "comparison",
+    "types": [
+     "night_waking"
+    ],
+    "text": "야간 각성: 발생일 비율이 기준 구간 9%에서 이번 구간 54%로 증가 표시됨 (기록일 24일 중 13일).",
+    "evidence_dates": [
+     "2026-05-22",
+     "2026-05-23",
+     "2026-06-06",
+     "2026-06-20",
+     "2026-07-04",
+     "2026-07-18",
+     "2026-08-01",
+     "2026-08-14",
+     "2026-08-20",
+     "2026-08-23",
+     "2026-08-26",
+     "2026-08-28",
+     "2026-08-30",
+     "2026-09-02",
+     "2026-09-03",
+     "2026-09-06",
+     "2026-09-10",
+     "2026-09-14",
+     "2026-09-18",
+     "2026-09-20",
+     "2026-09-23",
+     "2026-09-26"
+    ],
+    "memo_ids": [
+     2,
+     3,
+     15,
+     27,
+     39,
+     51,
+     63,
+     75,
+     81,
+     83,
+     85,
+     86,
+     87,
+     89,
+     90,
+     92,
+     94,
+     97,
+     98,
+     99,
+     101,
+     103
+    ]
+   }
+  ],
+  "medications": [
+   {
+    "name": "예시 약 A (가상)",
+    "change_type": "start",
+    "date": "2026-08-25"
+   },
+   {
+    "name": "예시 약 A (가상)",
+    "change_type": "increase",
+    "date": "2026-09-08"
+   },
+   {
+    "name": "예시 약 B (가상)",
+    "change_type": "start",
+    "date": "2026-09-16"
+   },
+   {
+    "name": "예시 약 B (가상)",
+    "change_type": "stop",
+    "date": "2026-09-24"
+   }
+  ],
+  "falls": [
+   "2026-09-09",
+   "2026-09-22"
+  ],
+  "questions": [
+   "밤에 깬 시간과 횟수 외에 무엇을 더 기록할까요?",
+   "9월 9일과 22일 넘어진 상황을 함께 말씀드리고 싶어요.",
+   "없는 사람이 보인다고 하신 날의 메모를 가져왔어요."
+  ],
+  "disclaimer": "보호자 일지 자동 정리본이며 표준화된 임상 척도 점수가 아니고 진단적 판단을 포함하지 않음"
+ },
+ "trends_night_waking": {
+  "type": "night_waking",
+  "period": {
+   "start": "2026-08-20",
+   "end": "2026-09-27"
+  },
+  "baseline": {
+   "start": "2026-05-21",
+   "end": "2026-08-19"
+  },
+  "markers": [
+   {
+    "kind": "visit",
+    "date": "2026-05-21",
+    "label": "진료일"
+   },
+   {
+    "kind": "visit",
+    "date": "2026-08-20",
+    "label": "진료일"
+   },
+   {
+    "kind": "medication",
+    "date": "2026-08-25",
+    "label": "예시 약 A (가상) · 시작"
+   },
+   {
+    "kind": "medication",
+    "date": "2026-09-08",
+    "label": "예시 약 A (가상) · 증량"
+   },
+   {
+    "kind": "medication",
+    "date": "2026-09-16",
+    "label": "예시 약 B (가상) · 시작"
+   },
+   {
+    "kind": "medication",
+    "date": "2026-09-24",
+    "label": "예시 약 B (가상) · 중단"
+   }
+  ],
+  "weeks": [
+   {
+    "start": "2026-05-21",
+    "end": "2026-05-24",
+    "period": "baseline",
+    "rate": null,
+    "recorded_days": 3,
+    "event_days": 1,
+    "low_coverage": true
+   },
+   {
+    "start": "2026-05-25",
+    "end": "2026-05-31",
+    "period": "baseline",
+    "rate": 0,
+    "recorded_days": 6,
+    "event_days": 0,
+    "low_coverage": false
+   },
+   {
+    "start": "2026-06-01",
+    "end": "2026-06-07",
+    "period": "baseline",
+    "rate": 0.1667,
+    "recorded_days": 6,
+    "event_days": 1,
+    "low_coverage": false
+   },
+   {
+    "start": "2026-06-08",
+    "end": "2026-06-14",
+    "period": "baseline",
+    "rate": 0,
+    "recorded_days": 6,
+    "event_days": 0,
+    "low_coverage": false
+   },
+   {
+    "start": "2026-06-15",
+    "end": "2026-06-21",
+    "period": "baseline",
+    "rate": 0.1667,
+    "recorded_days": 6,
+    "event_days": 1,
+    "low_coverage": false
+   },
+   {
+    "start": "2026-06-22",
+    "end": "2026-06-28",
+    "period": "baseline",
+    "rate": 0,
+    "recorded_days": 6,
+    "event_days": 0,
+    "low_coverage": false
+   },
+   {
+    "start": "2026-06-29",
+    "end": "2026-07-05",
+    "period": "baseline",
+    "rate": 0.1667,
+    "recorded_days": 6,
+    "event_days": 1,
+    "low_coverage": false
+   },
+   {
+    "start": "2026-07-06",
+    "end": "2026-07-12",
+    "period": "baseline",
+    "rate": 0,
+    "recorded_days": 6,
+    "event_days": 0,
+    "low_coverage": false
+   },
+   {
+    "start": "2026-07-13",
+    "end": "2026-07-19",
+    "period": "baseline",
+    "rate": 0.1667,
+    "recorded_days": 6,
+    "event_days": 1,
+    "low_coverage": false
+   },
+   {
+    "start": "2026-07-20",
+    "end": "2026-07-26",
+    "period": "baseline",
+    "rate": 0,
+    "recorded_days": 6,
+    "event_days": 0,
+    "low_coverage": false
+   },
+   {
+    "start": "2026-07-27",
+    "end": "2026-08-02",
+    "period": "baseline",
+    "rate": 0.1667,
+    "recorded_days": 6,
+    "event_days": 1,
+    "low_coverage": false
+   },
+   {
+    "start": "2026-08-03",
+    "end": "2026-08-09",
+    "period": "baseline",
+    "rate": 0,
+    "recorded_days": 7,
+    "event_days": 0,
+    "low_coverage": false
+   },
+   {
+    "start": "2026-08-10",
+    "end": "2026-08-16",
+    "period": "baseline",
+    "rate": 0.1429,
+    "recorded_days": 7,
+    "event_days": 1,
+    "low_coverage": false
+   },
+   {
+    "start": "2026-08-17",
+    "end": "2026-08-19",
+    "period": "baseline",
+    "rate": null,
+    "recorded_days": 3,
+    "event_days": 0,
+    "low_coverage": true
+   },
+   {
+    "start": "2026-08-20",
+    "end": "2026-08-23",
+    "period": "current",
+    "rate": null,
+    "recorded_days": 3,
+    "event_days": 2,
+    "low_coverage": true
+   },
+   {
+    "start": "2026-08-24",
+    "end": "2026-08-30",
+    "period": "current",
+    "rate": 0.5,
+    "recorded_days": 4,
+    "event_days": 2,
+    "low_coverage": false
+   },
+   {
+    "start": "2026-08-31",
+    "end": "2026-09-06",
+    "period": "current",
+    "rate": 0.6,
+    "recorded_days": 5,
+    "event_days": 3,
+    "low_coverage": false
+   },
+   {
+    "start": "2026-09-07",
+    "end": "2026-09-13",
+    "period": "current",
+    "rate": 0.25,
+    "recorded_days": 4,
+    "event_days": 1,
+    "low_coverage": false
+   },
+   {
+    "start": "2026-09-14",
+    "end": "2026-09-20",
+    "period": "current",
+    "rate": null,
+    "recorded_days": 3,
+    "event_days": 3,
+    "low_coverage": true
+   },
+   {
+    "start": "2026-09-21",
+    "end": "2026-09-27",
+    "period": "current",
+    "rate": 0.4,
+    "recorded_days": 5,
+    "event_days": 2,
+    "low_coverage": false
+   }
+  ],
+  "medications": [
+   {
+    "name": "예시 약 A (가상)",
+    "change_type": "start",
+    "date": "2026-08-25"
+   },
+   {
+    "name": "예시 약 A (가상)",
+    "change_type": "increase",
+    "date": "2026-09-08"
+   },
+   {
+    "name": "예시 약 B (가상)",
+    "change_type": "start",
+    "date": "2026-09-16"
+   },
+   {
+    "name": "예시 약 B (가상)",
+    "change_type": "stop",
+    "date": "2026-09-24"
+   }
+  ]
+ }
+}
