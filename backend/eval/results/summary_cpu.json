@@ -1,0 +1,407 @@
+{
+ "model": "itda-gemma4-e4b-q4_k_m",
+ "device": "CPU (num_gpu 0)",
+ "요약지 계산": 41,
+ "모델 호출(증가·새로 나타남·낙상 있음)": 17,
+ "llm 통과": "2/17",
+ "통과율": 0.118,
+ "첫 시도 통과": 2,
+ "시도별 떨어진 이유(전체)": {
+  "사실에 없는 숫자": 2,
+  "증가·새로 나타남 뒤바뀜": 32,
+  "표시 유형에 수치 없음": 4
+ },
+ "첫 시도 떨어진 이유": {
+  "사실에 없는 숫자": 1,
+  "증가·새로 나타남 뒤바뀜": 16,
+  "표시 유형에 수치 없음": 2
+ },
+ "시간(초) 평균/최대/최소": [
+  17.4,
+  24.58,
+  12.19
+ ],
+ "cases": [
+  {
+   "case": "SIG-C01",
+   "source": "template",
+   "llm_called": false
+  },
+  {
+   "case": "SIG-C02",
+   "source": "template",
+   "llm_called": false
+  },
+  {
+   "case": "SIG-C03",
+   "source": "template",
+   "llm_called": true,
+   "seconds": 24.58,
+   "attempts": [
+    [
+     "사실에 없는 숫자",
+     "증가·새로 나타남 뒤바뀜"
+    ],
+    [
+     "사실에 없는 숫자",
+     "증가·새로 나타남 뒤바뀜"
+    ]
+   ],
+   "sentences": null
+  },
+  {
+   "case": "SIG-C04",
+   "source": "template",
+   "llm_called": false
+  },
+  {
+   "case": "SIG-C05",
+   "source": "template",
+   "llm_called": true,
+   "seconds": 16.44,
+   "attempts": [
+    [
+     "증가·새로 나타남 뒤바뀜"
+    ],
+    [
+     "증가·새로 나타남 뒤바뀜"
+    ]
+   ],
+   "sentences": null
+  },
+  {
+   "case": "SIG-C06",
+   "source": "template",
+   "llm_called": true,
+   "seconds": 18.31,
+   "attempts": [
+    [
+     "증가·새로 나타남 뒤바뀜"
+    ],
+    [
+     "증가·새로 나타남 뒤바뀜"
+    ]
+   ],
+   "sentences": null
+  },
+  {
+   "case": "SIG-C07",
+   "source": "template",
+   "llm_called": true,
+   "seconds": 18.29,
+   "attempts": [
+    [
+     "증가·새로 나타남 뒤바뀜"
+    ],
+    [
+     "증가·새로 나타남 뒤바뀜"
+    ]
+   ],
+   "sentences": null
+  },
+  {
+   "case": "SIG-C08",
+   "source": "template",
+   "llm_called": true,
+   "seconds": 16.92,
+   "attempts": [
+    [
+     "증가·새로 나타남 뒤바뀜"
+    ],
+    [
+     "증가·새로 나타남 뒤바뀜"
+    ]
+   ],
+   "sentences": null
+  },
+  {
+   "case": "SIG-C09",
+   "source": "template",
+   "llm_called": false
+  },
+  {
+   "case": "SIG-C10",
+   "source": "template",
+   "llm_called": true,
+   "seconds": 18.84,
+   "attempts": [
+    [
+     "증가·새로 나타남 뒤바뀜"
+    ],
+    [
+     "증가·새로 나타남 뒤바뀜"
+    ]
+   ],
+   "sentences": null
+  },
+  {
+   "case": "SIG-C11",
+   "source": "template",
+   "llm_called": true,
+   "seconds": 18.07,
+   "attempts": [
+    [
+     "증가·새로 나타남 뒤바뀜"
+    ],
+    [
+     "증가·새로 나타남 뒤바뀜"
+    ]
+   ],
+   "sentences": null
+  },
+  {
+   "case": "SIG-C12",
+   "source": "template",
+   "llm_called": true,
+   "seconds": 17.18,
+   "attempts": [
+    [
+     "증가·새로 나타남 뒤바뀜"
+    ],
+    [
+     "증가·새로 나타남 뒤바뀜"
+    ]
+   ],
+   "sentences": null
+  },
+  {
+   "case": "SIG-C13",
+   "source": "template",
+   "llm_called": false
+  },
+  {
+   "case": "SIG-C14",
+   "source": "template",
+   "llm_called": false
+  },
+  {
+   "case": "SIG-C15",
+   "source": "template",
+   "llm_called": true,
+   "seconds": 17.68,
+   "attempts": [
+    [
+     "표시 유형에 수치 없음",
+     "증가·새로 나타남 뒤바뀜",
+     "표시 유형에 수치 없음",
+     "증가·새로 나타남 뒤바뀜"
+    ],
+    [
+     "표시 유형에 수치 없음",
+     "증가·새로 나타남 뒤바뀜",
+     "표시 유형에 수치 없음",
+     "증가·새로 나타남 뒤바뀜"
+    ]
+   ],
+   "sentences": null
+  },
+  {
+   "case": "SIG-C16",
+   "source": "template",
+   "llm_called": true,
+   "seconds": 18.1,
+   "attempts": [
+    [
+     "증가·새로 나타남 뒤바뀜"
+    ],
+    [
+     "증가·새로 나타남 뒤바뀜"
+    ]
+   ],
+   "sentences": null
+  },
+  {
+   "case": "SIG-C17",
+   "source": "llm",
+   "llm_called": true,
+   "seconds": 12.19,
+   "attempts": [
+    []
+   ],
+   "sentences": [
+    "낙상은 기록되지 않음.",
+    "배회·출입문 시도는 기준 구간에는 기록이 없었고 이번 구간 2026-04-16에 처음 기록됨 (총 7일).",
+    "망상 발생일 비율은 기준 구간 11%에서 이번 구간 42%로 증가함 (기록일 33일 중 14일)."
+   ]
+  },
+  {
+   "case": "SIG-C18",
+   "source": "template",
+   "llm_called": true,
+   "seconds": 18.0,
+   "attempts": [
+    [
+     "증가·새로 나타남 뒤바뀜"
+    ],
+    [
+     "증가·새로 나타남 뒤바뀜"
+    ]
+   ],
+   "sentences": null
+  },
+  {
+   "case": "SIG-C19",
+   "source": "template",
+   "llm_called": true,
+   "seconds": 16.8,
+   "attempts": [
+    [
+     "증가·새로 나타남 뒤바뀜"
+    ],
+    [
+     "증가·새로 나타남 뒤바뀜"
+    ]
+   ],
+   "sentences": null
+  },
+  {
+   "case": "SIG-C20",
+   "source": "template",
+   "llm_called": false
+  },
+  {
+   "case": "SIG-N01",
+   "source": "template",
+   "llm_called": false
+  },
+  {
+   "case": "SIG-N02",
+   "source": "template",
+   "llm_called": true,
+   "seconds": 17.4,
+   "attempts": [
+    [
+     "증가·새로 나타남 뒤바뀜"
+    ],
+    [
+     "증가·새로 나타남 뒤바뀜"
+    ]
+   ],
+   "sentences": null
+  },
+  {
+   "case": "SIG-N03",
+   "source": "template",
+   "llm_called": false
+  },
+  {
+   "case": "SIG-N04",
+   "source": "template",
+   "llm_called": false
+  },
+  {
+   "case": "SIG-N05",
+   "source": "template",
+   "llm_called": false
+  },
+  {
+   "case": "SIG-N06",
+   "source": "template",
+   "llm_called": true,
+   "seconds": 16.27,
+   "attempts": [
+    [
+     "증가·새로 나타남 뒤바뀜"
+    ],
+    [
+     "증가·새로 나타남 뒤바뀜"
+    ]
+   ],
+   "sentences": null
+  },
+  {
+   "case": "SIG-N07",
+   "source": "template",
+   "llm_called": false
+  },
+  {
+   "case": "SIG-N08",
+   "source": "template",
+   "llm_called": false
+  },
+  {
+   "case": "SIG-N09",
+   "source": "template",
+   "llm_called": false
+  },
+  {
+   "case": "SIG-N10",
+   "source": "template",
+   "llm_called": false
+  },
+  {
+   "case": "SIG-N11",
+   "source": "template",
+   "llm_called": false
+  },
+  {
+   "case": "SIG-N12",
+   "source": "template",
+   "llm_called": false
+  },
+  {
+   "case": "SIG-N13",
+   "source": "template",
+   "llm_called": false
+  },
+  {
+   "case": "SIG-N14",
+   "source": "template",
+   "llm_called": false
+  },
+  {
+   "case": "SIG-N15",
+   "source": "template",
+   "llm_called": false
+  },
+  {
+   "case": "SIG-N16",
+   "source": "template",
+   "llm_called": false
+  },
+  {
+   "case": "SIG-N17",
+   "source": "template",
+   "llm_called": false
+  },
+  {
+   "case": "SIG-N18",
+   "source": "template",
+   "llm_called": false
+  },
+  {
+   "case": "SIG-N19",
+   "source": "template",
+   "llm_called": true,
+   "seconds": 16.52,
+   "attempts": [
+    [
+     "증가·새로 나타남 뒤바뀜"
+    ],
+    [
+     "증가·새로 나타남 뒤바뀜"
+    ]
+   ],
+   "sentences": null
+  },
+  {
+   "case": "SIG-N20",
+   "source": "template",
+   "llm_called": false
+  },
+  {
+   "case": "DEMO",
+   "source": "llm",
+   "llm_called": true,
+   "seconds": 13.41,
+   "attempts": [
+    []
+   ],
+   "sentences": [
+    "낙상: 2026-09-09, 2026-09-22에 기록됨.",
+    "환각: 기준 구간에는 기록이 없었고 이번 구간 2026-09-05에 처음 기록됨 (총 3일).",
+    "야간 각성: 발생일 비율이 기준 구간 9%에서 이번 구간 54%로 증가 표시됨 (기록일 24일 중 13일)."
+   ]
+  }
+ ]
+}

@@ -1,0 +1,135 @@
+{
+ "source": "/home/aiuser/itda/itda-ai/ml/eval/signal_scenarios.json",
+ "patients": 40,
+ "unit": "환자 × 유형",
+ "by_sigma": {
+  "3": {
+   "탐지": "13/20",
+   "탐지율": 0.65,
+   "종류까지 맞음(증가/새로)": "13/20",
+   "오경보(변화 안 심은 20명)": "3/76",
+   "오경보율": 0.039,
+   "참고: 변화 심은 환자의 다른 유형 오경보": "2/62",
+   "놓치거나 헛표시한 건": [
+    {
+     "patient": "SIG-C01",
+     "type": "irritability",
+     "planted": "increase",
+     "mark": null
+    },
+    {
+     "patient": "SIG-C02",
+     "type": "irritability",
+     "planted": "increase",
+     "mark": null
+    },
+    {
+     "patient": "SIG-C04",
+     "type": "irritability",
+     "planted": "increase",
+     "mark": null
+    },
+    {
+     "patient": "SIG-C09",
+     "type": "hallucination",
+     "planted": "increase",
+     "mark": null
+    },
+    {
+     "patient": "SIG-C13",
+     "type": "irritability",
+     "planted": "increase",
+     "mark": null
+    },
+    {
+     "patient": "SIG-C14",
+     "type": "night_waking",
+     "planted": "increase",
+     "mark": null
+    },
+    {
+     "patient": "SIG-C20",
+     "type": "agitation",
+     "planted": "increase",
+     "mark": null
+    },
+    {
+     "patient": "SIG-N02",
+     "type": "confusion",
+     "planted": null,
+     "mark": "increase"
+    },
+    {
+     "patient": "SIG-N06",
+     "type": "hallucination",
+     "planted": null,
+     "mark": "increase"
+    },
+    {
+     "patient": "SIG-N19",
+     "type": "delusion",
+     "planted": null,
+     "mark": "increase"
+    }
+   ]
+  },
+  "2": {
+   "탐지": "17/20",
+   "탐지율": 0.85,
+   "종류까지 맞음(증가/새로)": "17/20",
+   "오경보(변화 안 심은 20명)": "5/76",
+   "오경보율": 0.066,
+   "참고: 변화 심은 환자의 다른 유형 오경보": "5/62",
+   "놓치거나 헛표시한 건": [
+    {
+     "patient": "SIG-C01",
+     "type": "irritability",
+     "planted": "increase",
+     "mark": null
+    },
+    {
+     "patient": "SIG-C02",
+     "type": "irritability",
+     "planted": "increase",
+     "mark": null
+    },
+    {
+     "patient": "SIG-C04",
+     "type": "irritability",
+     "planted": "increase",
+     "mark": null
+    },
+    {
+     "patient": "SIG-N02",
+     "type": "confusion",
+     "planted": null,
+     "mark": "increase"
+    },
+    {
+     "patient": "SIG-N06",
+     "type": "hallucination",
+     "planted": null,
+     "mark": "increase"
+    },
+    {
+     "patient": "SIG-N07",
+     "type": "agitation",
+     "planted": null,
+     "mark": "increase"
+    },
+    {
+     "patient": "SIG-N15",
+     "type": "medication_refusal",
+     "planted": null,
+     "mark": "increase"
+    },
+    {
+     "patient": "SIG-N19",
+     "type": "delusion",
+     "planted": null,
+     "mark": "increase"
+    }
+   ]
+  }
+ }
+}

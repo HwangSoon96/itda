@@ -1,0 +1,278 @@
+{
+ "model": "itda-gemma4-e4b-q4_k_m",
+ "메모": 20,
+ "AI 정리 실패": 0,
+ "고친 메모": "16/20",
+ "메모 수정 비율": 0.8,
+ "사건 처리": {
+  "고침": 16,
+  "삭제": 3,
+  "그대로": 3
+ },
+ "사건 수정 비율(고침+삭제+추가 / 최종 사건+삭제)": "19/22",
+ "정리 시간(초) 평균/최대": [
+  1.6,
+  6.2
+ ],
+ "memos": [
+  {
+   "memo_id": 1,
+   "demo_id": 1,
+   "record_date": "2026-05-21",
+   "ai_status": "pending",
+   "seconds": 6.2,
+   "ai_cards": 1,
+   "gold": 1,
+   "actions": [
+    "고침 medication_refusal {'time_expr': '오늘'}"
+   ],
+   "edited": true
+  },
+  {
+   "memo_id": 2,
+   "demo_id": 6,
+   "record_date": "2026-05-27",
+   "ai_status": "pending",
+   "seconds": 1.3,
+   "ai_cards": 1,
+   "gold": 1,
+   "actions": [
+    "고침 medication_refusal {'time_expr': '오늘'}"
+   ],
+   "edited": true
+  },
+  {
+   "memo_id": 3,
+   "demo_id": 11,
+   "record_date": "2026-06-02",
+   "ai_status": "pending",
+   "seconds": 2.1,
+   "ai_cards": 2,
+   "gold": 1,
+   "actions": [
+    "고침 medication_refusal {'time_expr': '오늘'}",
+    "삭제 reduced_intake/present"
+   ],
+   "edited": true
+  },
+  {
+   "memo_id": 4,
+   "demo_id": 17,
+   "record_date": "2026-06-09",
+   "ai_status": "pending",
+   "seconds": 1.2,
+   "ai_cards": 1,
+   "gold": 1,
+   "actions": [
+    "고침 anxiety {'time_expr': '오늘'}"
+   ],
+   "edited": true
+  },
+  {
+   "memo_id": 5,
+   "demo_id": 22,
+   "record_date": "2026-06-15",
+   "ai_status": "pending",
+   "seconds": 1.3,
+   "ai_cards": 1,
+   "gold": 1,
+   "actions": [
+    "고침 delusion {'time_expr': '오늘'}"
+   ],
+   "edited": true
+  },
+  {
+   "memo_id": 6,
+   "demo_id": 28,
+   "record_date": "2026-06-22",
+   "ai_status": "pending",
+   "seconds": 1.3,
+   "ai_cards": 1,
+   "gold": 1,
+   "actions": [
+    "고침 wandering_exit {'time_expr': '오늘'}"
+   ],
+   "edited": true
+  },
+  {
+   "memo_id": 7,
+   "demo_id": 33,
+   "record_date": "2026-06-27",
+   "ai_status": "pending",
+   "seconds": 1.3,
+   "ai_cards": 1,
+   "gold": 1,
+   "actions": [
+    "고침 irritability {'time_expr': '오늘'}"
+   ],
+   "edited": true
+  },
+  {
+   "memo_id": 8,
+   "demo_id": 39,
+   "record_date": "2026-07-04",
+   "ai_status": "pending",
+   "seconds": 1.1,
+   "ai_cards": 1,
+   "gold": 1,
+   "actions": [
+    "고침 night_waking {'time_expr': '오늘'}"
+   ],
+   "edited": true
+  },
+  {
+   "memo_id": 9,
+   "demo_id": 44,
+   "record_date": "2026-07-10",
+   "ai_status": "pending",
+   "seconds": 2.0,
+   "ai_cards": 2,
+   "gold": 1,
+   "actions": [
+    "고침 anxiety {'time_expr': '오늘'}",
+    "삭제 anxiety/present"
+   ],
+   "edited": true
+  },
+  {
+   "memo_id": 10,
+   "demo_id": 50,
+   "record_date": "2026-07-17",
+   "ai_status": "pending",
+   "seconds": 1.2,
+   "ai_cards": 1,
+   "gold": 1,
+   "actions": [
+    "고침 anxiety {'time_expr': '오늘'}"
+   ],
+   "edited": true
+  },
+  {
+   "memo_id": 11,
+   "demo_id": 55,
+   "record_date": "2026-07-23",
+   "ai_status": "pending",
+   "seconds": 1.2,
+   "ai_cards": 1,
+   "gold": 1,
+   "actions": [
+    "고침 agitation {'time_expr': '오늘'}"
+   ],
+   "edited": true
+  },
+  {
+   "memo_id": 12,
+   "demo_id": 60,
+   "record_date": "2026-07-29",
+   "ai_status": "pending",
+   "seconds": 0.5,
+   "ai_cards": 0,
+   "gold": 0,
+   "actions": [],
+   "edited": false
+  },
+  {
+   "memo_id": 13,
+   "demo_id": 66,
+   "record_date": "2026-08-05",
+   "ai_status": "pending",
+   "seconds": 1.4,
+   "ai_cards": 1,
+   "gold": 1,
+   "actions": [
+    "고침 medication_refusal {'time_expr': '오늘'}"
+   ],
+   "edited": true
+  },
+  {
+   "memo_id": 14,
+   "demo_id": 71,
+   "record_date": "2026-08-10",
+   "ai_status": "pending",
+   "seconds": 1.3,
+   "ai_cards": 1,
+   "gold": 1,
+   "actions": [
+    "고침 medication_refusal {'time_expr': '오늘'}"
+   ],
+   "edited": true
+  },
+  {
+   "memo_id": 15,
+   "demo_id": 77,
+   "record_date": "2026-08-16",
+   "ai_status": "pending",
+   "seconds": 1.3,
+   "ai_cards": 1,
+   "gold": 1,
+   "actions": [
+    "고침 low_mood_apathy {'time_expr': '오늘'}"
+   ],
+   "edited": true
+  },
+  {
+   "memo_id": 16,
+   "demo_id": 82,
+   "record_date": "2026-08-21",
+   "ai_status": "pending",
+   "seconds": 2.1,
+   "ai_cards": 2,
+   "gold": 2,
+   "actions": [
+    "그대로",
+    "그대로"
+   ],
+   "edited": false
+  },
+  {
+   "memo_id": 17,
+   "demo_id": 88,
+   "record_date": "2026-08-31",
+   "ai_status": "pending",
+   "seconds": 2.0,
+   "ai_cards": 2,
+   "gold": 2,
+   "actions": [
+    "고침 medication_refusal {'time_expr': '오늘'}",
+    "그대로"
+   ],
+   "edited": true
+  },
+  {
+   "memo_id": 18,
+   "demo_id": 93,
+   "record_date": "2026-09-08",
+   "ai_status": "pending",
+   "seconds": 0.5,
+   "ai_cards": 0,
+   "gold": 0,
+   "actions": [],
+   "edited": false
+  },
+  {
+   "memo_id": 19,
+   "demo_id": 99,
+   "record_date": "2026-09-20",
+   "ai_status": "pending",
+   "seconds": 2.1,
+   "ai_cards": 2,
+   "gold": 1,
+   "actions": [
+    "고침 night_waking {'count': 3, 'time_expr': '새벽'}",
+    "삭제 night_waking/present"
+   ],
+   "edited": true
+  },
+  {
+   "memo_id": 20,
+   "demo_id": 104,
+   "record_date": "2026-09-27",
+   "ai_status": "pending",
+   "seconds": 0.5,
+   "ai_cards": 0,
+   "gold": 0,
+   "actions": [],
+   "edited": false
+  }
+ ]
+}
