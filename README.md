@@ -22,6 +22,8 @@
 
 [![잇다 시연 영상](docs/images/demo-thumbnail.jpg)](https://drive.google.com/file/d/1-lVVVcLBXhm9VTV219TXaRlNyY2ujBOM/view?usp=sharing)
 
+발표 자료: [잇다_최종발표.pptx](docs/잇다_최종발표.pptx)
+
 ## 왜 만들었나
 
 > 의사 "요즘 어떠셨어요?"<br>
